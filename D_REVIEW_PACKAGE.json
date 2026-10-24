@@ -1,0 +1,28 @@
+{
+  "manifest_status": "current_external_zip_integrity",
+  "repository": "Kush110807/SemesterSpace",
+  "base_commit": "feb40999bdc59fc7ef41eb55e24665a690985fa6",
+  "feature_commit": "044252287a3bebb7c2199076f52c531b5c2c90bb",
+  "feature_commit_meaning": "Independently tested implementation, unchanged by the packaging commit.",
+  "package_source_commit": "16fe844f56c98f8b1d529a250dac3a7d67a6c3c9",
+  "archive": "SemesterSpace-D-review-source.zip",
+  "archive_bytes": 8425953,
+  "archive_sha256": "e78c6b36eba6ce9cca71646232d9d125f353ea854d3a31e5e97152ccf3c7e10d",
+  "archive_root": "SemesterSpace",
+  "source_file_count": 111,
+  "current_integrity_manifest": "SemesterSpace/PACKAGE_INTEGRITY.sha256",
+  "current_integrity_manifest_sha256": "48bd716982ab8382f3b727a25756521aa0ef3e0533c2debc0bd0da97e8ec4895",
+  "packaging_validation": {
+    "zip_crc": "passed",
+    "all_payload_hashes": "passed",
+    "exact_git_tree_membership": "passed",
+    "no_unlisted_payload_files": true,
+    "manifest_self_exclusion_only": true,
+    "runtime_dependencies_tests_evidence_reference_inputs_unchanged_from_feature_commit": true,
+    "historical_hash_entries_unchanged": true,
+    "hosting_config_created_or_changed": false
+  },
+  "runtime_verification": "User independently reports 108 full tests, 26 engine tests, 342 arithmetic cases, syntax and build pass. No runtime change in this packaging revision.",
+  "limitations": "Calendar extraction remains partial; manual coverage is a human assertion, unknown omissions cannot all be detected, Q3 Physics unresolved. See bundled handoff.",
+  "merge_or_deployment_performed": false
+}
