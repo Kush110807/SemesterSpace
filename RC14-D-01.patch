@@ -1,0 +1,327 @@
+diff --git a/semester-space/docs/IMPORT_DELIVERY.md b/semester-space/docs/IMPORT_DELIVERY.md
+index 286ba97385d6057dbe29a1fdd4b78063a461ad7e..e01fdbdde7648b11e0e96fa7d1b6b2220c84c5ef 100644
+--- a/semester-space/docs/IMPORT_DELIVERY.md
++++ b/semester-space/docs/IMPORT_DELIVERY.md
+@@ -1,3 +1,49 @@
++# RC14-D-01 confined legacy-source correction
++
++25 October 2026 IST. Delivery branch `fix/rc14-d-01`. This section supersedes the first revision delivery’s claim that prior filename/hash metadata needs conversion to v1 before comparison. No other release behavior is changed.
++
++## Exact RC-001.4 baseline and reproduction
++
++User supplied `SEMESTERSPACE_RC0014_A_D02_SOURCE.zip`, SHA-256 **`b0a5086f12ded21e89cec85a31e3e758577837f01c646f9195f58deed4595633`**. ZIP CRC and **182/182** current manifest entries verified before modification. Read RELEASE_CONTRACT.md and RC-001.1/2/3/4 amendments. The earlier D preliminary ZIP contained only the report and four probes; this later archive supplies the actual source and amendment.
++
++The archive’s `src/import/revision.js`, importer-local types and this existing handoff are byte-identical to declared imported head `6a8d0a09abbfa7cefc0b3cf9a8227fcdb190c115`; the source patch is based on those exact bytes. Original revision.js SHA-256: `062d41abaf574462a4e2b7df320a89bfc5083fd80c1d7c04de9a2ceefe872ae2`. Existing worker branches and A’s supplied tree were preserved separately. No A integration or default-branch merge is performed by this delivery.
++
++D’s unchanged `independent_rc14_legacy.mjs` ran against the actual supplied tree before repair: missing metadata → no unresolved items; reviewed legacy `{sha256,fileName}` → SOURCE_METADATA_REVIEW; valid v1 → no unresolved items. This confirms RC14-D-01. After the repair, all three reviewed cases have no unresolved items and one proposed change. Both runs used synthetic fixture confirmations, not personal/institutional confirmation.
++
++## Bounded repair and exact changed files
++
++- `src/import/revision.js`: distinguishes missing metadata, the exact two-field legacy filename/SHA-256 JSON shape, valid version-1 crosswalks and unsupported/malformed metadata. Missing and valid legacy metadata require `legacySourceReviewed === true` plus a nonblank string note. Legacy SHA must be a 64-hex string and filename nonblank; unknown/versioned records cannot masquerade as legacy. Only actual v1 crosswalks supply `priorLinks`; malformed links no longer cause an unchecked array operation. Review never fabricates a v1 record or prior links. The supplied legacy object, filename and SHA spelling/case remain unmodified. Candidate/proposal result shapes remain unchanged.
++- `src/import/revision-types.d.ts`: importer-local input union adds `LegacySourceRevision`; no shared interfaces or output fields change.
++- `tests/import/legacy-source.test.mjs`: 12 regression groups for positive/negative missing, legacy and v1 inputs; strict/incomplete review, immutable identity, no fabricated links, competing matches, unknown prior references, applicability/effective date/coverage, unsupported input, historical edits, cancellation evidence and known missing rows.
++- `tests/import/rc14-legacy-apply.mjs`: guarded manual probe for A’s RC-001.4 tree. Uses the actual A controller/storage adapter with serialized in-memory storage; checks reviewed legacy → stage → single write → prior identity retained → reconstructed controller readback. It is not a native-browser test and does not run automatically without `--run`.
++- `tests/import/evidence/rc14-d-01/results.json`: before/after results and actual verification summary.
++- `docs/IMPORT_DELIVERY.md`: this bounded handoff; prior reports below retained as historical.
++
++A’s existing merge routine retains `{sha256,fileName}` in `sourceHistory` verbatim. The importer leaves A’s original legacy record read-only rather than replacing it with the new source or inventing old crosswalks. Candidate source links describe only the newly reviewed effects. All prior missing-row, affirmative cancellation evidence, ambiguity, source review, scope and historical guards remain in force.
++
++## Actual commands / results on the supplied RC-001.4 A-D02 source
++
++Runtime: Node 24.19.0, Python 3.12.14. All commands below exited 0 unless the pre-fix observation is explicitly noted.
++
++- `git apply --check` and application of the importer runtime/type diff: passed against the actual source archive. The final complete patch is also checked against a pristine extraction.
++- D’s `node independent_rc14_legacy.mjs`: reproduced the legacy-only blocker before repair; after repair, missing/reviewed legacy/v1 cases all return `unresolved: []`.
++- `npm --cache /tmp/ss-npm-cache ci --no-audit --no-fund`: clean pinned installation passed; 39 local assets prepared. No document-processing service or paid API.
++- `npm test`: **274 passed**, 0 failures/skips/TODOs, including the 12 new regression groups and A’s unchanged existing integration tests.
++- `node --test tests/import/legacy-source.test.mjs tests/import/revision.test.mjs tests/import/layouts.test.mjs tests/import/link-effects.test.mjs tests/import/coverage.test.mjs tests/import/draft.test.mjs`: **111 passed** on the worker source.
++- `npm run check`: passed on the RC-001.4 tree after adding the guarded probe: **69 modules**.
++- `node --test tests/engine/*.test.mjs`: **26 passed**. `python3 tests/checker.py`: **342 passed**. `npm run build`: passed.
++- `node tests/import/rc14-legacy-apply.mjs --run`: passed on the supplied RC-001.4 tree. Exactly one serialized write, model revision 3→4, snapshots/commitments unchanged, exact old identity retained in persisted history, no fabricated old links, reconstructed controller reads back the accepted state. This is synthetic in-memory storage evidence, not browser/native localStorage reload.
++
++An initial new history test asserted the later projection guard rather than the earlier HISTORICAL_CONFLICT guard. It was corrected to assert the actual fail-closed historical rejection; production historical validation was unchanged. The original legacy positive regression failed before the fix and passes after it.
++
++## Preservation / limits / A handoff
++
++A controller/storage/main/release integration, C UI, B attendance ledger, engine, shared files, original tests, parser/extractor, dependencies and assets scripts are unchanged. The patch does not fix or reopen other D findings and does not create personal confirmations. Q3 Physics/activity treatment, attendance counts/policy and teaching horizon remain unresolved.
++
++A must independently apply the bounded patch to its corrected RC-001.4 working tree, verify legacy review through the final C UI, and test the atomic acceptance and **native browser reload**, including persistence-failure rollback. Those UI/native-browser checks were not run by this repair. Extraction limitations remain unchanged; missing extraction is not deletion and software cannot prove every omitted event was found. No schema/interface migration, broad refactor, source-package regeneration, merge or deployment. Additional spend ₹0.
++
++---
++
+ # RC-001 first bounded revision delivery — for A integration
+ 
+ This section supersedes only the earlier milestone’s initial-import-only boundary. The historical initial delivery below is retained. Contract supplied by A on 24 October 2026: RC-001. No controller, storage, UI, attendance or engine files were edited. No merge or deployment. ₹0 additional spend.
+diff --git a/semester-space/src/import/revision-types.d.ts b/semester-space/src/import/revision-types.d.ts
+index c40dd20a54335e52e02e8476a34ac21e0ccc694f..8bdfd191312304de24803012c2838968df606ade 100644
+--- a/semester-space/src/import/revision-types.d.ts
++++ b/semester-space/src/import/revision-types.d.ts
+@@ -13,6 +13,7 @@ export type CalendarRevisionProposal = {
+  changes:CalendarChange[];unresolved:{code:string;sourceRef:string;message:string}[];createdAtUntrusted:string|null;
+ };
+ export type SourceLink={sourceRef:string;kind:CalendarChange['kind'];targetId:string|null;value:Record<string,unknown>|null;evidence?:CalendarChange['evidence'];changeId?:string};
++export type LegacySourceRevision={sha256:string;fileName:string};
+ export type SourceRevision={version:1;source?:CalendarRevisionProposal['source'];scope?:CalendarRevisionProposal['scope'];links:SourceLink[]};
+ export type RevisionEffect={
+  id:string;sourceRef:string;kind:CalendarChange['kind'];after:Record<string,unknown>|null;
+@@ -32,7 +33,7 @@ export type RevisionDraft={
+  missing:{sourceRef:string;decision:'KEEP_EXISTING';confirmed:boolean;reason:string}[];};
+ };
+ export declare function extractCalendarRevision(request:{academicCalendar:{fileName:string;bytes:Uint8Array};section?:string;signal?:AbortSignal;onProgress?:(p:unknown)=>void}):Promise<RevisionDraft>;
+-export declare function prepareCalendarRevision(input:{currentModel:Model;existingSourceRevision:SourceRevision|null;extractedDraft:RevisionDraft}):{proposal:CalendarRevisionProposal;comparison:{sourceRef:string;changeId:string|null;status:'UNCHANGED'|'ADDED'|'CHANGED'|'NEEDS_REVIEW'|'POSSIBLE_REMOVAL';targetId:string|null}[]};
++export declare function prepareCalendarRevision(input:{currentModel:Model;existingSourceRevision:SourceRevision|LegacySourceRevision|null;extractedDraft:RevisionDraft}):{proposal:CalendarRevisionProposal;comparison:{sourceRef:string;changeId:string|null;status:'UNCHANGED'|'ADDED'|'CHANGED'|'NEEDS_REVIEW'|'POSSIBLE_REMOVAL';targetId:string|null}[]};
+ export declare function buildRevisionCandidate(input:{model:Model;proposal:CalendarRevisionProposal;acceptedChangeIds:string[];clock:Clock}):{ok:boolean;issues:{code:string;message:string;changeId?:string;occurrenceId?:string}[];proposedModel:Model|null;sourceRevisionPatch:SourceRevision|null;engineStatus:string|null;preservedCommitmentIds?:string[]};
+ 
+ export declare function reconcileRevisionEffect(draft:RevisionDraft,effectId:string,note:string):void;
+diff --git a/semester-space/src/import/revision.js b/semester-space/src/import/revision.js
+index 6b6da878aa47296fb6d5f4fbc24c3095f5004c2e..47dfcffda884eed9ec3d14cc4785f6cd7340b7c8 100644
+--- a/semester-space/src/import/revision.js
++++ b/semester-space/src/import/revision.js
+@@ -74,9 +74,12 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
+   const institution=d?.source?.institutionLabel??'';
+   if(/BHU/i.test(institution)&&!/BHU/i.test(model.context.college)||/MAHARAJA AGRASEN/i.test(institution)&&!/MAIT|MAHARAJA AGRASEN/i.test(model.context.college))bad('WRONG_INSTITUTION','','The source institution differs from the existing setup.');
+   if(review.sourceCoverageConfirmed!==true||!text(review.coverageNote))bad('COVERAGE_REVIEW','', 'Extraction candidates are not complete coverage. Manually complete all pages, including missed exams, boundaries and substitutions.');
+-  if(existingSourceRevision&&(existingSourceRevision.version!==1||!Array.isArray(existingSourceRevision.links)))bad('SOURCE_METADATA_REVIEW','','Prior source metadata must be adapted to version-1 source links before comparison.');
+-  if(!existingSourceRevision)bad('PRIOR_SOURCE_UNAVAILABLE','', 'Legacy setup has no persisted source crosswalk. Explicit matching and a justified legacy-source review are required.');
+-  if(!existingSourceRevision&&review.legacySourceReviewed===true&&text(review.legacySourceNote))unresolved.splice(unresolved.findIndex(i=>i.code==='PRIOR_SOURCE_UNAVAILABLE'),1);
++  const hasCrosswalk=existingSourceRevision?.version===1&&Array.isArray(existingSourceRevision.links);
++  const legacySource=existingSourceRevision&&typeof existingSourceRevision==='object'&&!Array.isArray(existingSourceRevision)&&Object.keys(existingSourceRevision).length===2&&Object.keys(existingSourceRevision).every(k=>['sha256','fileName'].includes(k))&&typeof existingSourceRevision.sha256==='string'&&/^[a-f0-9]{64}$/i.test(existingSourceRevision.sha256)&&text(existingSourceRevision.fileName);
++  // Legacy identity stays read-only and verbatim with A. Review supplies no invented old links.
++  const priorLinks=hasCrosswalk?existingSourceRevision.links:[];
++  if(existingSourceRevision!==null&&!hasCrosswalk&&!legacySource)bad('SOURCE_METADATA_REVIEW','','Prior metadata must be a version-1 crosswalk or valid legacy filename/SHA-256 identity.');
++  if((existingSourceRevision===null||legacySource)&&!(review.legacySourceReviewed===true&&text(review.legacySourceNote)))bad('PRIOR_SOURCE_UNAVAILABLE','', 'Prior source links are unavailable. Explicit matching and a justified legacy-source review are required.');
+   const effects=Array.isArray(review.effects)?review.effects:[],seen=new Set();
+   for(const effect of effects){
+     const ev=evidenceFor(d,effect,originals),row=originals.find(r=>r.id===effect.sourceRef),ref=effect.sourceRef;
+@@ -92,7 +95,7 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
+     if(ev.basis==='EXPLICIT_CANCELLATION'&&!/cancel|withdraw|revok|not\s+(?:be\s+)?held|no\s+class|remov/i.test(ev.excerpt))bad('CANCELLATION_EVIDENCE',ref,'The excerpt does not state cancellation; review the actual source or use a justified official correction.');
+     let id=effect.occurrenceId??effect.targetId??null,match='ADDED';
+     // Stored source links are hints. A changed source never grants permission to remap an occurrence.
+-    const links=(existingSourceRevision?.links??[]).filter(l=>l.sourceRef===effect.previousSourceRef);
++    const links=priorLinks.filter(l=>l.sourceRef===effect.previousSourceRef);
+     if(!id&&links.length===1)id=links[0].targetId;
+     let before=effectValue(model,effect.kind,id,effect.after),after=clone(effect.after??null);
+     const label=v=>(v??'').toLowerCase().replace(/\d+/g,' ').replace(/[^a-z]+/g,' ').trim();
+@@ -137,7 +140,7 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
+     }
+   }
+   const represented=new Set(effects.map(e=>e.previousSourceRef).filter(Boolean));
+-  for(const link of existingSourceRevision?.links??[]){
++  for(const link of priorLinks){
+     if(represented.has(link.sourceRef)||link.value===null||link.value?.cancelled===true||link.value?.date<=model.snapshots.at(-1)?.date||link.value?.date<scope.start||link.value?.date>scope.end)continue;
+     // Exact current effect is still represented even if its source row moved/reordered.
+     if(changes.some(c=>c.kind===link.kind&&same(c.after,link.value)))continue;
+diff --git a/semester-space/tests/import/evidence/rc14-d-01/results.json b/semester-space/tests/import/evidence/rc14-d-01/results.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5c5ee26c316c45d2bde4c4a93cb04ada823daf98
+--- /dev/null
++++ b/semester-space/tests/import/evidence/rc14-d-01/results.json
+@@ -0,0 +1,105 @@
++{
++  "issue": "RC14-D-01",
++  "source_archive": "SEMESTERSPACE_RC0014_A_D02_SOURCE.zip",
++  "source_archive_sha256": "b0a5086f12ded21e89cec85a31e3e758577837f01c646f9195f58deed4595633",
++  "source_manifest_entries_verified": 182,
++  "importer_base_commit": "6a8d0a09abbfa7cefc0b3cf9a8227fcdb190c115",
++  "importer_before_sha256": "062d41abaf574462a4e2b7df320a89bfc5083fd80c1d7c04de9a2ceefe872ae2",
++  "importer_after_sha256": "0d0106b0d06fb2d448fb5a82336ea3253ed9011b391968e8694c0f68c3706c94",
++  "unchanged_d_probe_before": [
++    {
++      "previousType": "no metadata",
++      "unresolved": [],
++      "changeCount": 1
++    },
++    {
++      "previousType": "legacy filename/hash",
++      "unresolved": [
++        {
++          "code": "SOURCE_METADATA_REVIEW",
++          "sourceRef": "",
++          "message": "Prior source metadata must be adapted to version-1 source links before comparison."
++        }
++      ],
++      "changeCount": 1
++    },
++    {
++      "previousType": "v1 crosswalk",
++      "unresolved": [],
++      "changeCount": 1
++    }
++  ],
++  "unchanged_d_probe_after": [
++    {
++      "previousType": "no metadata",
++      "unresolved": [],
++      "changeCount": 1
++    },
++    {
++      "previousType": "legacy filename/hash",
++      "unresolved": [],
++      "changeCount": 1
++    },
++    {
++      "previousType": "v1 crosswalk",
++      "unresolved": [],
++      "changeCount": 1
++    }
++  ],
++  "commands": {
++    "clean_npm_ci": {
++      "exit": 0,
++      "packages": 21,
++      "local_assets": 39
++    },
++    "npm_test": {
++      "exit": 0,
++      "passed": 274,
++      "failed": 0,
++      "skipped": 0,
++      "todo": 0
++    },
++    "npm_run_check": {
++      "exit": 0,
++      "modules": 69
++    },
++    "node_engine_tests": {
++      "exit": 0,
++      "passed": 26
++    },
++    "python_arithmetic_checker": {
++      "exit": 0,
++      "passed": 342
++    },
++    "npm_run_build": {
++      "exit": 0
++    },
++    "worker_import_regressions": {
++      "exit": 0,
++      "passed": 111
++    },
++    "new_metadata_regression_groups": {
++      "passed": 12
++    }
++  },
++  "controller_serialized_reload_probe": {
++    "harness": "Actual RC-001.4 controller and serialized in-memory storage; not native browser",
++    "reviewedLegacyAccepted": true,
++    "priorIdentityInPersistedHistory": {
++      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
++      "fileName": "Original Calendar (1).PDF"
++    },
++    "noInventedPriorLinks": true,
++    "writes": 1,
++    "modelRevision": 4,
++    "snapshotsAndCommitmentsPreserved": true,
++    "serializedReloadPassed": true
++  },
++  "not_run": [
++    "Final C UI legacy-source interaction",
++    "Native browser localStorage reload",
++    "Native browser persistence-failure rollback",
++    "Independent A/D acceptance"
++  ],
++  "scope": "Importer validation/local typing, new import tests and handoff only. A/B/C/engine/shared files unchanged. No merge or deploy."
++}
+diff --git a/semester-space/tests/import/legacy-source.test.mjs b/semester-space/tests/import/legacy-source.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..5f98042af4976f826b812dafc0c33655e8fb595a
+--- /dev/null
++++ b/semester-space/tests/import/legacy-source.test.mjs
+@@ -0,0 +1,61 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {fixture,completeSyntheticCoverage} from './coverage-fixture.mjs';
++import {compileConfirmedImport} from '../../src/import/compile.js';
++import {expandSchedule} from '../../src/engine/index.js';
++import {parseCalendar} from '../../src/import/parse.js';
++import {suggestRevisionEffects} from '../../src/import/revision-extract.js';
++import {prepareCalendarRevision,buildRevisionCandidate} from '../../src/import/revision.js';
++const legacy=()=>({sha256:'B'.repeat(64),fileName:'Original prior Calendar (1).PDF'});
++function setup(){
++ const {d,o}=fixture();completeSyntheticCoverage(d,o);const compiled=compileConfirmedImport(d,o);assert.ok(compiled.ok);const model=compiled.model;
++ const expanded=expandSchedule({schedule:model.schedule,courses:model.courses,registers:model.registers,extraSessions:[],overrides:[]});assert.ok(expanded.ok);model.schedule.initialized=true;model.sessions=expanded.sessions;model.revision=3;
++ const source={id:'new-source',sha256:'c'.repeat(64),fileName:'review.pdf',coverage:'PARTIAL',role:'ACADEMIC_CALENDAR',section:'Q',pageRefs:['new-source#page=1']};
++ const page={sourceId:source.id,page:1,method:'OCR',text:'Holiday 02.11.2026',width:1000,height:1000,items:[{text:'Holiday 02.11.2026',x:0,y:0,w:300,h:20}]};
++ const calendarEntries=parseCalendar(source,[page],source.id).calendarEntries;
++ const draft={revisionDraftVersion:1,status:'PARTIAL',source,pages:[page],calendarEntries,issues:[],review:{proposalKey:'rc14-d-01-test',scope:{start:'2026-10-24',end:'2026-11-09',section:'Q',subgroup:'Q3',programmingGroup:'Q23'},scopeConfirmed:true,sourceCoverageConfirmed:true,coverageNote:'Explicit synthetic manual completion; not personal confirmation.',academicScope:o.academicScope,effects:suggestRevisionEffects(calendarEntries),exclusions:[],missing:[],legacySourceReviewed:true,legacySourceNote:'Synthetic explicit comparison with prior source and saved setup.'}};
++ for(const e of draft.review.effects)e.confirmed=e.applicabilityConfirmed=e.effectiveDateConfirmed=true;
++ return {model,draft,clock:o.clockPlaceholder};
++}
++const propose=(f,prior)=>prepareCalendarRevision({currentModel:f.model,existingSourceRevision:prior,extractedDraft:f.draft});
++const candidate=(f,proposal)=>buildRevisionCandidate({model:f.model,proposal,acceptedChangeIds:proposal.changes.map(c=>c.changeId),clock:f.clock});
++const missingReview=[{}, {legacySourceReviewed:false,legacySourceNote:'reason'}, {legacySourceReviewed:true,legacySourceNote:''}, {legacySourceReviewed:true,legacySourceNote:' \n\t'}, {legacySourceReviewed:'true',legacySourceNote:'reason'}, {legacySourceReviewed:true,legacySourceNote:null}];
++for(const [label,make] of [['missing',()=>null],['legacy',legacy]]){
++ test(`${label} source: explicit review allows the same pure reviewed candidate without inventing old links`,()=>{
++  const f=setup(),prior=make(),original=structuredClone({f,prior});if(prior)Object.freeze(prior);
++  const r=propose(f,prior);assert.deepEqual(r.proposal.unresolved,[]);assert.deepEqual(r,propose(f,null));assert.equal(r.comparison.length,1);assert.equal(r.comparison[0].status,'ADDED');assert.equal(r.proposal.changes[0].before,null);
++  const result=candidate(f,r.proposal);assert.ok(result.ok,JSON.stringify(result.issues));assert.equal(result.proposedModel.revision,3);assert.deepEqual(result.proposedModel.snapshots,f.model.snapshots);assert.deepEqual(result.proposedModel.commitments,f.model.commitments);
++  assert.equal(result.sourceRevisionPatch.links.length,1);assert.equal(result.sourceRevisionPatch.source.sha256,'c'.repeat(64));assert.equal(result.sourceRevisionPatch.source.fileName,'review.pdf');assert.ok(result.sourceRevisionPatch.links.every(l=>l.evidence.sourceId==='new-source'));assert.deepEqual({f,prior},original);
++  if(prior){assert.equal(prior.sha256,'B'.repeat(64));assert.equal(prior.fileName,'Original prior Calendar (1).PDF');assert.equal(Object.hasOwn(prior,'links'),false);assert.equal(Object.hasOwn(prior,'version'),false);}
++ });
++ test(`${label} source: missing/incomplete legacy confirmation always blocks`,()=>{
++  for(const review of missingReview){const f=setup();delete f.draft.review.legacySourceReviewed;delete f.draft.review.legacySourceNote;Object.assign(f.draft.review,review);const p=propose(f,make()).proposal;assert.ok(p.unresolved.some(i=>i.code==='PRIOR_SOURCE_UNAVAILABLE'));assert.equal(candidate(f,p).proposedModel,null);}
++ });
++ test(`${label} source: confirmation cannot clear unknown matches, applicability or coverage`,()=>{
++  for(const edit of [f=>{f.draft.review.effects[0].previousSourceRef='unestablished-old-row';},f=>{f.draft.review.sourceCoverageConfirmed=false;},f=>{f.draft.review.effects[0].applicabilityConfirmed=false;},f=>{f.draft.review.effects[0].effectiveDateConfirmed=false;},f=>{f.draft.status='UNSUPPORTED';}]){
++   const f=setup();edit(f);const p=propose(f,make()).proposal;assert.ok(p.unresolved.length);assert.equal(candidate(f,p).proposedModel,null);
++  }
++ });
++ test(`${label} source: legacy confirmation cannot choose between competing event identities`,()=>{
++  const f=setup(),page=f.draft.pages[0];page.text=page.items[0].text='Exam 02.11.2026';f.draft.calendarEntries=parseCalendar(f.draft.source,[page],f.draft.source.id).calendarEntries;f.draft.review.effects=suggestRevisionEffects(f.draft.calendarEntries);
++  for(const e of f.draft.review.effects){e.confirmed=e.applicabilityConfirmed=e.effectiveDateConfirmed=true;Object.assign(e.after,{start:'10:00',end:'11:00'});}
++  f.model.events=['existing-one','existing-two'].map(id=>({...f.draft.review.effects[0].after,id}));const p=propose(f,make()).proposal;
++  assert.ok(p.unresolved.some(i=>i.code==='AMBIGUOUS_MATCH'));assert.ok(p.changes.some(c=>c.before?.id==='existing-one'));assert.ok(p.changes.some(c=>c.before?.id==='existing-two'));assert.equal(candidate(f,p).proposedModel,null);
++ });
++ test(`${label} source: explicit legacy review does not authorize historical changes or cancellation without evidence`,()=>{
++  const f=setup();f.clock={date:'2026-11-02',time:'09:30',timeZone:'Asia/Kolkata'};const p=propose(f,make()).proposal;const result=candidate(f,p);assert.equal(result.proposedModel,null);assert.ok(result.issues.some(i=>i.code==='HISTORICAL_CONFLICT'));
++  const g=setup();g.draft.review.effects[0].kind='REMOVE_HOLIDAY';g.draft.review.effects[0].targetId='2026-11-02';g.model.schedule.holidays=[{date:'2026-11-02',label:'Prior holiday'}];const bad=propose(g,make()).proposal;assert.ok(bad.unresolved.some(i=>i.code==='REMOVAL_EVIDENCE'));assert.equal(candidate(g,bad).proposedModel,null);
++ });
++}
++test('v1 source: established crosswalk needs no legacy confirmation; absent extracted rows still require resolution',()=>{
++ const f=setup();delete f.draft.review.legacySourceReviewed;delete f.draft.review.legacySourceNote;
++ const prior={version:1,source:legacy(),links:[]},old=structuredClone(prior);assert.deepEqual(propose(f,prior).proposal.unresolved,[]);assert.ok(candidate(f,propose(f,prior).proposal).ok);assert.deepEqual(prior,old);
++ const exam={id:'old-exam',title:'Prior exam',date:'2026-11-03',start:'10:00',end:'11:00',sessionId:null,cancelled:false};f.model.events.push(exam);prior.links.push({sourceRef:'old-row',kind:'UPSERT_EVENT',targetId:exam.id,value:structuredClone(exam)});
++ Object.assign(f.draft.review,{legacySourceReviewed:true,legacySourceNote:'Cannot erase a known source mapping.'});let p=propose(f,prior).proposal;assert.ok(p.unresolved.some(i=>i.code==='POSSIBLE_REMOVAL'));assert.equal(candidate(f,p).proposedModel,null);
++ f.draft.review.missing.push({sourceRef:'old-row',decision:'KEEP_EXISTING',reason:'Absence from extraction is not deletion.',confirmed:true});p=propose(f,prior).proposal;assert.deepEqual(p.unresolved,[]);assert.ok(candidate(f,p).proposedModel.events.some(e=>e.id==='old-exam'));assert.equal(prior.source.sha256,'B'.repeat(64));assert.equal(prior.source.fileName,'Original prior Calendar (1).PDF');
++});
++test('malformed or versioned metadata cannot masquerade as reviewed legacy filename/hash metadata',()=>{
++ for(const prior of [{},{sha256:['b'.repeat(64)],fileName:'old.pdf'},{sha256:'x',fileName:'old.pdf'},{sha256:'b'.repeat(64)},{sha256:'b'.repeat(64),fileName:' '},{...legacy(),version:2,links:[]},{...legacy(),version:1},{...legacy(),links:[]},{version:1,source:legacy(),links:'not-an-array'}]){
++  const f=setup(),p=propose(f,prior).proposal;assert.ok(p.unresolved.some(i=>i.code==='SOURCE_METADATA_REVIEW'),JSON.stringify(prior));assert.equal(candidate(f,p).proposedModel,null);
++ }
++});
+diff --git a/semester-space/tests/import/rc14-legacy-apply.mjs b/semester-space/tests/import/rc14-legacy-apply.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..11b7bc07a476f1d6a533939b8a7df900bf7d5d2d
+--- /dev/null
++++ b/semester-space/tests/import/rc14-legacy-apply.mjs
+@@ -0,0 +1,30 @@
++// RC-001.4 owner integration probe; serialized memory storage, NOT a native browser reload.
++// No production/controller/storage edits. Run only with --run in A's RC-001.4 tree.
++import assert from 'node:assert/strict';
++import {fixture,completeSyntheticCoverage} from './coverage-fixture.mjs';
++import {compileConfirmedImport} from '../../src/import/compile.js';
++import {parseCalendar} from '../../src/import/parse.js';
++import {suggestRevisionEffects} from '../../src/import/revision-extract.js';
++import * as revision from '../../src/import/revision.js';
++import * as engine from '../../src/engine/index.js';
++export async function checkLegacyApplication(){
++ const {createController}=await import('../../src/controller.js'),{makeEmptyRelease}=await import('../../src/storage.js'),{STORAGE_KEY}=await import('../../src/shared/constants.js');
++ assert.equal(typeof makeEmptyRelease,'function','Run this probe in A’s RC-001.4 tree.');
++ const {d:initial,o}=fixture();completeSyntheticCoverage(initial,o);const compiled=compileConfirmedImport(initial,o);assert.ok(compiled.ok);
++ const model=compiled.model,expanded=engine.expandSchedule({schedule:model.schedule,courses:model.courses,registers:model.registers,extraSessions:[],overrides:[]});assert.ok(expanded.ok);model.schedule.initialized=true;model.sessions=expanded.sessions;model.revision=3;
++ const legacy={sha256:'b'.repeat(64),fileName:'Original Calendar (1).PDF'},release=makeEmptyRelease(model);release.calendar.sourceRevision=structuredClone(legacy);
++ let writes=0;const mem=new Map([[STORAGE_KEY,JSON.stringify({schemaVersion:2,model,release})]]),storage={getItem:k=>mem.get(k)??null,setItem(k,v){writes++;mem.set(k,v);}};
++ const create=()=>createController({engine,revision,storage,clock:()=>structuredClone(o.clockPlaceholder),render(){}}),app=create();assert.equal(app.getState().persistence.status,'SAVED');
++ const source={id:'new-source',sha256:'c'.repeat(64),fileName:'review.pdf',coverage:'PARTIAL',role:'ACADEMIC_CALENDAR',section:'Q',pageRefs:['new-source#page=1']};
++ const page={sourceId:source.id,page:1,method:'OCR',text:'Holiday 02.11.2026',width:1000,height:1000,items:[{text:'Holiday 02.11.2026',x:0,y:0,w:300,h:20}]},calendarEntries=parseCalendar(source,[page],source.id).calendarEntries;
++ const draft={revisionDraftVersion:1,status:'PARTIAL',source,pages:[page],calendarEntries,issues:[],review:{proposalKey:'rc14-d-01-apply',scope:{start:'2026-10-24',end:'2026-11-09',section:'Q',subgroup:'Q3',programmingGroup:'Q23'},scopeConfirmed:true,sourceCoverageConfirmed:true,coverageNote:'Explicit synthetic manual completion; no personal confirmations.',academicScope:o.academicScope,effects:suggestRevisionEffects(calendarEntries),exclusions:[],missing:[],legacySourceReviewed:true,legacySourceNote:'Synthetic explicit prior-source comparison.'}};
++ for(const e of draft.review.effects)e.confirmed=e.applicabilityConfirmed=e.effectiveDateConfirmed=true;
++ const before=app.getState(),{proposal}=revision.prepareCalendarRevision({currentModel:before.model,existingSourceRevision:before.release.calendar.sourceRevision,extractedDraft:draft});assert.deepEqual(proposal.unresolved,[]);
++ assert.ok(app.callbacks.onProposeCalendarRevision({expectedModelRevision:3,proposal}).ok);assert.equal(writes,0);
++ const applied=app.callbacks.onApplyCalendarRevision({expectedModelRevision:3,proposalId:proposal.proposalId,acceptedChangeIds:proposal.changes.map(c=>c.changeId),confirmedSourceCoverage:true,historicalResolutions:[],confirmation:true});assert.ok(applied.ok,JSON.stringify(applied));assert.equal(writes,1);
++ const after=app.getState(),persisted=JSON.parse(mem.get(STORAGE_KEY));assert.equal(after.model.revision,4);assert.deepEqual(after.model.snapshots,before.model.snapshots);assert.deepEqual(after.model.commitments,before.model.commitments);
++ assert.deepEqual(after.release.calendar.sourceRevision.sourceHistory,[legacy]);assert.equal(after.release.calendar.sourceRevision.links.length,proposal.changes.length);assert.ok(after.release.calendar.sourceRevision.links.every(l=>l.sourceSha256===source.sha256));assert.deepEqual(persisted.release.calendar.sourceRevision.sourceHistory,[legacy]);
++ const reloaded=create().getState();assert.deepEqual(reloaded.model,after.model);assert.deepEqual(reloaded.release,after.release);assert.equal(writes,1);
++ return {harness:'Actual RC-001.4 controller and serialized in-memory storage; not native browser',reviewedLegacyAccepted:true,priorIdentityInPersistedHistory:legacy,noInventedPriorLinks:true,writes,modelRevision:reloaded.model.revision,snapshotsAndCommitmentsPreserved:true,serializedReloadPassed:true};
++}
++if(process.argv.includes('--run'))console.log(JSON.stringify(await checkLegacyApplication(),null,2));
