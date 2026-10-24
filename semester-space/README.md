@@ -1,5 +1,7 @@
 # SemesterSpace
 
+For D’s corrected review package, exact commit identities, current checksums and the absent historical hosting file, read [D_REVIEW_PACKAGE.md](../D_REVIEW_PACKAGE.md) and [SOURCE_PACKAGE_MANIFEST.json](../SOURCE_PACKAGE_MANIFEST.json). The legacy `MANIFEST.sha256` files are historical, not current integrity checks.
+
 Semester break planning with separate attendance registers. This feature branch adds device-local document extraction and **explicit manual calendar completion** to the SS-INT-002 baseline. Extraction is partial; an extracted candidate list is not confirmed calendar coverage. SS-INT-002 remains the fallback. Independent review of its UI delta and this import change is still pending. No deployment is implied.
 
 ## Install and run

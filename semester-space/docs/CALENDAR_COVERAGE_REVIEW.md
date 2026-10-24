@@ -1,5 +1,7 @@
 # Calendar coverage investigation and repair — independent review required
 
+**Packaging correction:** [D_REVIEW_PACKAGE.md](../../D_REVIEW_PACKAGE.md) defines the current source/integrity manifests and distinguishes the tested implementation commit from metadata-only packaging commits. Runtime, tests, evidence and extraction limitations in this handoff are preserved. The feature branch was subsequently published for source review only; no merge or deployment was performed.
+
 24 October 2026 IST. Branch: `feature/document-import`. Exact investigation base: **`feb40999bdc59fc7ef41eb55e24665a690985fa6`**. Original repository parent before the first import implementation: `985ae01a7edf0f27dbc96a1c3abb8bef1a6a7a3c`. The final feature SHA is provided in the source ZIP's `SOURCE_PACKAGE_MANIFEST.json` and delivery response; this handoff is part of that commit. SS-INT-002 remains the fallback. No default-branch merge, push or deployment was performed; additional spend: ₹0.
 
 This review supersedes the original import handoff's calendar-completion behavior. Read README.md for current installation and supported-format limitations. Existing partial-extraction results were not promoted to complete interpretation.
