@@ -1,0 +1,65 @@
+{
+  "clock": "Synthetic browser clock: 2026-10-24 20:00 Asia/Kolkata",
+  "syntheticBrowserApiCoverageCases": [
+    {
+      "name": "omitted",
+      "ok": false,
+      "codes": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "name": "readable-opaque",
+      "ok": false,
+      "codes": [
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "name": "deleted",
+      "ok": false,
+      "codes": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_COVERAGE_LINK"
+      ]
+    },
+    {
+      "name": "information-only",
+      "ok": false,
+      "codes": [
+        "CALENDAR_RESOLUTION_LINK",
+        "CALENDAR_COVERAGE_LINK"
+      ]
+    },
+    {
+      "name": "page-reviewed",
+      "ok": false,
+      "codes": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    }
+  ],
+  "extractionMs": 33171,
+  "unresolvedBlocked": true,
+  "draftMobileWidths": {
+    "client": 390,
+    "scroll": 390
+  },
+  "pageViewingCannotCompleteCoverage": true,
+  "connectedSetup": true,
+  "subsetAccepted": true,
+  "actualInvalidation": true,
+  "nativeReload": true,
+  "keyboardRecheck": true,
+  "demoIsolation": true,
+  "mobileWidths": {
+    "client": 390,
+    "scroll": 390
+  },
+  "cancelPreservesState": true,
+  "missingAssetsActionable": true,
+  "pageErrors": [],
+  "externalRequests": []
+}

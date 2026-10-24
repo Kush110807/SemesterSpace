@@ -1,0 +1,85 @@
+{
+  "version": "RC-001.3",
+  "source": "SEMESTERSPACE_RC0012_INTEGRATED_SOURCE.zip",
+  "baselineIdentity": "RC-001.2 A+B delivered source",
+  "cPatch": "SEMESTERSPACE_C_RC001_UI_PATCH(1).zip",
+  "cOwnedFiles": [
+    "docs/UI_DELIVERY.md",
+    "src/ui/import.js",
+    "src/ui/index.js",
+    "src/ui/release.js",
+    "src/ui/styles.css",
+    "tests/ui/browser-fixture.py",
+    "tests/ui/release-requests.test.mjs",
+    "tests/ui/workspace-views-fixture.py"
+  ],
+  "changedOrNewFiles": [
+    {
+      "path": "src/controller.js",
+      "sha256": "2f25c90cb0906e032129cea082e9f51540e06c04be11fb32f3e59e6fa571417c",
+      "kind": "modified"
+    },
+    {
+      "path": "src/ui/index.js",
+      "sha256": "b78cb1aa5a93829111ef7e0cd9f321934f8b847371e66e3adc0075e6dc7f5278",
+      "kind": "modified"
+    },
+    {
+      "path": "src/ui/release.js",
+      "sha256": "43050e726cb0c16309d6a810f992f6325071734983c0b068996e816784e31c7b",
+      "kind": "added"
+    },
+    {
+      "path": "src/ui/import.js",
+      "sha256": "1209f74510d65e21d06f0dedc603aa3e56b7da084edd1142066555cfcea017ef",
+      "kind": "modified"
+    },
+    {
+      "path": "src/ui/styles.css",
+      "sha256": "e581b37a1d4651430e8cfbbac2dd461cdbb655d453d18366878c9b88f212e5fe",
+      "kind": "modified"
+    },
+    {
+      "path": "docs/UI_DELIVERY.md",
+      "sha256": "d4e402d9d9369e902069a7d88c8c80e9c460d12a0831e3488328d631c20acc23",
+      "kind": "modified"
+    },
+    {
+      "path": "tests/ui/release-requests.test.mjs",
+      "sha256": "b237b7807bedb1ed67029887fff3b3f4443d8c94dc9940e6c40b955cbd2fcd66",
+      "kind": "added"
+    },
+    {
+      "path": "tests/ui/browser-fixture.py",
+      "sha256": "eada6bcb9f30f92aa7af887d2a1b2cc0b1269a69371d0d92e130b97adf4c32f5",
+      "kind": "added"
+    },
+    {
+      "path": "tests/ui/workspace-views-fixture.py",
+      "sha256": "191fec7b32b4ffd5bb8caae79c9a05e1f05bcc4d22e97cc9716884f88e8db233",
+      "kind": "added"
+    },
+    {
+      "path": "tests/integration/rc0013-ui-bridge.test.mjs",
+      "sha256": "89a57ba0da65294b94ddf0cdcd42e2464797cb56d66ee01ca03b487543508ef1",
+      "kind": "added"
+    },
+    {
+      "path": "RELEASE_CONTRACT.md",
+      "sha256": "de83d97d7cf453b2a16ddb35c42b9bb07710327622de26c8bed65298f1cc2da7",
+      "kind": "modified"
+    },
+    {
+      "path": "RELEASE_CONTRACT_RC001_3_AMENDMENT.md",
+      "sha256": "f0182e90a89b1b22fdb82b5d7678eb8039b7573f3ecbe7d794699a558e7bf396",
+      "kind": "added"
+    },
+    {
+      "path": "A_INTEGRATION_REPORT_RC0013.md",
+      "sha256": "be91323b27f3d3e9d8c5dc18736580713854df4548c3d2eef9a4ef9437fc75d0",
+      "kind": "added"
+    }
+  ],
+  "evidence": "A_INTEGRATION_REPORT_RC0013.md",
+  "status": "LOCAL_MERGE_ONLY_RELEASE_HOLD"
+}

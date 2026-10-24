@@ -1,0 +1,105 @@
+{
+  "issue": "RC14-D-01",
+  "source_archive": "SEMESTERSPACE_RC0014_A_D02_SOURCE.zip",
+  "source_archive_sha256": "b0a5086f12ded21e89cec85a31e3e758577837f01c646f9195f58deed4595633",
+  "source_manifest_entries_verified": 182,
+  "importer_base_commit": "6a8d0a09abbfa7cefc0b3cf9a8227fcdb190c115",
+  "importer_before_sha256": "062d41abaf574462a4e2b7df320a89bfc5083fd80c1d7c04de9a2ceefe872ae2",
+  "importer_after_sha256": "0d0106b0d06fb2d448fb5a82336ea3253ed9011b391968e8694c0f68c3706c94",
+  "unchanged_d_probe_before": [
+    {
+      "previousType": "no metadata",
+      "unresolved": [],
+      "changeCount": 1
+    },
+    {
+      "previousType": "legacy filename/hash",
+      "unresolved": [
+        {
+          "code": "SOURCE_METADATA_REVIEW",
+          "sourceRef": "",
+          "message": "Prior source metadata must be adapted to version-1 source links before comparison."
+        }
+      ],
+      "changeCount": 1
+    },
+    {
+      "previousType": "v1 crosswalk",
+      "unresolved": [],
+      "changeCount": 1
+    }
+  ],
+  "unchanged_d_probe_after": [
+    {
+      "previousType": "no metadata",
+      "unresolved": [],
+      "changeCount": 1
+    },
+    {
+      "previousType": "legacy filename/hash",
+      "unresolved": [],
+      "changeCount": 1
+    },
+    {
+      "previousType": "v1 crosswalk",
+      "unresolved": [],
+      "changeCount": 1
+    }
+  ],
+  "commands": {
+    "clean_npm_ci": {
+      "exit": 0,
+      "packages": 21,
+      "local_assets": 39
+    },
+    "npm_test": {
+      "exit": 0,
+      "passed": 274,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "npm_run_check": {
+      "exit": 0,
+      "modules": 69
+    },
+    "node_engine_tests": {
+      "exit": 0,
+      "passed": 26
+    },
+    "python_arithmetic_checker": {
+      "exit": 0,
+      "passed": 342
+    },
+    "npm_run_build": {
+      "exit": 0
+    },
+    "worker_import_regressions": {
+      "exit": 0,
+      "passed": 111
+    },
+    "new_metadata_regression_groups": {
+      "passed": 12
+    }
+  },
+  "controller_serialized_reload_probe": {
+    "harness": "Actual RC-001.4 controller and serialized in-memory storage; not native browser",
+    "reviewedLegacyAccepted": true,
+    "priorIdentityInPersistedHistory": {
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "fileName": "Original Calendar (1).PDF"
+    },
+    "noInventedPriorLinks": true,
+    "writes": 1,
+    "modelRevision": 4,
+    "snapshotsAndCommitmentsPreserved": true,
+    "serializedReloadPassed": true
+  },
+  "not_run": [
+    "Final C UI legacy-source interaction",
+    "Native browser localStorage reload",
+    "Native browser persistence-failure rollback",
+    "Independent A/D acceptance"
+  ],
+  "scope": "Importer validation/local typing, new import tests and handoff only. A/B/C/engine/shared files unchanged. No merge or deploy."
+}

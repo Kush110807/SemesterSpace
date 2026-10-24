@@ -1,0 +1,11 @@
+
+> semester-space@0.1.0 postinstall
+> npm run prepare:assets
+
+
+> semester-space@0.1.0 prepare:assets
+> node src/import/prepare-assets.mjs
+
+Prepared 39 self-hosted PDF/OCR assets in /workspace/SemesterSpace/semester-space/src/import/vendor/
+
+added 21 packages in 2s

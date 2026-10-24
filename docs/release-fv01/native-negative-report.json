@@ -1,0 +1,91 @@
+{
+  "scenario": "New Chromium process, same native profile, no reseeding; real UI negative revisions",
+  "clock": "2026-10-26 20:59 Asia/Kolkata",
+  "nativeReopen": {
+    "passed": true,
+    "revision": 13,
+    "snapshots": 6,
+    "journalRecords": 2,
+    "sourceHistory": [
+      {
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "fileName": "QA-prior-calendar.pdf"
+      }
+    ],
+    "retainedCommitments": [
+      "qa-retained-break"
+    ]
+  },
+  "negative": [
+    {
+      "mode": "ambiguous",
+      "stagingResult": {
+        "ok": true,
+        "code": "REVIEW_REQUIRED",
+        "modelRevision": 13,
+        "proposalId": "revision:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7:13:7d17ca34-0b7b-4006-95df-9a27791a1c34",
+        "changeCount": 2,
+        "issues": [
+          {
+            "code": "AMBIGUOUS_MATCH",
+            "sourceRef": "calendar:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7-calendar-1",
+            "message": "Possible existing targets (event:revision:24f1ba8c-a425-4f99-abb2-a59c91e62fd5) require a reviewed crosswalk or explicit confirmation of a distinct addition."
+          }
+        ]
+      },
+      "uiApplyDisabled": true,
+      "directActualControllerApply": {
+        "ok": false,
+        "code": "REJECTED",
+        "modelRevision": 13,
+        "engineStatus": "PLAN_BLOCKED",
+        "issues": [
+          {
+            "code": "REJECTED",
+            "message": "Unresolved calendar evidence must be reviewed before applying."
+          }
+        ]
+      },
+      "comparison": "Comparison — not yet staged\n\nSource: synthetic-negative.pdf. 2 candidate change(s); 1 unresolved item(s). Your saved schedule has not changed.\n\nUnresolved evidence or identity blocks application. Return to the review above; do not bypass these items.\n\nAMBIGUOUS_MATCH: Possible existing targets (event:revision:24f1ba8c-a425-4f99-abb2-a59c91e62fd5) require a reviewed crosswalk or explicit confirmation of a distinct addition. · source calendar:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7-calendar-1\nAmbiguous — must resolve\n\nMandatory exam 02.11.2026 10:00 to 11:00 · 2026-11-02\n\nAdd or revise a compulsory event · 2026-11-02\n\nAmbiguous — must resolve\n\nMandatory exam 02.11.2026 10:00 to 11:00 · 2026-11-02\n\nAdd or revise a compulsory event · 2026-11-02\n\nMissing from extraction — retain existing\n\nManually linked page evidence (source row not automatically recognized)\n\nI have read this comparison and understand that staged items are not yet applied\nStage reviewed proposal for selective application"
+    },
+    {
+      "mode": "insufficient",
+      "stagingResult": {
+        "ok": true,
+        "code": "REVIEW_REQUIRED",
+        "modelRevision": 13,
+        "proposalId": "revision:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7:13:fbb13ec8-8e8f-4118-9dc5-6bfa90fafed2",
+        "changeCount": 1,
+        "issues": [
+          {
+            "code": "REMOVAL_EVIDENCE",
+            "sourceRef": "calendar:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7-calendar-1",
+            "message": "Missing extraction is not deletion: supply affirmative cancellation or reviewed official-correction evidence."
+          },
+          {
+            "code": "INEFFECTIVE_EVENT",
+            "sourceRef": "calendar:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7-calendar-1",
+            "message": "A cancelled event requires affirmative cancellation/correction evidence."
+          }
+        ]
+      },
+      "uiApplyDisabled": true,
+      "directActualControllerApply": {
+        "ok": false,
+        "code": "REJECTED",
+        "modelRevision": 13,
+        "engineStatus": "PLAN_BLOCKED",
+        "issues": [
+          {
+            "code": "REJECTED",
+            "message": "Unresolved calendar evidence must be reviewed before applying."
+          }
+        ]
+      },
+      "comparison": "Comparison — not yet staged\n\nSource: synthetic-negative.pdf. 1 candidate change(s); 2 unresolved item(s). Your saved schedule has not changed.\n\nUnresolved evidence or identity blocks application. Return to the review above; do not bypass these items.\n\nREMOVAL_EVIDENCE: Missing extraction is not deletion: supply affirmative cancellation or reviewed official-correction evidence. · source calendar:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7-calendar-1\nINEFFECTIVE_EVENT: A cancelled event requires affirmative cancellation/correction evidence. · source calendar:0fd8eb72734774be93754739ea6f4aefee8294c600d43d754c78721d5aae29c7-calendar-1\nProposed edit\n\nMandatory exam 02.11.2026 10:00 to 11:00 · 2026-11-02\n\nAdd or revise a compulsory event · 2026-11-02\n\nMissing from extraction — retain existing\n\nManually linked page evidence (source row not automatically recognized)\n\nMissing from extraction — retain existing\n\nManually linked page evidence (source row not automatically recognized)\n\nI have read this comparison and understand that staged items are not yet applied\nStage reviewed proposal for selective application"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "externalRequests": []
+}

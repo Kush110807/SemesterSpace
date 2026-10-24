@@ -1,0 +1,94 @@
+{
+  "investigationBase": "feb40999bdc59fc7ef41eb55e24665a690985fa6",
+  "phase": "after",
+  "cases": [
+    {
+      "case": "1 omitted exam and substitution",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "case": "2 readable OCR but calendar meaning unsupported",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "case": "3a delete unresolved candidate",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "case": "3b reclassify exam as information-only",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_SOURCE_RESOLUTION",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "case": "3c change category to avoid critical note requirement",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_SOURCE_RESOLUTION",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "case": "4 page reviewed with unresolved meaning",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "case": "4b an existing unresolved row remains blocked",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_REVIEW",
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_SOURCE_RESOLUTION",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    }
+  ]
+}

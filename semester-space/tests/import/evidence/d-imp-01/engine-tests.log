@@ -1,0 +1,34 @@
+✔ real controller -> real engine: check, suggest, commit, persist, invalidate (40.523368ms)
+✔ real public engine: jointly missed dates fail at s2 with exact evidence (28.899235ms)
+✔ real public engine: existing recovery plus unrelated practical day (2.246266ms)
+✔ real public engine: SS-PREP-002 malformed input metadata (0.850129ms)
+✔ real public engine: 7 snapshot confirmation timing boundaries (0.892471ms)
+✔ R/T/B floor precedence, exact comparisons, and shortfall classification (18.633086ms)
+✔ 0/0, first attended, first missed, exact 100% and display-vs-decision (1.814186ms)
+✔ chronological failure persists despite a passing final semester ratio (0.980411ms)
+✔ separate registers stay separate and a weighted atomic unit cannot be split (0.654028ms)
+✔ freshness at session-start equality, elapsed meetings and confirmed nonteaching gaps (1.065397ms)
+✔ latest snapshot supersedes counts; same-date correction, historical commitment (2.157714ms)
+✔ independent and linked compulsory restrictions count no additional units (1.870629ms)
+✔ course or session protection follows active rows; cancellation removes it (1.0744ms)
+✔ future commitments outside horizon, already off, and combined PLAN conflicts are preserved (1.348887ms)
+✔ duplicate, out-of-range, committed and nonteaching trial dates do not silently disappear (1.214187ms)
+✔ overlaps are invalid, adjacent session times allowed, invalid/overflow counts rejected (0.598977ms)
+✔ expanded weekly session IDs, holiday suppression and substitute weekday pattern (1.360354ms)
+✔ extra class on a holiday needs explicit confirmation, even with replacement; conflicting IDs fail (0.423587ms)
+✔ suggestions are real joint trials: skip failure, terminate at K/exhaustion and create no empty batch (1.738213ms)
+✔ search honours preference, K as new days, and warns unavailable preferred dates (3.358713ms)
+✔ search invalid request/k return blocked complete envelopes with nullable requested (0.604946ms)
+✔ cancelling a previously assumed attended meeting can invalidate a later commitment (0.642211ms)
+✔ hard search range never truncates later attendance validation (1.244773ms)
+✔ greedy ranking: adjacency and fewer missed units; an event interrupts an off-day chain (4.004539ms)
+✔ all four public exports handle expected malformed plain-data shapes without throwing (0.775999ms)
+✔ all result envelopes are JSON-serializable and do not mutate input (0.83033ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 281.16188

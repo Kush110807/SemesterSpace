@@ -1,3 +1,8 @@
+# HISTORICAL MANIFEST — starter bundle, predating document-import implementation.
+# Original checksum entries below are retained as provenance, not current integrity claims.
+# Referenced .openai/hosting.json was absent at repository intake and remains absent.
+# Check the current review source with PACKAGE_INTEGRITY.sha256 at the project root.
+# See D_REVIEW_PACKAGE.md and SOURCE_PACKAGE_MANIFEST.json for scope and exact commits.
 200c331db80a9dc0a55a5e8c12ae72f17b4b7d544fbf8892b24b614442bbdbaa  REFERENCE_INPUTS.json
 318730dac1c3864cc1a351ef71fe53fd503c4ed55b5322bcfa4ccca00c2830be  START_CODEX.md
 4f98eac317c7a761aaa9cb3f1823e9e289cf35c40bb7f46c3d083780af17440a  reference-inputs/1stSemPoolB.pdf

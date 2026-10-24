@@ -1,0 +1,513 @@
+{
+  "scenario": "Production dist, native persistent Chromium profile, synthetic QA model and actual generated PDF notice",
+  "clock": "2026-10-26 20:00 Asia/Kolkata",
+  "steps": [
+    {
+      "name": "legacy-native-seed-loaded",
+      "revision": 7
+    },
+    {
+      "name": "unknown-day-blocked",
+      "revision": 7
+    },
+    {
+      "name": "day-confirmed",
+      "revision": 8,
+      "date": "2026-10-24",
+      "disposition": null
+    },
+    {
+      "name": "day-confirmed",
+      "revision": 9,
+      "date": "2026-10-25",
+      "disposition": null
+    },
+    {
+      "name": "day-confirmed",
+      "revision": 10,
+      "date": "2026-10-26",
+      "disposition": "MISSED"
+    },
+    {
+      "name": "attendance-correction-preserves-history",
+      "revision": 11
+    },
+    {
+      "name": "official-baseline-reconciled-with-discrepancy",
+      "revision": 12
+    },
+    {
+      "name": "storage-fault-atomic-rollback",
+      "revision": 12
+    },
+    {
+      "name": "unreviewed-source-blocked",
+      "revision": 12
+    },
+    {
+      "name": "actual-pdf-comparison-ready",
+      "revision": 12
+    },
+    {
+      "name": "delayed-stage-after-review-edit-blocked",
+      "revision": 12
+    },
+    {
+      "name": "corrected-comparison-stage-enabled-without-reread",
+      "revision": 12
+    },
+    {
+      "name": "delayed-stage-after-replacement-blocked",
+      "revision": 12
+    },
+    {
+      "name": "selective-apply-retains-history-and-invalid-commitment",
+      "revision": 13,
+      "links": 2
+    }
+  ],
+  "mobileWidth": {
+    "client": 390,
+    "scroll": 390
+  },
+  "savedEnvelope": {
+    "schemaVersion": 2,
+    "model": {
+      "schemaVersion": 1,
+      "revision": 13,
+      "id": "synthetic-release-qa",
+      "timeZone": "Asia/Kolkata",
+      "context": {
+        "college": "Synthetic Release QA College",
+        "academicYear": "2026-27",
+        "semester": "1",
+        "programme": "Synthetic QA UG",
+        "section": "Q",
+        "sourceLabel": "SYNTHETIC RELEASE QA - no personal confirmations",
+        "preparedOn": "2026-10-24",
+        "applicabilityConfirmed": true
+      },
+      "schedule": {
+        "startDate": "2026-10-24",
+        "teachingEnd": "2026-11-09",
+        "confirmed": true,
+        "initialized": true,
+        "weeklyTemplates": [
+          {
+            "id": "t",
+            "registerId": "r",
+            "weekday": 1,
+            "start": "09:00",
+            "end": "10:00",
+            "weight": 1,
+            "protected": false
+          }
+        ],
+        "holidays": [
+          {
+            "date": "2026-11-04",
+            "label": "Holiday 04.11.2026"
+          }
+        ],
+        "replacements": [],
+        "holidayTeachingDates": []
+      },
+      "courses": [
+        {
+          "id": "s",
+          "name": "Synthetic subject",
+          "mustAttend": false
+        }
+      ],
+      "registers": [
+        {
+          "id": "r",
+          "courseId": "s",
+          "name": "Independent theory",
+          "requiredBps": 7500,
+          "personalMinBps": null,
+          "bufferBps": 300
+        }
+      ],
+      "sessions": [
+        {
+          "id": "weekly:t:2026-10-26",
+          "registerId": "r",
+          "date": "2026-10-26",
+          "start": "09:00",
+          "end": "10:00",
+          "weight": 1,
+          "protected": false,
+          "cancelled": false,
+          "origin": "weekly",
+          "templateId": "t"
+        },
+        {
+          "id": "weekly:t:2026-11-02",
+          "registerId": "r",
+          "date": "2026-11-02",
+          "start": "09:00",
+          "end": "10:00",
+          "weight": 1,
+          "protected": false,
+          "cancelled": false,
+          "origin": "weekly",
+          "templateId": "t"
+        },
+        {
+          "id": "weekly:t:2026-11-09",
+          "registerId": "r",
+          "date": "2026-11-09",
+          "start": "09:00",
+          "end": "10:00",
+          "weight": 1,
+          "protected": false,
+          "cancelled": false,
+          "origin": "weekly",
+          "templateId": "t"
+        }
+      ],
+      "events": [
+        {
+          "id": "event:revision:24f1ba8c-a425-4f99-abb2-a59c91e62fd5",
+          "title": "Mandatory exam 02.11.2026 10:00 to 11:00",
+          "cancelled": false,
+          "sessionId": null,
+          "date": "2026-11-02",
+          "start": "10:00",
+          "end": "11:00"
+        }
+      ],
+      "snapshots": [
+        {
+          "id": "test-snapshot",
+          "date": "2026-10-23",
+          "counts": {
+            "r": {
+              "attended": 90,
+              "held": 100
+            }
+          },
+          "confirmed": true,
+          "completeToday": false,
+          "confirmedAt": {
+            "date": "2026-10-24",
+            "time": "20:00",
+            "timeZone": "Asia/Kolkata"
+          },
+          "sequence": 1
+        },
+        {
+          "id": "synthetic-release-qa:snapshot:2",
+          "date": "2026-10-24",
+          "counts": {
+            "r": {
+              "attended": 90,
+              "held": 100
+            }
+          },
+          "confirmed": true,
+          "completeToday": false,
+          "confirmedAt": {
+            "date": "2026-10-26",
+            "time": "20:00",
+            "timeZone": "Asia/Kolkata"
+          },
+          "sequence": 2
+        },
+        {
+          "id": "synthetic-release-qa:snapshot:3",
+          "date": "2026-10-25",
+          "counts": {
+            "r": {
+              "attended": 90,
+              "held": 100
+            }
+          },
+          "confirmed": true,
+          "completeToday": false,
+          "confirmedAt": {
+            "date": "2026-10-26",
+            "time": "20:00",
+            "timeZone": "Asia/Kolkata"
+          },
+          "sequence": 3
+        },
+        {
+          "id": "synthetic-release-qa:snapshot:4",
+          "date": "2026-10-26",
+          "counts": {
+            "r": {
+              "attended": 90,
+              "held": 101
+            }
+          },
+          "confirmed": true,
+          "completeToday": true,
+          "confirmedAt": {
+            "date": "2026-10-26",
+            "time": "20:00",
+            "timeZone": "Asia/Kolkata"
+          },
+          "sequence": 4
+        },
+        {
+          "id": "synthetic-release-qa:snapshot:5",
+          "date": "2026-10-26",
+          "counts": {
+            "r": {
+              "attended": 91,
+              "held": 101
+            }
+          },
+          "confirmed": true,
+          "completeToday": true,
+          "confirmedAt": {
+            "date": "2026-10-26",
+            "time": "20:00",
+            "timeZone": "Asia/Kolkata"
+          },
+          "sequence": 5
+        },
+        {
+          "id": "synthetic-release-qa:snapshot:6",
+          "sequence": 6,
+          "date": "2026-10-26",
+          "counts": {
+            "r": {
+              "attended": 79,
+              "held": 100
+            }
+          },
+          "confirmed": true,
+          "completeToday": true,
+          "confirmedAt": {
+            "date": "2026-10-26",
+            "time": "20:00",
+            "timeZone": "Asia/Kolkata"
+          }
+        }
+      ],
+      "commitments": [
+        {
+          "id": "qa-retained-break",
+          "date": "2026-11-02",
+          "createdAtRevision": 6
+        }
+      ],
+      "attendanceConfirmation": {
+        "throughDate": "2026-10-26",
+        "noUnlistedClasses": true
+      },
+      "preferences": {
+        "candidateStart": "2026-10-24",
+        "candidateEnd": "2026-11-09",
+        "requestedDays": 2,
+        "preferredDates": [],
+        "notes": ""
+      }
+    },
+    "release": {
+      "version": 1,
+      "attendance": {
+        "version": 1,
+        "records": [
+          {
+            "recordId": "attendance:51:day:2026-10-26:86121522-a185-486d-a19a-7436c171bd11:19:weekly:t:2026-10-26",
+            "dayKey": "day:2026-10-26:86121522-a185-486d-a19a-7436c171bd11",
+            "occurrenceId": "weekly:t:2026-10-26",
+            "registerId": "r",
+            "date": "2026-10-26",
+            "weight": 1,
+            "disposition": "MISSED",
+            "confirmedAt": {
+              "date": "2026-10-26",
+              "time": "20:00",
+              "timeZone": "Asia/Kolkata"
+            },
+            "recordRevision": 1,
+            "supersedesRecordId": null,
+            "sourceModelRevision": 9,
+            "note": ""
+          },
+          {
+            "recordId": "attendance:51:day:2026-10-26:181af20a-2126-48dd-84e8-7b46d14c78a7:19:weekly:t:2026-10-26",
+            "dayKey": "day:2026-10-26:181af20a-2126-48dd-84e8-7b46d14c78a7",
+            "occurrenceId": "weekly:t:2026-10-26",
+            "registerId": "r",
+            "date": "2026-10-26",
+            "weight": 1,
+            "disposition": "ATTENDED",
+            "confirmedAt": {
+              "date": "2026-10-26",
+              "time": "20:00",
+              "timeZone": "Asia/Kolkata"
+            },
+            "recordRevision": 2,
+            "supersedesRecordId": "attendance:51:day:2026-10-26:86121522-a185-486d-a19a-7436c171bd11:19:weekly:t:2026-10-26",
+            "sourceModelRevision": 10,
+            "note": ""
+          }
+        ],
+        "closedDays": [
+          {
+            "dayKey": "day:2026-10-24:64cf09d8-b657-4384-b5fa-9531bf6bb564",
+            "date": "2026-10-24",
+            "recordIds": [],
+            "confirmedAt": {
+              "date": "2026-10-26",
+              "time": "20:00",
+              "timeZone": "Asia/Kolkata"
+            },
+            "sourceModelRevision": 7,
+            "noUnlistedMeetings": true,
+            "supersedesDayKey": null
+          },
+          {
+            "dayKey": "day:2026-10-25:a2f12271-8a85-4f29-9188-076357b729d7",
+            "date": "2026-10-25",
+            "recordIds": [],
+            "confirmedAt": {
+              "date": "2026-10-26",
+              "time": "20:00",
+              "timeZone": "Asia/Kolkata"
+            },
+            "sourceModelRevision": 8,
+            "noUnlistedMeetings": true,
+            "supersedesDayKey": null
+          },
+          {
+            "dayKey": "day:2026-10-26:86121522-a185-486d-a19a-7436c171bd11",
+            "date": "2026-10-26",
+            "recordIds": [
+              "attendance:51:day:2026-10-26:86121522-a185-486d-a19a-7436c171bd11:19:weekly:t:2026-10-26"
+            ],
+            "confirmedAt": {
+              "date": "2026-10-26",
+              "time": "20:00",
+              "timeZone": "Asia/Kolkata"
+            },
+            "sourceModelRevision": 9,
+            "noUnlistedMeetings": true,
+            "supersedesDayKey": null
+          },
+          {
+            "dayKey": "day:2026-10-26:181af20a-2126-48dd-84e8-7b46d14c78a7",
+            "date": "2026-10-26",
+            "recordIds": [
+              "attendance:51:day:2026-10-26:181af20a-2126-48dd-84e8-7b46d14c78a7:19:weekly:t:2026-10-26"
+            ],
+            "confirmedAt": {
+              "date": "2026-10-26",
+              "time": "20:00",
+              "timeZone": "Asia/Kolkata"
+            },
+            "sourceModelRevision": 10,
+            "noUnlistedMeetings": true,
+            "supersedesDayKey": "day:2026-10-26:86121522-a185-486d-a19a-7436c171bd11"
+          }
+        ],
+        "officialSnapshotIds": [
+          "test-snapshot",
+          "synthetic-release-qa:snapshot:6"
+        ],
+        "reconciliationIssues": [
+          "OFFICIAL_COUNT_DISCREPANCY:synthetic-release-qa:snapshot:6:r:derived=91/101:official=79/100"
+        ]
+      },
+      "calendar": {
+        "version": 1,
+        "appliedRevisions": [
+          {
+            "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:12:b881d7f4-5f0e-4fd1-aad4-fe7c167b48bc",
+            "sourceSha256": "dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb",
+            "appliedAt": {
+              "date": "2026-10-26",
+              "time": "20:00",
+              "timeZone": "Asia/Kolkata"
+            },
+            "modelRevision": 13,
+            "changeIds": [
+              "change:77b76455-8d3a-4f49-ad12-1683d3964ba2",
+              "change:24f1ba8c-a425-4f99-abb2-a59c91e62fd5"
+            ]
+          }
+        ],
+        "sourceRevision": {
+          "version": 1,
+          "sha256": "dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb",
+          "fileName": "synthetic-revision.pdf",
+          "source": {
+            "sha256": "dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb",
+            "fileName": "synthetic-revision.pdf",
+            "role": "ACADEMIC_CALENDAR",
+            "coverage": "PARTIAL",
+            "section": "Q",
+            "pageRefs": [
+              "calendar:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb#page=1"
+            ]
+          },
+          "scope": {
+            "start": "2026-10-24",
+            "end": "2026-11-09",
+            "section": "Q",
+            "subgroup": "Q3",
+            "programmingGroup": "Q23"
+          },
+          "links": [
+            {
+              "sourceRef": "change:77b76455-8d3a-4f49-ad12-1683d3964ba2",
+              "changeId": "change:77b76455-8d3a-4f49-ad12-1683d3964ba2",
+              "kind": "ADD_HOLIDAY",
+              "targetId": "2026-11-04",
+              "value": {
+                "date": "2026-11-04",
+                "label": "Holiday 04.11.2026"
+              },
+              "evidence": {
+                "sourceId": "calendar:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb",
+                "page": 1,
+                "excerpt": "Holiday 04.11.2026",
+                "basis": "DIRECT_SOURCE"
+              },
+              "sourceSha256": "dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb"
+            },
+            {
+              "sourceRef": "change:24f1ba8c-a425-4f99-abb2-a59c91e62fd5",
+              "changeId": "change:24f1ba8c-a425-4f99-abb2-a59c91e62fd5",
+              "kind": "UPSERT_EVENT",
+              "targetId": "event:revision:24f1ba8c-a425-4f99-abb2-a59c91e62fd5",
+              "value": {
+                "id": "event:revision:24f1ba8c-a425-4f99-abb2-a59c91e62fd5",
+                "title": "Mandatory exam 02.11.2026 10:00 to 11:00",
+                "cancelled": false,
+                "sessionId": null,
+                "date": "2026-11-02",
+                "start": "10:00",
+                "end": "11:00"
+              },
+              "evidence": {
+                "sourceId": "calendar:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb",
+                "page": 1,
+                "excerpt": "Mandatory exam 02.11.2026 10:00 to 11:00",
+                "basis": "DIRECT_SOURCE"
+              },
+              "sourceSha256": "dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb"
+            }
+          ],
+          "sourceHistory": [
+            {
+              "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "fileName": "QA-prior-calendar.pdf"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "externalRequests": []
+}

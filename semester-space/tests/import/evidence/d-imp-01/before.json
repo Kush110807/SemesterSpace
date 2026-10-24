@@ -1,0 +1,19 @@
+{
+  "sourceExams": [
+    "2026-10-26",
+    "2026-10-27"
+  ],
+  "teachingHorizon": [
+    "2026-10-24",
+    "2026-11-09"
+  ],
+  "baselineCompiledEvents": [
+    "2026-10-26",
+    "2026-10-27"
+  ],
+  "coverageErrors": [],
+  "importAccepted": true,
+  "compiledEvents": [],
+  "oct26PlanStatus": "MEETS_PLANNING_RULES",
+  "oct26Blockers": null
+}

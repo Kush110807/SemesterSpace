@@ -1,0 +1,114 @@
+{
+  "finding": "D-IMP-01",
+  "repairBase": "16fe844f56c98f8b1d529a250dac3a7d67a6c3c9",
+  "phase": "before",
+  "cases": [
+    {
+      "kind": "EXAM_WINDOW",
+      "sourceDates": [
+        "2026-10-26",
+        "2026-10-27"
+      ],
+      "teachingHorizon": [
+        "2026-10-24",
+        "2026-11-09"
+      ],
+      "baseline": {
+        "importAccepted": true,
+        "compiledEvents": [
+          "2026-10-26",
+          "2026-10-27"
+        ],
+        "holidays": [],
+        "replacements": [],
+        "oct26PlanStatus": "PLAN_BLOCKED",
+        "oct31Sessions": 0,
+        "coverageOrCompileErrors": []
+      },
+      "coverageErrors": [],
+      "attack": {
+        "importAccepted": true,
+        "compiledEvents": [],
+        "holidays": [],
+        "replacements": [],
+        "oct26PlanStatus": "MEETS_PLANNING_RULES",
+        "oct31Sessions": 0,
+        "coverageOrCompileErrors": []
+      }
+    },
+    {
+      "kind": "NON_TEACHING",
+      "sourceDates": [
+        "2026-10-26",
+        "2026-10-27"
+      ],
+      "teachingHorizon": [
+        "2026-10-24",
+        "2026-11-09"
+      ],
+      "baseline": {
+        "importAccepted": true,
+        "compiledEvents": [],
+        "holidays": [
+          "2026-10-26",
+          "2026-10-27"
+        ],
+        "replacements": [],
+        "oct26PlanStatus": "PLAN_BLOCKED",
+        "oct31Sessions": 0,
+        "coverageOrCompileErrors": []
+      },
+      "coverageErrors": [],
+      "attack": {
+        "importAccepted": true,
+        "compiledEvents": [],
+        "holidays": [],
+        "replacements": [],
+        "oct26PlanStatus": "MEETS_PLANNING_RULES",
+        "oct31Sessions": 0,
+        "coverageOrCompileErrors": []
+      }
+    },
+    {
+      "kind": "REPLACEMENT",
+      "sourceDates": [
+        "2026-10-31",
+        "2026-11-07"
+      ],
+      "teachingHorizon": [
+        "2026-10-24",
+        "2026-11-09"
+      ],
+      "baseline": {
+        "importAccepted": true,
+        "compiledEvents": [],
+        "holidays": [],
+        "replacements": [
+          {
+            "date": "2026-10-31",
+            "weekday": 1,
+            "confirmed": true
+          },
+          {
+            "date": "2026-11-07",
+            "weekday": 1,
+            "confirmed": true
+          }
+        ],
+        "oct26PlanStatus": "MEETS_PLANNING_RULES",
+        "oct31Sessions": 1,
+        "coverageOrCompileErrors": []
+      },
+      "coverageErrors": [],
+      "attack": {
+        "importAccepted": true,
+        "compiledEvents": [],
+        "holidays": [],
+        "replacements": [],
+        "oct26PlanStatus": "MEETS_PLANNING_RULES",
+        "oct31Sessions": 0,
+        "coverageOrCompileErrors": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "extractionMs": 32664,
+  "unresolvedBlocked": true,
+  "draftMobileWidths": {
+    "client": 390,
+    "scroll": 390
+  },
+  "connectedSetup": true,
+  "subsetAccepted": true,
+  "actualInvalidation": true,
+  "nativeReload": true,
+  "keyboardRecheck": true,
+  "demoIsolation": true,
+  "mobileWidths": {
+    "client": 390,
+    "scroll": 390
+  },
+  "cancelPreservesState": true,
+  "missingAssetsActionable": true,
+  "pageErrors": [],
+  "externalRequests": []
+}

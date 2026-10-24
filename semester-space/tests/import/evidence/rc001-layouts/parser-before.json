@@ -1,0 +1,150 @@
+[
+  {
+    "file": "Academic_Calendar_Odd_Semester_2026-2027.pdf",
+    "input": "Actual prior device-local PDF/OCR decoding; parser-only comparison, not a new OCR run",
+    "candidateRows": 120,
+    "datedCandidates": 73,
+    "matches": [
+      "holiday-1",
+      "holiday-2",
+      "holiday-3",
+      "holiday-4",
+      "holiday-5",
+      "holiday-6",
+      "holiday-7",
+      "holiday-8",
+      "holiday-9",
+      "teaching-start",
+      "sessional-two",
+      "practical-window",
+      "last-ordinary-day",
+      "teaching-end",
+      "end-term-window"
+    ],
+    "unmatched": [
+      "first-year-orientation",
+      "sessional-one",
+      "winter-vacation"
+    ],
+    "issues": [
+      "OCR_REVIEW",
+      "OCR_REVIEW",
+      "OCR_REVIEW",
+      "GRID_LAYOUT_REVIEW",
+      "OCR_REVIEW",
+      "OCR_REVIEW",
+      "OCR_REVIEW",
+      "OCR_REVIEW",
+      "OCR_REVIEW"
+    ]
+  },
+  {
+    "file": "IIT_BHU_calendar_26-27_odd.pdf",
+    "input": "Actual prior device-local PDF/OCR decoding; parser-only comparison, not a new OCR run",
+    "candidateRows": 48,
+    "datedCandidates": 37,
+    "matches": [
+      "bhu-start-ug-first",
+      "bhu-start-pg-first",
+      "bhu-midterm",
+      "bhu-spardha",
+      "bhu-suspension",
+      "bhu-recess",
+      "bhu-winter-break"
+    ],
+    "unmatched": [
+      "bhu-start-other",
+      "bhu-end-other",
+      "bhu-end-first",
+      "bhu-exams-other",
+      "bhu-exams-first"
+    ],
+    "issues": [
+      "TEXT_ENCODING_OR_LAYOUT"
+    ]
+  },
+  {
+    "file": "calendar_grid_colour_150735.png",
+    "input": "Actual prior device-local PDF/OCR decoding; parser-only comparison, not a new OCR run",
+    "candidateRows": 5,
+    "datedCandidates": 5,
+    "matches": [],
+    "unmatched": [
+      "grid1-first-class",
+      "grid1-midterms",
+      "grid1-recess-one",
+      "grid1-recess-two",
+      "grid1-last-class",
+      "grid1-end-exams",
+      "grid1-tta-2026-08-22",
+      "grid1-tta-2026-09-08",
+      "grid1-tta-2026-09-12",
+      "grid1-tta-2026-09-19",
+      "grid1-tta-2026-10-10",
+      "grid1-tta-2026-10-30",
+      "grid1-tta-2026-10-31",
+      "grid1-tta-2026-11-21",
+      "grid1-tta-2026-11-25",
+      "grid1-tta-2026-11-26"
+    ],
+    "issues": [
+      "GRID_LAYOUT_REVIEW",
+      "OCR_REVIEW"
+    ]
+  },
+  {
+    "file": "calendar_grid_cohort_150809.png",
+    "input": "Actual prior device-local PDF/OCR decoding; parser-only comparison, not a new OCR run",
+    "candidateRows": 6,
+    "datedCandidates": 6,
+    "matches": [
+      "grid2-makeup-2026-10-31",
+      "grid2-makeup-2026-11-28"
+    ],
+    "unmatched": [
+      "grid2-start-pg",
+      "grid2-start-ug-phd",
+      "grid2-diwali-break",
+      "grid2-mst",
+      "grid2-est",
+      "grid2-nt-2026-10-19",
+      "grid2-nt-2026-11-23",
+      "grid2-holiday-overlap"
+    ],
+    "issues": [
+      "GRID_LAYOUT_REVIEW",
+      "OCR_REVIEW"
+    ]
+  },
+  {
+    "file": "calendar_dual_term_150940.png",
+    "input": "Actual prior device-local PDF/OCR decoding; parser-only comparison, not a new OCR run",
+    "candidateRows": 57,
+    "datedCandidates": 47,
+    "matches": [
+      "dual-first-year-start",
+      "dual-other-start",
+      "dual-student-vac",
+      "dual-faculty-vac",
+      "dual-tta-2026-09-29",
+      "dual-tta-2026-10-01",
+      "dual-working-2026-10-10",
+      "dual-working-2026-12-05"
+    ],
+    "unmatched": [
+      "dual-midterm-odd",
+      "dual-midterm-even",
+      "dual-endterm-odd",
+      "dual-endterm-even",
+      "dual-tta-2026-08-22",
+      "dual-tta-2027-05-04",
+      "dual-working-2026-12-12",
+      "dual-tba",
+      "dual-no-end"
+    ],
+    "issues": [
+      "DUAL_TERM_REVIEW",
+      "OCR_REVIEW"
+    ]
+  }
+]

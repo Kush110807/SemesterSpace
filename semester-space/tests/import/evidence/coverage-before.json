@@ -1,0 +1,71 @@
+{
+  "investigationBase": "feb40999bdc59fc7ef41eb55e24665a690985fa6",
+  "phase": "before",
+  "cases": [
+    {
+      "case": "1 omitted exam and substitution",
+      "compiled": true,
+      "events": 0,
+      "replacements": 0,
+      "examDayBreakTrialStatus": "MEETS_PLANNING_RULES",
+      "substitutionSaturdaySessions": 0,
+      "issues": []
+    },
+    {
+      "case": "2 readable OCR but calendar meaning unsupported",
+      "compiled": true,
+      "events": 0,
+      "replacements": 0,
+      "examDayBreakTrialStatus": "MEETS_PLANNING_RULES",
+      "substitutionSaturdaySessions": 0,
+      "issues": []
+    },
+    {
+      "case": "3a delete unresolved candidate",
+      "compiled": true,
+      "events": 0,
+      "replacements": 0,
+      "examDayBreakTrialStatus": "MEETS_PLANNING_RULES",
+      "substitutionSaturdaySessions": 0,
+      "issues": []
+    },
+    {
+      "case": "3b reclassify exam as information-only",
+      "compiled": true,
+      "events": 0,
+      "replacements": 0,
+      "examDayBreakTrialStatus": "MEETS_PLANNING_RULES",
+      "substitutionSaturdaySessions": 0,
+      "issues": []
+    },
+    {
+      "case": "3c change category to avoid critical note requirement",
+      "compiled": true,
+      "events": 0,
+      "replacements": 0,
+      "examDayBreakTrialStatus": "MEETS_PLANNING_RULES",
+      "substitutionSaturdaySessions": 0,
+      "issues": []
+    },
+    {
+      "case": "4 page reviewed with unresolved meaning",
+      "compiled": true,
+      "events": 0,
+      "replacements": 0,
+      "examDayBreakTrialStatus": "MEETS_PLANNING_RULES",
+      "substitutionSaturdaySessions": 0,
+      "issues": []
+    },
+    {
+      "case": "4b an existing unresolved row remains blocked",
+      "compiled": false,
+      "events": null,
+      "replacements": null,
+      "examDayBreakTrialStatus": null,
+      "substitutionSaturdaySessions": null,
+      "issues": [
+        "CALENDAR_REVIEW"
+      ]
+    }
+  ]
+}

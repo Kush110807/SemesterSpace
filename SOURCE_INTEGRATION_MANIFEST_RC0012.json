@@ -1,0 +1,25 @@
+{
+  "manifest_version": 1,
+  "integration_revision": "RC-001.2",
+  "base_source_zip": "SEMESTERSPACE_RC0011_A_SOURCE.zip",
+  "base_sha256": "d16d23e7e5c1beae53916e663c7c5960cb53bd215b2c03eacc3369e028aa17e2",
+  "received_B_zip": "SEMESTERSPACE_B_ATTENDANCE_RC001_DELIVERY(1).zip",
+  "B_sha256": "5ebb07189ab7ae42c45ed63d1c2cf03006d31256c7e048459e30cdff7b548b02",
+  "changed_paths": [
+    "RELEASE_CONTRACT.md",
+    "src/controller.js",
+    "src/main.js",
+    "src/storage.js",
+    "tests/integration/release-migrations.test.mjs"
+  ],
+  "added_paths": [
+    "A_INTEGRATION_REPORT_RC0012.md",
+    "RELEASE_CONTRACT_RC001_2_AMENDMENT.md",
+    "docs/ATTENDANCE_DELIVERY.md",
+    "src/attendance/ledger.js",
+    "tests/attendance/ledger.test.mjs",
+    "tests/integration/release-attendance-real.test.mjs"
+  ],
+  "merge": "local_unreleased_no_git_merge",
+  "release_gate": "HOLD"
+}

@@ -1,0 +1,40 @@
+{
+  "scenario": "Actual supplied timetable and scanned calendar; all choices synthetic QA",
+  "clock": "2026-10-24 20:00 Asia/Kolkata",
+  "extractionMs": 33344,
+  "unresolvedBlocked": true,
+  "draftMobileWidths": {
+    "client": 390,
+    "scroll": 390
+  },
+  "pageViewingCannotCompleteCoverage": true,
+  "sourceSpecificReconciliationUi": true,
+  "connectedSetup": true,
+  "registers": 9,
+  "sessions": 39,
+  "modelRevision": 0,
+  "persistence": "SAVED",
+  "mobileWidth": {
+    "client": 390,
+    "scroll": 390
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Estimating resolution as 238",
+    "Estimating resolution as 239",
+    "Detected 603 diacritics",
+    "Estimating resolution as 240",
+    "Detected 671 diacritics",
+    "Estimating resolution as 236",
+    "Detected 447 diacritics",
+    "Estimating resolution as 242",
+    "Detected 392 diacritics",
+    "Estimating resolution as 245",
+    "Error in boxClipToRectangle: box outside rectangle",
+    "Error in pixScanForForeground: invalid box",
+    "Estimating resolution as 258",
+    "Estimating resolution as 234"
+  ],
+  "externalRequests": []
+}

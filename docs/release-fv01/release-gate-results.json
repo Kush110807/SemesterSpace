@@ -1,0 +1,167 @@
+{
+  "status": "RELEASE-GATE-PASS",
+  "scope": "Final bounded FV-01 installed/build and genuine served-origin Chromium gate only. No deployment authorization.",
+  "source_identity": {
+    "source_archive": "SS_FV01_Final_Source.zip",
+    "source_sha256": "5e46451335fb8e96d2cc9efab21222e9b0630996e69acc5dffed0490937a3acb",
+    "original_source_files_checked": 199,
+    "original_source_files_modified": 0,
+    "manifest_entries_verified": 198,
+    "dist_matches_source": true,
+    "build_directory": "/workspace/ss-fv01-candidate/SemesterSpace/semester-space/dist",
+    "build_zip": "SS_FV01_VERIFIED_DIST.zip",
+    "build_zip_sha256": "c9551a363210fc2fb627266730d70f8a8d615c8f3b4eb9a820d6b38904b92e6b",
+    "build_zip_bytes": 20859442,
+    "static_files": 72
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "npm": "11.9.0",
+    "python": "Python 3.12.14",
+    "chromium": "Chromium 154.0.8037.57 built on Debian GNU/Linux 13 (trixie)",
+    "playwright": "1.58.2",
+    "verification_date": "2026-10-25 Asia/Kolkata"
+  },
+  "commands": [
+    {
+      "command": "npm --cache /tmp/ss-npm-cache ci --no-audit --no-fund",
+      "exit_code": 0,
+      "log": "install.log",
+      "actual_result": "21 packages; 39 local assets prepared"
+    },
+    {
+      "command": "npm run check",
+      "exit_code": 0,
+      "log": "syntax.log",
+      "actual_result": "70 modules passed"
+    },
+    {
+      "command": "npm test",
+      "exit_code": 0,
+      "log": "full-tests.log",
+      "actual_result": "274 passed; 0 failures/skips/TODOs"
+    },
+    {
+      "command": "node --test tests/engine/*.test.mjs",
+      "exit_code": 0,
+      "log": "engine.log",
+      "actual_result": "26 passed"
+    },
+    {
+      "command": "python3 tests/checker.py",
+      "exit_code": 0,
+      "log": "arithmetic.log",
+      "actual_result": "342 cases passed"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "log": "build.log",
+      "actual_result": "Production dist built"
+    }
+  ],
+  "browser_runs": [
+    {
+      "command": "node fv01-gate-browser.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node initial-browser.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node connected-browser.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node native-and-negative.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node calendar-write-failure.mjs",
+      "exit_code": 0
+    }
+  ],
+  "fv01": {
+    "scenario": "Genuine production-dist Chromium, actual PDF reader, C UI and A staging; result delivery latency only",
+    "readSelectedCalendarClicks": 1,
+    "staleApplyBlockedAfterReviewEdit": true,
+    "correctedProposalSuccessfullyStagedWithoutReread": true,
+    "sameDraftEffectIds": true,
+    "oldCompletionDidNotReleaseNewerStage": true,
+    "newerResponseAuthorizedOnlyCurrentProposal": true,
+    "staleApplyBlockedAfterReplacement": true,
+    "noPersistedChangesFromStaging": true,
+    "realControllerCalls": 5,
+    "actualAResponses": [
+      {
+        "ok": true,
+        "code": "REVIEW_REQUIRED",
+        "modelRevision": 7,
+        "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:b061b8bb-34f0-4faa-bf5e-b830ce9a135b",
+        "changeCount": 3,
+        "issues": []
+      },
+      {
+        "ok": true,
+        "code": "REVIEW_REQUIRED",
+        "modelRevision": 7,
+        "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:7f4ae55b-6f3d-40b4-864e-0993cf5ecd1d",
+        "changeCount": 3,
+        "issues": []
+      },
+      {
+        "ok": true,
+        "code": "REVIEW_REQUIRED",
+        "modelRevision": 7,
+        "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:52866c47-2fb6-423f-acef-bb91c925cfa4",
+        "changeCount": 3,
+        "issues": []
+      },
+      {
+        "ok": true,
+        "code": "REVIEW_REQUIRED",
+        "modelRevision": 7,
+        "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:e70b63f7-4309-498a-8561-0fe07d293ce0",
+        "changeCount": 3,
+        "issues": []
+      },
+      {
+        "ok": true,
+        "code": "REVIEW_REQUIRED",
+        "modelRevision": 7,
+        "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:0e078caf-85af-4945-a024-478e9f72e4d4",
+        "changeCount": 3,
+        "issues": []
+      }
+    ],
+    "pageErrors": [],
+    "externalRequests": []
+  },
+  "native_reopen": {
+    "passed": true,
+    "revision": 13,
+    "snapshots": 6,
+    "journalRecords": 2,
+    "sourceHistory": [
+      {
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "fileName": "QA-prior-calendar.pdf"
+      }
+    ],
+    "retainedCommitments": [
+      "qa-retained-break"
+    ]
+  },
+  "remaining_release_blockers": [],
+  "limitations": [
+    "Partial extraction; no universal-format/accuracy claim",
+    "Synthetic QA only; personal confirmations unresolved",
+    "Physical devices/screen readers/Firefox/Safari not tested",
+    "Concurrent-tab serializability not established",
+    "Production-domain smoke test must follow explicit deployment approval"
+  ],
+  "application_source_modified": false,
+  "merged_or_deployed_or_devfolio_submitted": false,
+  "additional_spend_inr": 0
+}

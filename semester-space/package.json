@@ -7,7 +7,21 @@
     "start": "node tools/serve.mjs",
     "test": "node --test",
     "check": "node tools/check.mjs",
-    "build": "node tools/build.mjs"
+    "build": "node tools/build.mjs",
+    "prepare:assets": "node src/import/prepare-assets.mjs",
+    "postinstall": "npm run prepare:assets",
+    "test:import-browser": "node tests/import/browser.mjs --run",
+    "test:import-corpus": "node tests/import/corpus.mjs --run"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20.16.0"
+  },
+  "dependencies": {
+    "@tesseract.js-data/eng": "1.0.0",
+    "pdfjs-dist": "5.4.624",
+    "tesseract.js": "7.0.0"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  }
 }
