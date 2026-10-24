@@ -1,3 +1,49 @@
+# RC14-D-01 confined legacy-source correction
+
+25 October 2026 IST. Delivery branch `fix/rc14-d-01`. This section supersedes the first revision delivery’s claim that prior filename/hash metadata needs conversion to v1 before comparison. No other release behavior is changed.
+
+## Exact RC-001.4 baseline and reproduction
+
+User supplied `SEMESTERSPACE_RC0014_A_D02_SOURCE.zip`, SHA-256 **`b0a5086f12ded21e89cec85a31e3e758577837f01c646f9195f58deed4595633`**. ZIP CRC and **182/182** current manifest entries verified before modification. Read RELEASE_CONTRACT.md and RC-001.1/2/3/4 amendments. The earlier D preliminary ZIP contained only the report and four probes; this later archive supplies the actual source and amendment.
+
+The archive’s `src/import/revision.js`, importer-local types and this existing handoff are byte-identical to declared imported head `6a8d0a09abbfa7cefc0b3cf9a8227fcdb190c115`; the source patch is based on those exact bytes. Original revision.js SHA-256: `062d41abaf574462a4e2b7df320a89bfc5083fd80c1d7c04de9a2ceefe872ae2`. Existing worker branches and A’s supplied tree were preserved separately. No A integration or default-branch merge is performed by this delivery.
+
+D’s unchanged `independent_rc14_legacy.mjs` ran against the actual supplied tree before repair: missing metadata → no unresolved items; reviewed legacy `{sha256,fileName}` → SOURCE_METADATA_REVIEW; valid v1 → no unresolved items. This confirms RC14-D-01. After the repair, all three reviewed cases have no unresolved items and one proposed change. Both runs used synthetic fixture confirmations, not personal/institutional confirmation.
+
+## Bounded repair and exact changed files
+
+- `src/import/revision.js`: distinguishes missing metadata, the exact two-field legacy filename/SHA-256 JSON shape, valid version-1 crosswalks and unsupported/malformed metadata. Missing and valid legacy metadata require `legacySourceReviewed === true` plus a nonblank string note. Legacy SHA must be a 64-hex string and filename nonblank; unknown/versioned records cannot masquerade as legacy. Only actual v1 crosswalks supply `priorLinks`; malformed links no longer cause an unchecked array operation. Review never fabricates a v1 record or prior links. The supplied legacy object, filename and SHA spelling/case remain unmodified. Candidate/proposal result shapes remain unchanged.
+- `src/import/revision-types.d.ts`: importer-local input union adds `LegacySourceRevision`; no shared interfaces or output fields change.
+- `tests/import/legacy-source.test.mjs`: 12 regression groups for positive/negative missing, legacy and v1 inputs; strict/incomplete review, immutable identity, no fabricated links, competing matches, unknown prior references, applicability/effective date/coverage, unsupported input, historical edits, cancellation evidence and known missing rows.
+- `tests/import/rc14-legacy-apply.mjs`: guarded manual probe for A’s RC-001.4 tree. Uses the actual A controller/storage adapter with serialized in-memory storage; checks reviewed legacy → stage → single write → prior identity retained → reconstructed controller readback. It is not a native-browser test and does not run automatically without `--run`.
+- `tests/import/evidence/rc14-d-01/results.json`: before/after results and actual verification summary.
+- `docs/IMPORT_DELIVERY.md`: this bounded handoff; prior reports below retained as historical.
+
+A’s existing merge routine retains `{sha256,fileName}` in `sourceHistory` verbatim. The importer leaves A’s original legacy record read-only rather than replacing it with the new source or inventing old crosswalks. Candidate source links describe only the newly reviewed effects. All prior missing-row, affirmative cancellation evidence, ambiguity, source review, scope and historical guards remain in force.
+
+## Actual commands / results on the supplied RC-001.4 A-D02 source
+
+Runtime: Node 24.19.0, Python 3.12.14. All commands below exited 0 unless the pre-fix observation is explicitly noted.
+
+- `git apply --check` and application of the importer runtime/type diff: passed against the actual source archive. The final complete patch is also checked against a pristine extraction.
+- D’s `node independent_rc14_legacy.mjs`: reproduced the legacy-only blocker before repair; after repair, missing/reviewed legacy/v1 cases all return `unresolved: []`.
+- `npm --cache /tmp/ss-npm-cache ci --no-audit --no-fund`: clean pinned installation passed; 39 local assets prepared. No document-processing service or paid API.
+- `npm test`: **274 passed**, 0 failures/skips/TODOs, including the 12 new regression groups and A’s unchanged existing integration tests.
+- `node --test tests/import/legacy-source.test.mjs tests/import/revision.test.mjs tests/import/layouts.test.mjs tests/import/link-effects.test.mjs tests/import/coverage.test.mjs tests/import/draft.test.mjs`: **111 passed** on the worker source.
+- `npm run check`: passed on the RC-001.4 tree after adding the guarded probe: **69 modules**.
+- `node --test tests/engine/*.test.mjs`: **26 passed**. `python3 tests/checker.py`: **342 passed**. `npm run build`: passed.
+- `node tests/import/rc14-legacy-apply.mjs --run`: passed on the supplied RC-001.4 tree. Exactly one serialized write, model revision 3→4, snapshots/commitments unchanged, exact old identity retained in persisted history, no fabricated old links, reconstructed controller reads back the accepted state. This is synthetic in-memory storage evidence, not browser/native localStorage reload.
+
+An initial new history test asserted the later projection guard rather than the earlier HISTORICAL_CONFLICT guard. It was corrected to assert the actual fail-closed historical rejection; production historical validation was unchanged. The original legacy positive regression failed before the fix and passes after it.
+
+## Preservation / limits / A handoff
+
+A controller/storage/main/release integration, C UI, B attendance ledger, engine, shared files, original tests, parser/extractor, dependencies and assets scripts are unchanged. The patch does not fix or reopen other D findings and does not create personal confirmations. Q3 Physics/activity treatment, attendance counts/policy and teaching horizon remain unresolved.
+
+A must independently apply the bounded patch to its corrected RC-001.4 working tree, verify legacy review through the final C UI, and test the atomic acceptance and **native browser reload**, including persistence-failure rollback. Those UI/native-browser checks were not run by this repair. Extraction limitations remain unchanged; missing extraction is not deletion and software cannot prove every omitted event was found. No schema/interface migration, broad refactor, source-package regeneration, merge or deployment. Additional spend ₹0.
+
+---
+
 # RC-001 first bounded revision delivery — for A integration
 
 This section supersedes only the earlier milestone’s initial-import-only boundary. The historical initial delivery below is retained. Contract supplied by A on 24 October 2026: RC-001. No controller, storage, UI, attendance or engine files were edited. No merge or deployment. ₹0 additional spend.

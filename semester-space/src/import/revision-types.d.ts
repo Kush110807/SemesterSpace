@@ -13,6 +13,7 @@ export type CalendarRevisionProposal = {
  changes:CalendarChange[];unresolved:{code:string;sourceRef:string;message:string}[];createdAtUntrusted:string|null;
 };
 export type SourceLink={sourceRef:string;kind:CalendarChange['kind'];targetId:string|null;value:Record<string,unknown>|null;evidence?:CalendarChange['evidence'];changeId?:string};
+export type LegacySourceRevision={sha256:string;fileName:string};
 export type SourceRevision={version:1;source?:CalendarRevisionProposal['source'];scope?:CalendarRevisionProposal['scope'];links:SourceLink[]};
 export type RevisionEffect={
  id:string;sourceRef:string;kind:CalendarChange['kind'];after:Record<string,unknown>|null;
@@ -32,7 +33,7 @@ export type RevisionDraft={
  missing:{sourceRef:string;decision:'KEEP_EXISTING';confirmed:boolean;reason:string}[];};
 };
 export declare function extractCalendarRevision(request:{academicCalendar:{fileName:string;bytes:Uint8Array};section?:string;signal?:AbortSignal;onProgress?:(p:unknown)=>void}):Promise<RevisionDraft>;
-export declare function prepareCalendarRevision(input:{currentModel:Model;existingSourceRevision:SourceRevision|null;extractedDraft:RevisionDraft}):{proposal:CalendarRevisionProposal;comparison:{sourceRef:string;changeId:string|null;status:'UNCHANGED'|'ADDED'|'CHANGED'|'NEEDS_REVIEW'|'POSSIBLE_REMOVAL';targetId:string|null}[]};
+export declare function prepareCalendarRevision(input:{currentModel:Model;existingSourceRevision:SourceRevision|LegacySourceRevision|null;extractedDraft:RevisionDraft}):{proposal:CalendarRevisionProposal;comparison:{sourceRef:string;changeId:string|null;status:'UNCHANGED'|'ADDED'|'CHANGED'|'NEEDS_REVIEW'|'POSSIBLE_REMOVAL';targetId:string|null}[]};
 export declare function buildRevisionCandidate(input:{model:Model;proposal:CalendarRevisionProposal;acceptedChangeIds:string[];clock:Clock}):{ok:boolean;issues:{code:string;message:string;changeId?:string;occurrenceId?:string}[];proposedModel:Model|null;sourceRevisionPatch:SourceRevision|null;engineStatus:string|null;preservedCommitmentIds?:string[]};
 
 export declare function reconcileRevisionEffect(draft:RevisionDraft,effectId:string,note:string):void;

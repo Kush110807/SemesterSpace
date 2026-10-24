@@ -74,9 +74,12 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
   const institution=d?.source?.institutionLabel??'';
   if(/BHU/i.test(institution)&&!/BHU/i.test(model.context.college)||/MAHARAJA AGRASEN/i.test(institution)&&!/MAIT|MAHARAJA AGRASEN/i.test(model.context.college))bad('WRONG_INSTITUTION','','The source institution differs from the existing setup.');
   if(review.sourceCoverageConfirmed!==true||!text(review.coverageNote))bad('COVERAGE_REVIEW','', 'Extraction candidates are not complete coverage. Manually complete all pages, including missed exams, boundaries and substitutions.');
-  if(existingSourceRevision&&(existingSourceRevision.version!==1||!Array.isArray(existingSourceRevision.links)))bad('SOURCE_METADATA_REVIEW','','Prior source metadata must be adapted to version-1 source links before comparison.');
-  if(!existingSourceRevision)bad('PRIOR_SOURCE_UNAVAILABLE','', 'Legacy setup has no persisted source crosswalk. Explicit matching and a justified legacy-source review are required.');
-  if(!existingSourceRevision&&review.legacySourceReviewed===true&&text(review.legacySourceNote))unresolved.splice(unresolved.findIndex(i=>i.code==='PRIOR_SOURCE_UNAVAILABLE'),1);
+  const hasCrosswalk=existingSourceRevision?.version===1&&Array.isArray(existingSourceRevision.links);
+  const legacySource=existingSourceRevision&&typeof existingSourceRevision==='object'&&!Array.isArray(existingSourceRevision)&&Object.keys(existingSourceRevision).length===2&&Object.keys(existingSourceRevision).every(k=>['sha256','fileName'].includes(k))&&typeof existingSourceRevision.sha256==='string'&&/^[a-f0-9]{64}$/i.test(existingSourceRevision.sha256)&&text(existingSourceRevision.fileName);
+  // Legacy identity stays read-only and verbatim with A. Review supplies no invented old links.
+  const priorLinks=hasCrosswalk?existingSourceRevision.links:[];
+  if(existingSourceRevision!==null&&!hasCrosswalk&&!legacySource)bad('SOURCE_METADATA_REVIEW','','Prior metadata must be a version-1 crosswalk or valid legacy filename/SHA-256 identity.');
+  if((existingSourceRevision===null||legacySource)&&!(review.legacySourceReviewed===true&&text(review.legacySourceNote)))bad('PRIOR_SOURCE_UNAVAILABLE','', 'Prior source links are unavailable. Explicit matching and a justified legacy-source review are required.');
   const effects=Array.isArray(review.effects)?review.effects:[],seen=new Set();
   for(const effect of effects){
     const ev=evidenceFor(d,effect,originals),row=originals.find(r=>r.id===effect.sourceRef),ref=effect.sourceRef;
@@ -92,7 +95,7 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
     if(ev.basis==='EXPLICIT_CANCELLATION'&&!/cancel|withdraw|revok|not\s+(?:be\s+)?held|no\s+class|remov/i.test(ev.excerpt))bad('CANCELLATION_EVIDENCE',ref,'The excerpt does not state cancellation; review the actual source or use a justified official correction.');
     let id=effect.occurrenceId??effect.targetId??null,match='ADDED';
     // Stored source links are hints. A changed source never grants permission to remap an occurrence.
-    const links=(existingSourceRevision?.links??[]).filter(l=>l.sourceRef===effect.previousSourceRef);
+    const links=priorLinks.filter(l=>l.sourceRef===effect.previousSourceRef);
     if(!id&&links.length===1)id=links[0].targetId;
     let before=effectValue(model,effect.kind,id,effect.after),after=clone(effect.after??null);
     const label=v=>(v??'').toLowerCase().replace(/\d+/g,' ').replace(/[^a-z]+/g,' ').trim();
@@ -137,7 +140,7 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
     }
   }
   const represented=new Set(effects.map(e=>e.previousSourceRef).filter(Boolean));
-  for(const link of existingSourceRevision?.links??[]){
+  for(const link of priorLinks){
     if(represented.has(link.sourceRef)||link.value===null||link.value?.cancelled===true||link.value?.date<=model.snapshots.at(-1)?.date||link.value?.date<scope.start||link.value?.date>scope.end)continue;
     // Exact current effect is still represented even if its source row moved/reordered.
     if(changes.some(c=>c.kind===link.kind&&same(c.after,link.value)))continue;
