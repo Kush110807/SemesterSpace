@@ -3,7 +3,12 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {getDocument} from 'pdfjs-dist/legacy/build/pdf.mjs';
 import {parseTimetable,parseCalendar,parseDates,validDate} from '../../src/import/parse.js';
-import {validateImportDraft,compileConfirmedImport} from '../../src/import/compile.js';
+import {validateImportDraft as validateDraft,compileConfirmedImport as compileDraft} from '../../src/import/compile.js';
+import {completeSyntheticCoverage} from './coverage-fixture.mjs';
+// These adapter regressions explicitly supply synthetic manual calendar declarations.
+// The independent coverage suite exercises missing, stale and invalid declarations.
+function validateImportDraft(d,o){const input=structuredClone(d);if(input.calendarEntries?.every(Boolean))completeSyntheticCoverage(input,o);return validateDraft(input,o);}
+function compileConfirmedImport(d,o){const input=structuredClone(d);if(input.calendarEntries?.every(Boolean))completeSyntheticCoverage(input,o);return compileDraft(input,o);}
 import {createImportJob,extractDocuments} from '../../src/import/index.js';
 import {checkSource} from '../../src/import/read.js';
 import * as engine from '../../src/engine/index.js';
@@ -50,7 +55,7 @@ test('positive review flags cannot override missing weights, groups, counts, dat
 test('cohort, institution and selected term cannot be silently combined',()=>{
  const {d,o}=fixture();d.sources[1].institutionLabel='INDIAN INSTITUTE OF TECHNOLOGY (BHU)';assert.ok(validateImportDraft(d,o).issues.some(i=>i.code==='WRONG_INSTITUTION'));delete d.sources[1].institutionLabel;
  d.calendarEntries=[calendar({term:'EVEN'})];assert.ok(validateImportDraft(d,o).issues.some(i=>i.code==='WRONG_TERM'));
- d.calendarEntries[0].applicability='DOES_NOT_APPLY';d.calendarEntries[0].resolutionNote='Even semester does not apply to my odd term';assert.equal(compileConfirmedImport(d,o).ok,true);
+ d.calendarEntries[0].applicability='DOES_NOT_APPLY';d.calendarEntries[0].treatment='DOES_NOT_APPLY';d.calendarEntries[0].resolutionNote='Even semester does not apply to my odd term';assert.equal(compileConfirmedImport(d,o).ok,true);
 });
 test('tentative exams require resolution and explicit times/all-day choice; they never cancel classes',()=>{
  const {d,o}=fixture();d.calendarEntries=[calendar({kind:'EXAM_WINDOW',treatment:'COMPULSORY',certainty:'TENTATIVE'})];assert.equal(compileConfirmedImport(d,o).ok,false);
@@ -114,7 +119,8 @@ test('erasing proposed group options or toggling an issue flag cannot hide sourc
  d.timetableEntries[0].groupChoice='Q1';d.timetableEntries[0].resolutionNote='Synthetic QA explicit mapping confirmation';assert.equal(compileConfirmedImport(d,o).ok,true);
 });
 test('exam-related teaching suppression needs an explicit reason; ordinary attainment text is not a TTA notice',()=>{
- const {d,o}=fixture();d.calendarEntries=[calendar({kind:'EXAM_WINDOW',treatment:'NON_TEACHING'})];assert.ok(validateImportDraft(d,o).issues.some(i=>i.code==='EXAM_CANCELLATION_CONFIRMATION'));d.calendarEntries[0].resolutionNote='Synthetic confirmed class suspension notice';assert.equal(compileConfirmedImport(d,o).ok,true);
+ const {d,o}=fixture();d.calendarEntries=[calendar({kind:'EXAM_WINDOW',treatment:'NON_TEACHING'})];assert.ok(validateImportDraft(d,o).issues.some(i=>i.code==='EXAM_CANCELLATION_CONFIRMATION'));d.calendarEntries[0].resolutionNote='Synthetic confirmed class suspension notice';assert.equal(compileConfirmedImport(d,o).ok,false);
+ d.calendarEntries.push(calendar({id:'actual-exam',kind:'EXAM_WINDOW',treatment:'COMPULSORY',allDay:true,resolutionNote:'Explicit synthetic all-day exam protection'}));assert.equal(compileConfirmedImport(d,o).ok,true);
  const p={page:1,width:1000,height:1000,text:'Academic Calendar 2026-27',method:'PDF_TEXT',items:[{text:'Course Attainment Update 09.11.2026',x:100,y:100,w:700,h:15}]};assert.notEqual(parseCalendar({id:'cal'},[p],'t').calendarEntries[0].kind,'REPLACEMENT');
  assert.equal(parseDates('1508.2026',2026)[0].date,'2026-08-15');
 });

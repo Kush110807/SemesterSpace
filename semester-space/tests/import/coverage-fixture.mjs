@@ -1,0 +1,20 @@
+const clock={date:'2026-10-24',time:'20:00',timeZone:'Asia/Kolkata'};
+const ev=(id='tt',raw='Synthetic source evidence')=>[{sourceId:id,page:1,bbox:[0,0,1,1],rawText:raw,method:'PDF_TEXT',confidence:null}];
+export function fixture(){
+ const d={importVersion:'0.2.0',id:'test',status:'REVIEW_REQUIRED',selectedSection:'Q',sectionCandidates:['Q'],declaredSubgroup:'Q3',sources:[{id:'tt',role:'TIMETABLE',sha256:'a'.repeat(64),pageCount:1},{id:'cal',role:'ACADEMIC_CALENDAR',sha256:'b'.repeat(64),pageCount:1,academicYear:2026}],pages:[{sourceId:'tt',page:1,reviewed:true},{sourceId:'cal',page:1,reviewed:true}],subjects:[{id:'s',name:'Synthetic subject',review:'CONFIRMED',evidence:ev()}],registers:[{id:'r',subjectId:'s',name:'Independent theory',kind:'THEORY',review:'CONFIRMED',evidence:ev()}],timetableEntries:[{id:'t',kind:'LECTURE',subjectId:'s',registerId:'r',weekday:1,start:'09:00',end:'10:00',weight:1,treatment:'ATTENDANCE',applicability:'APPLIES',review:'CONFIRMED',groupOptions:[],groupChoice:null,evidence:ev()}],calendarEntries:[],issues:[]};
+ const o={modelId:'synthetic-import',context:{college:'Synthetic college',academicYear:'2026-27',semester:'1',programme:'Synthetic UG',section:'Q',sourceLabel:'Synthetic source',preparedOn:clock.date,applicabilityConfirmed:true},academicScope:{institution:'Synthetic college',academicYear:'2026-27',term:'ODD',degreeGroup:'UG',semesterNumber:1,programme:'Synthetic UG',isTeachingAssistant:false},sourceApplicability:{tt:{institutionConfirmed:true,termConfirmed:true,cohortConfirmed:true},cal:{institutionConfirmed:true,termConfirmed:true,cohortConfirmed:true}},clockPlaceholder:clock,startDate:'2026-10-24',teachingEnd:'2026-11-09',horizonConfirmed:true,protectedSubjectIds:[],registerRules:{r:{requiredBps:7500,personalMinBps:null,bufferBps:300}},snapshot:{date:'2026-10-23',counts:{r:{attended:90,held:100}},confirmed:true,completeToday:false},preferences:{candidateStart:'2026-10-24',candidateEnd:'2026-11-09',requestedDays:2,preferredDates:[],notes:''},replacements:[],holidayTeachingDates:[]};return {d,o};
+}
+export const calendar=(overrides={})=>({id:'c',title:'Synthetic holiday',kind:'HOLIDAY',startDate:'2026-10-26',endDate:'2026-10-26',term:'ODD',certainty:'AS_LISTED',applicability:'APPLIES',treatment:'HOLIDAY',review:'CONFIRMED',printedCalendarWeekday:null,replacementWeekday:null,allDay:null,startTime:null,endTime:null,evidence:ev('cal'),...overrides});
+// Explicit synthetic human declarations for adapter tests, never a production auto-confirm path.
+import {calendarPages,blankPageCoverage,recordPageCoverage,coverageArea,representsArea,relevantCalendarRow} from '../../src/import/coverage.js';
+export function completeSyntheticCoverage(d,o){
+ for(const p of calendarPages(d)){p.text??='Synthetic calendar page; manual test scope.';p.items??=[];p.method??='PDF_TEXT';p.width??=1000;p.height??=1000;}
+ for(const row of d.calendarEntries){
+  if(!['CONFIRMED','CORRECTED'].includes(row.review))continue;
+  const area=coverageArea(row);if(!area)continue;
+  const targets=d.calendarEntries.filter(r=>representsArea(r,area)&&r.evidence.some(e=>row.evidence.some(x=>x.sourceId===e.sourceId&&x.page===e.page)));
+  row.coverageResolution=targets.length&&(!['INFORMATION_ONLY','DOES_NOT_APPLY'].includes(row.treatment))?{decision:'REPRESENTED',rowIds:targets.map(r=>r.id),note:'Synthetic reviewer explicitly maps this source item.',confirmed:true}:{decision:'NO_APPLICABLE_EFFECT',rowIds:[],note:'Synthetic reviewer explicitly confirms no applicable planner effect.',confirmed:true};
+ }
+ d.calendarCoverage={pages:calendarPages(d).map(page=>{const r=blankPageCoverage(page);for(const [area,answer] of Object.entries(r.areas)){const rows=d.calendarEntries.filter(row=>row.evidence.some(e=>e.sourceId===page.sourceId&&e.page===page.page)&&representsArea(row,area)&&relevantCalendarRow(row,o,d));Object.assign(answer,{decision:rows.length?'ENTERED':'NONE_APPLICABLE',rowIds:rows.map(r=>r.id),note:'Synthetic human review for this page, scope and coverage area.'});}return r;})};
+ for(const r of d.calendarCoverage.pages)recordPageCoverage(d,o,r);
+}

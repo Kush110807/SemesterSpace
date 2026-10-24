@@ -1,6 +1,7 @@
 // Draft validation and schema-1 adapter; attendance decisions remain in the public engine.
 import {expandSchedule,validateModel} from '../engine/index.js';
 import {validDate,issue,DAYS} from './parse.js';
+import {validateCalendarCoverage,IMPORT_SOURCE_PREFIX} from './coverage.js';
 const reviewed=r=>r?.review==='CONFIRMED'||r?.review==='CORRECTED';
 const int=n=>Number.isSafeInteger(n)&&n>=0;
 const time=s=>/^([01]\d|2[0-3]):[0-5]\d$/.test(s??'');
@@ -84,6 +85,7 @@ function inspectDraft(d,o){
       if(r.certainty!=='AS_LISTED'&&!text(r.resolutionNote))bad('TENTATIVE_RESOLUTION','calendarEntries','Resolve tentative/unspecified windows explicitly; preserve source wording.',r);
     }
   }
+  issues.push(...validateCalendarCoverage(d,o));
   return {ok:!issues.some(i=>i.severity==='ERROR'),issues};
 }
 export function validateImportDraft(d,o){try{return inspectDraft(d,o);}catch(e){return {ok:false,issues:[issue('INVALID_IMPORT_STRUCTURE','draft',`Malformed review draft: ${e.message}`)]};}}
@@ -111,7 +113,7 @@ export function compileConfirmedImport(d,o){
       const weekday=schedule.replacements.find(r=>r.date===date)?.weekday??(new Date(date+'T12:00:00Z').getUTCDay()||7);
       for(const r of entries.filter(r=>r.treatment==='COMPULSORY_ZERO_UNITS'&&r.weekday===weekday))events.push({id:`${r.id}:${date}`,title:d.subjects.find(s=>s.id===r.subjectId)?.name??'Reviewed obligation',cancelled:false,sessionId:null,date,start:r.start,end:r.end});
     }
-    const model={schemaVersion:1,revision:0,id:o.modelId,timeZone:'Asia/Kolkata',context:structuredClone(o.context),schedule,courses,registers,sessions:[],events,snapshots:[{id:`${d.id}-snapshot`,date:o.snapshot.date,counts:structuredClone(o.snapshot.counts),confirmed:true,completeToday:o.snapshot.completeToday,confirmedAt:structuredClone(o.clockPlaceholder),sequence:1}],commitments:[],attendanceConfirmation:{throughDate:o.snapshot.date,noUnlistedClasses:true},preferences:structuredClone(o.preferences)};
+    const model={schemaVersion:1,revision:0,id:o.modelId,timeZone:'Asia/Kolkata',context:{...structuredClone(o.context),sourceLabel:IMPORT_SOURCE_PREFIX+o.context.sourceLabel},schedule,courses,registers,sessions:[],events,snapshots:[{id:`${d.id}-snapshot`,date:o.snapshot.date,counts:structuredClone(o.snapshot.counts),confirmed:true,completeToday:o.snapshot.completeToday,confirmedAt:structuredClone(o.clockPlaceholder),sequence:1}],commitments:[],attendanceConfirmation:{throughDate:o.snapshot.date,noUnlistedClasses:true},preferences:structuredClone(o.preferences)};
     const expanded=expandSchedule({schedule,courses,registers,extraSessions:[],overrides:[]});
     if(!expanded.ok)return {ok:false,model:null,issues:expanded.issues.map(i=>({...i,severity:'ERROR',rowIds:[],evidence:[]}))};
     const valid=validateModel({...model,schedule:{...schedule,initialized:true},sessions:expanded.sessions},o.clockPlaceholder);

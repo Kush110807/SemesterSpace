@@ -3,7 +3,7 @@ import {parseTimetable,parseCalendar,issue} from './parse.js';
 export {validateImportDraft,compileConfirmedImport} from './compile.js';
 export async function extractDocuments(request){
   const {signal,onProgress}=request;const id=crypto.randomUUID();
-  const draft={importVersion:'0.2.0',id,revision:0,status:'REVIEW_REQUIRED',sources:[],sectionCandidates:[],selectedSection:request.section?.trim().toUpperCase()??null,declaredSubgroup:request.subgroup??null,declaredProgrammingGroup:request.programmingGroup??null,subjects:[],registers:[],timetableEntries:[],calendarEntries:[],issues:[],pages:[]};
+  const draft={importVersion:'0.2.0',id,revision:0,status:'REVIEW_REQUIRED',sources:[],sectionCandidates:[],selectedSection:request.section?.trim().toUpperCase()??null,declaredSubgroup:request.subgroup??null,declaredProgrammingGroup:request.programmingGroup??null,subjects:[],registers:[],timetableEntries:[],calendarEntries:[],issues:[],pages:[],calendarCoverage:{pages:[]}};
   try{
     for(const [key,role] of [['timetable','TIMETABLE'],['academicCalendar','ACADEMIC_CALENDAR']]){
       aborted(signal);const input=request[key];checkSource(input);

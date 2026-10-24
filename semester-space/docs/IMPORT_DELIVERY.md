@@ -1,5 +1,7 @@
 # Document import implementation handoff — review required
 
+**Historical initial delivery at `feb40999bdc59fc7ef41eb55e24665a690985fa6`. Calendar-coverage validation findings and repairs supersede the original review behavior below: see [CALENDAR_COVERAGE_REVIEW.md](CALENDAR_COVERAGE_REVIEW.md).**
+
 24 October 2026 IST. Implementation branch: `feature/document-import`. Parent repository HEAD: `985ae01a7edf0f27dbc96a1c3abb8bef1a6a7a3c`. BASELINE.txt is preserved: starter source `621a4ff10797ac05a0e5bb9c5dbd0ba8ae67c7fe`, runtime SS-INT-002 / contract 1.1.0 / schema 1. Historical B/D approvals have not been extended to this change. SS-INT-002 independent UI-delta review remains pending. This delivery is the current implementation-state handoff; protected CURRENT_STATE.md remains the supplied historical document.
 
 A working initial-import path is implemented and exercised against the actual supplied timetable and scanned MAIT calendar. Automatic calendar interpretation is **partial**, particularly the dense calendar grids. This does not satisfy every semantic case in prospective import contract 0.2.0. The application requires source review and supports manual correction/addition of missing rows, with the original manual setup retained. Do not treat a readable OCR page, candidate row, test pass, or this report as release approval.

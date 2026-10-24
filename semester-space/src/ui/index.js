@@ -1,3 +1,4 @@
+import {IMPORT_SOURCE_PREFIX} from '../import/coverage.js';
 import {documentImport,syncDocumentImport} from './import.js';
 // SemesterSpace UI — role C, SS-INT-001, contract 1.1.0.
 // DOM-only rendering. A owns every state transition and B owns every decision.
@@ -414,6 +415,7 @@ function existingSetup(parent,state,callbacks){
   submit(f,'Save teaching end');endPanel.append(f);
 }
 function resultCard(parent,state,results){
+  if(state.model?.context.sourceLabel.startsWith(IMPORT_SOURCE_PREFIX))notice(parent,'Calendar coverage was manually confirmed from partial extraction. Planner results depend on the entered dates, obligations and timetable exceptions; software cannot verify that every source event was captured.','form-note');
   const wrap=el('div',null,'result-wrap');
   const runtime=results?.runtime??'ERROR';
   if(runtime!=='READY'){

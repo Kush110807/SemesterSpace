@@ -1,3 +1,4 @@
+import {COVERAGE_AREAS,calendarPages,blankPageCoverage,recordPageCoverage,coverageSummary} from '../import/coverage.js';
 import {extractDocuments,createImportJob,compileConfirmedImport} from '../import/index.js';
 import {DAYS,evidence,issue} from '../import/parse.js';
 let root=null,draft=null,live=null,busy=false,submitted=false;
@@ -25,7 +26,7 @@ function sourceEvidence(parent,row){
 }
 const number=v=>v.trim()===''?null:Number(v);
 const rowNote=(box,r)=>field(box,'Resolution / correction reason','textarea',r.resolutionNote,v=>{r.resolutionNote=v;invalidate();});
-function invalidate(){submitted=false;}
+function invalidate(){submitted=false;const status=root?.querySelector('[data-coverage-status]');if(status)status.textContent='Calendar coverage must match the current entries, cohort and dates. Viewing pages does not complete it; confirm each page after all edits.';}
 export function syncDocumentImport(state){
   live={...live,state};
   if(state.mode!=='personal'||state.model){jobs.cancel();busy=false;}
@@ -59,9 +60,11 @@ export function documentImport(state,callbacks,clock){
 }
 function reviewDraft(parent){
   const d=draft;
-  parent.append(el('h3','1. Review sources and extracted coverage'),el('p',`Sections found: ${d.sectionCandidates.join(', ')}. Selected ${d.selectedSection}. ${d.timetableEntries.filter(r=>r.kind==='LECTURE').length} lecture periods; ${d.timetableEntries.filter(r=>r.kind==='LAB').length} merged lab blocks. Every weight, count and policy still requires confirmation.`));
+  const formState=d.confirmation??(d.confirmation={values:{},rules:{},counts:{},protected:[],sources:{}});
+  const options=()=>buildOptions(d,formState);
+  parent.append(el('h3','1. Review source pages and extracted candidates'),el('p',`Sections found: ${d.sectionCandidates.join(', ')}. Selected ${d.selectedSection}. ${d.timetableEntries.filter(r=>r.kind==='LECTURE').length} lecture periods; ${d.timetableEntries.filter(r=>r.kind==='LAB').length} merged lab blocks. These are extracted candidates, not complete calendar coverage. Every weight, count, policy and calendar coverage area still requires explicit confirmation.`));
   const warnings=detail(parent,`Extraction notices (${d.issues.length})`);for(const i of d.issues)warnings.append(el('p',i.message));
-  const pageBox=detail(parent,'Source preview, raw text and page coverage',true);pageBox.dataset.sourceView='true';
+  const pageBox=detail(parent,'Source preview and raw text (viewing only)',true);pageBox.dataset.sourceView='true';
   const picker=field(pageBox,'Source page','select','',()=>{},d.pages.map(p=>[`${p.sourceId}:${p.page}`,`${d.sources.find(s=>s.id===p.sourceId).fileName} · page ${p.page}`]));picker.dataset.pagePicker='true';
   const view=el('div');pageBox.append(view);
   const show=()=>{
@@ -69,7 +72,7 @@ function reviewDraft(parent){
     const img=el('img');img.src=p.preview;img.alt=`Source page ${p.page}`;view.append(img);
     field(view,'Zoom source preview','range','100',v=>{img.style.maxWidth='none';img.style.width=`${v}%`;}).setAttribute('max','250');
     const raw=detail(view,'Raw extracted text (not an instruction or planner verdict)');raw.append(el('pre',p.text));
-    field(view,'I checked this whole page, including legends, footnotes, omitted rows and cohort rules; I added all applicable missing obligations below','checkbox',p.reviewed,v=>{p.reviewed=v;invalidate();});
+    field(view,'I viewed this source page (this does not confirm calendar coverage)','checkbox',p.reviewed,v=>{p.reviewed=v;invalidate();});
   };picker.addEventListener('change',show);picker.value=`${d.pages[0].sourceId}:${d.pages[0].page}`;show();
   const roster=detail(parent,'2. Review subjects and aliases',true);
   for(const s of d.subjects){const box=detail(roster,s.name);field(box,'Subject family name','text',s.name,v=>{s.name=v;invalidate();});box.append(el('p',`Alias proposals from source: ${s.aliases.join(' / ')}. Theory and practical registers remain separate.`));field(box,'I reviewed this subject and its alias proposal','checkbox',reviewed(s),v=>{s.review=v?'CONFIRMED':'UNREVIEWED';invalidate();renderConfirmation();});sourceEvidence(box,s);}
@@ -107,18 +110,26 @@ function reviewDraft(parent){
     field(fields,'Actual event start','time',r.startTime,v=>{r.startTime=v||null;invalidate();});field(fields,'Actual event end','time',r.endTime,v=>{r.endTime=v||null;invalidate();});
     field(box,'I explicitly choose whole-window all-day protection for this event (00:00–23:59 each included day)','checkbox',r.allDay,v=>{r.allDay=v;invalidate();});
     box.append(el('p',`Source certainty: ${r.certainty}. Source date text: ${r.rawDateText}`));rowNote(box,r);
-    field(box,'Review decision','select',r.review,v=>{r.review=v;invalidate();},choices(['UNREVIEWED','CONFIRMED','CORRECTED']));sourceEvidence(box,r);
+    field(box,'Review decision','select',r.review,v=>{r.review=v;invalidate();},choices(['UNREVIEWED','CONFIRMED','CORRECTED']));
+    const resolution=r.coverageResolution??(r.coverageResolution={decision:'UNRESOLVED',rowIds:[],note:'',confirmed:false});
+    const resolve=detail(box,'Resolve original source candidate explicitly');
+    resolve.append(el('p','Changing the category, deleting text or marking information-only does not remove the original source requirement. Keep the candidate and record how it is represented or why it has no applicable student effect.'));
+    field(resolve,'Source candidate resolution','select',resolution.decision,v=>{resolution.decision=v;resolution.confirmed=false;invalidate();},[['UNRESOLVED','Unresolved'],['REPRESENTED','Represented by reviewed planner entries'],['NO_APPLICABLE_EFFECT','Explicitly no applicable planner effect']]);
+    const links=field(resolve,'Planner entries representing this source candidate','select','',()=>{});links.multiple=true;links.size=4;
+    for(const target of d.calendarEntries){const opt=el('option',`${target.startDate??'Date?'} · ${target.title.slice(0,95)}`);opt.value=target.id;opt.selected=resolution.rowIds.includes(target.id);links.append(opt);}
+    links.addEventListener('change',()=>{resolution.rowIds=[...links.selectedOptions].map(n=>n.value);resolution.confirmed=false;invalidate();});
+    field(resolve,'Source-based resolution explanation','textarea',resolution.note,v=>{resolution.note=v;resolution.confirmed=false;invalidate();});
+    field(resolve,'I explicitly confirm this source candidate resolution','checkbox',resolution.confirmed,v=>{resolution.confirmed=v;invalidate();});
+    sourceEvidence(box,r);
   }};renderCalendar();
   action(calendar,'Confirm clearly administrative rows as information after review',()=>{let count=0;for(const r of d.calendarEntries)if(/committee|HoDs|IQAC|\bPAC\b|\bDAC\b|faculty workload|CO-PO|course files|\bERP\b|audit|SAR/i.test(r.title)&&!/student|sessional|exam|orientation|holiday|teaching period/i.test(r.title)){r.review='CONFIRMED';r.applicability='APPLIES';r.treatment='INFORMATION_ONLY';r.resolutionNote='Reviewed staff/administrative information; no student restriction.';count++;}renderCalendar();invalidate();message(calendar,`${count} clearly administrative rows reviewed. Remaining ambiguous obligations still require decisions.`);});
-  action(calendar,'Confirm clear holiday candidates after source review',()=>{for(const r of d.calendarEntries)if(r.kind==='HOLIDAY'&&r.startDate&&r.startDate===r.endDate){r.review='CONFIRMED';r.applicability='APPLIES';r.treatment='HOLIDAY';}renderCalendar();invalidate();});
+  action(calendar,'Confirm clear holiday candidates after source review',()=>{for(const r of d.calendarEntries)if(r.kind==='HOLIDAY'&&r.startDate&&r.startDate===r.endDate){r.review='CONFIRMED';r.applicability='APPLIES';r.treatment='HOLIDAY';r.coverageResolution={decision:'REPRESENTED',rowIds:[r.id],note:'Explicit grouped review of this holiday against the source.',confirmed:true};}renderCalendar();invalidate();});
   action(calendar,'Add missing date / exception from displayed calendar page',()=>{
     const p=d.pages.find(p=>`${p.sourceId}:${p.page}`===picker.value);if(d.sources.find(s=>s.id===p.sourceId)?.role!=='ACADEMIC_CALENDAR'){message(calendar,'Choose the calendar page in the source preview first.');return;}
     d.calendarEntries.push({id:crypto.randomUUID(),title:'Correct from source',kind:'UNKNOWN',startDate:null,endDate:null,rawDateText:p.text,term:'UNSPECIFIED',audienceText:null,printedCalendarWeekday:null,replacementWeekday:null,replacesDate:null,certainty:'UNSPECIFIED',applicability:'UNRESOLVED',treatment:'UNRESOLVED',allDay:null,startTime:null,endTime:null,review:'UNREVIEWED',evidence:[evidence(d.sources.find(s=>s.id===p.sourceId),p,p.items)]});renderCalendar();invalidate();
   });
   const confirm=detail(parent,'5. Subjects I must attend, actual counts and final confirmation',true),content=el('div');confirm.append(content);
   // Keep confirmation values in memory across treatment edits. They never enter localStorage.
-  const formState=d.confirmation??(d.confirmation={values:{},rules:{},counts:{},protected:[],sources:{}});
-  const options=()=>buildOptions(d,formState);
   function renderConfirmation(){
     content.replaceChildren();const values=formState.values;
     const input=(label,type,key,initial='',choices_)=>field(content,label,type,values[key]??initial,v=>{values[key]=v;invalidate();},choices_);
@@ -138,6 +149,23 @@ function reviewDraft(parent){
       for(const [key,label] of [['attended','Actually attended units'],['held','Actually held units']])field(box,label,'number',counts[key],v=>{counts[key]=v;invalidate();});
     }
     field(content,'Confirmed teaching on labelled holiday dates (comma-separated, only if explicitly notified)','text',values.holidayTeaching??'',v=>{values.holidayTeaching=v;invalidate();});
+    const completion=detail(content,'Manual calendar coverage completion — required even when OCR is readable',true);completion.dataset.manualCoverage='true';
+    completion.append(el('p','Automatic interpretation is partial. Fill the academic identity and horizon above, finish candidate corrections, then manually compare every calendar page with the entered planner rows. Check legends, footnotes, cohorts, exams and substitutions. Software cannot detect every omitted event. A viewed-page checkbox cannot resolve missing meaning.'));
+    const summary=message(completion,'Calendar coverage has not been confirmed for this setup.');summary.dataset.coverageStatus='true';
+    const records=d.calendarCoverage??(d.calendarCoverage={pages:[]});
+    for(const page of calendarPages(d)){
+      let record=records.pages.find(r=>r.sourceId===page.sourceId&&r.page===page.page);if(!record){record=blankPageCoverage(page);records.pages.push(record);}
+      const pagePanel=detail(completion,`Manually complete calendar page ${page.page}`);pagePanel.dataset.coveragePage=String(page.page);
+      pagePanel.append(el('p','Readable source text and extracted candidates are evidence only. Add missing entries first; choose “none applicable” only after explicitly resolving source candidates and checking this page for your cohort/horizon.'));
+      for(const [key,label] of COVERAGE_AREAS){const area=detail(pagePanel,label,true);area.dataset.coverageArea=key;const answer=record.areas[key];
+        field(area,'Manual coverage decision','select',answer.decision,v=>{answer.decision=v;record.confirmed=false;invalidate();},[['UNRESOLVED','Unresolved — more manual work needed'],['ENTERED','Applicable information entered in planner rows'],['NONE_APPLICABLE','Explicitly no applicable items on this page for my scope']]);
+        const rows=field(area,'Entered planner rows for this coverage area','select','',()=>{});rows.multiple=true;rows.size=4;
+        for(const row of d.calendarEntries.filter(r=>r.evidence.some(e=>e.sourceId===page.sourceId&&e.page===page.page))){const opt=el('option',`${row.startDate??'Date?'} · ${row.title.slice(0,95)}`);opt.value=row.id;opt.selected=answer.rowIds.includes(row.id);rows.append(opt);}
+        rows.addEventListener('change',()=>{answer.rowIds=[...rows.selectedOptions].map(n=>n.value);record.confirmed=false;invalidate();});
+        field(area,'Manual completion explanation','textarea',answer.note,v=>{answer.note=v;record.confirmed=false;invalidate();});
+      }
+      action(pagePanel,'Confirm this page’s manual coverage for current entries and scope',()=>{recordPageCoverage(d,options(),record);const count=coverageSummary(d,options());summary.textContent=`${count.confirmed}/${count.pages} page completion declarations recorded for current entries and scope. Saving still validates every source disposition, linked row and coverage area.`;});
+    }
     const errors=el('div');errors.setAttribute('role','alert');errors.dataset.importErrors='true';content.append(errors);
     action(content,'Validate reviewed draft and save initial setup',()=>{
       if(submitted)return;if(live.state.model||live.state.mode!=='personal'){errors.textContent='Import is initial setup only; existing models/history cannot be replaced.';return;}
