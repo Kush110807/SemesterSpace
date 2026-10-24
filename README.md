@@ -1,12 +1,9 @@
-# D independent review — corrected source download
+# D-IMP-01 independent review package
 
-Download **[SemesterSpace-D-review-source.zip](SemesterSpace-D-review-source.zip?raw=true)**, its **[SHA-256 sidecar](SemesterSpace-D-review-source.zip.sha256)** and **[external package manifest](D_REVIEW_PACKAGE.json)**. These are the exact ZIP bytes for the checksum below; GitHub's automatically generated branch ZIP is a different archive.
+Download **SemesterSpace-D-IMP-01-source.zip** using its Raw / Download button. This is a complete source archive, not a pasted diff. Download its `.sha256` sidecar and verify with `sha256sum -c SemesterSpace-D-IMP-01-source.zip.sha256`. Do not compare that checksum to GitHub’s automatic branch ZIP.
 
-- Base: `feb40999bdc59fc7ef41eb55e24665a690985fa6`
-- Tested feature implementation: `044252287a3bebb7c2199076f52c531b5c2c90bb`
-- Metadata-only package source: `16fe844f56c98f8b1d529a250dac3a7d67a6c3c9`
-- ZIP SHA-256: `e78c6b36eba6ce9cca71646232d9d125f353ea854d3a31e5e97152ccf3c7e10d`
+`D_REVIEW_PACKAGE.json` gives exact base, tested repair and metadata-only packaging commit SHAs, ZIP bytes/SHA-256 and actual package verification results. `D-IMP-01.patch` is the isolated binary-capable repair commit diff against the base. After extracting the ZIP, run `sha256sum -c PACKAGE_INTEGRITY.sha256` from `SemesterSpace/`. Follow `semester-space/README.md` for clean installation and local asset generation.
 
-After downloading the ZIP and sidecar into one folder, run `sha256sum -c SemesterSpace-D-review-source.zip.sha256`. Extract the ZIP, enter `SemesterSpace`, then run `sha256sum -c PACKAGE_INTEGRITY.sha256`. The complete source includes SOURCE_PACKAGE_MANIFEST.json, pinned lockfile, asset-generation scripts/licenses, tests, browser/corpus evidence and handoff. Generated dependencies, vendor assets and dist are excluded.
+The current handoff is `semester-space/docs/D_IMP_01_REPAIR.md`, with D’s exact before reproduction and extended before/after results, actual browser/corpus evidence and remaining extraction limitations. Checks pass: 136 full tests, 26 engine tests, 342 arithmetic cases, syntax, build, served browser. All five corpus inputs decoded; semantic extraction is partial and requires manual completion. Q3 Physics remains unresolved. Engine/controller/storage/shared schema and original unit tests preserved. No merge or deployment; ₹0 additional spend.
 
-The artifact branch contains delivery files only. The source is from `feature/document-import` at the package source commit above. No runtime, hosting configuration, default-branch merge or deployment was changed. Read the bundled D_REVIEW_PACKAGE.md for historical manifests and the hosting file that was already absent at repository intake. Extraction limitations and SS-INT-002 fallback remain unchanged.
+This artifact branch contains delivery files only. Implementation source is on `feature/document-import`; exact commits are in the external JSON. Older artifact commits retain prior packages for history.
