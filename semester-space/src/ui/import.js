@@ -40,22 +40,28 @@ export function documentImport(state,callbacks,clock){
   const files=el('div');files.className='import-fields';root.append(files);let generation=0,timetable,calendar,section='Q',subgroup='Q3',programming='Q23';
   const tt=field(files,'Timetable file','file','',()=>{});tt.accept='.pdf,.png,.jpg,.jpeg';tt.addEventListener('change',()=>{timetable=tt.files[0];reset();});
   const cal=field(files,'Academic calendar file','file','',()=>{});cal.accept=tt.accept;cal.addEventListener('change',()=>{calendar=cal.files[0];reset();});
-  field(files,'Section','text',section,v=>{section=v;reset();});field(files,'Practical subgroup','text',subgroup,v=>{subgroup=v;reset();});field(files,'Programming-lab label','text',programming,v=>{programming=v;reset();});
-  const status=message(root,'Choose both documents. Q3 physics mapping must be confirmed from a separate source; it will not be guessed.');
+  const cohort=detail(root,'Section and lab groups — review your details');
+  cohort.append(el('p','Pre-filled from your stated details, not verified against the uploaded documents. Change them if your current schedule uses different labels.'));
+  const groupFields=el('div');groupFields.className='import-fields';cohort.append(groupFields);
+  field(groupFields,'Section','text',section,v=>{section=v;reset();});field(groupFields,'Practical subgroup','text',subgroup,v=>{subgroup=v;reset();});field(groupFields,'Programming-lab label','text',programming,v=>{programming=v;reset();});
+  const progressSteps=el('p','1. Select documents  ·  2. Extract on this device  ·  3. Review and confirm','import-steps');root.append(progressSteps);
+  const status=message(root,'Choose both documents to begin. Unknown Physics mapping and attendance details will still need your confirmation.');
+  status.className='import-status';status.dataset.importStage='empty';status.setAttribute('aria-live','polite');
   const output=el('div');output.dataset.importOutput='true';
   const run=action(root,'Extract editable draft',async()=>{
-    if(!timetable||!calendar){status.textContent='Choose both files first.';return;}
-    if(busy)return;const token=++generation;busy=true;run.disabled=true;submitted=false;output.replaceChildren();draft=null;
+    if(!timetable||!calendar){status.textContent='Select both a timetable and an academic calendar. Your other entries have been kept.';status.dataset.importStage='needs-files';return;}
+    if(busy)return;const token=++generation;busy=true;run.disabled=true;submitted=false;output.replaceChildren();draft=null;status.dataset.importStage='processing';status.setAttribute('role','status');status.textContent='Reading documents on this device. Keep this page open while extraction runs.';
     try{
       const source=async file=>{if(file.size>15*1024*1024)throw Error('Each file must be at most 15 MB.');return {fileName:file.name,mimeType:file.type,bytes:new Uint8Array(await file.arrayBuffer())};};
-      const request={timetable:await source(timetable),academicCalendar:await source(calendar),section,subgroup,programmingGroup:programming,onProgress:p=>{status.textContent=`${p.sourceRole==='TIMETABLE'?'Timetable':'Calendar'}: ${p.stage.toLowerCase().replaceAll('_',' ')}${p.page?` · page ${p.page}/${p.pages}`:''}`;}};
-      if(token!==generation)return;draft=await jobs.run(request);status.textContent=draft.status==='REVIEW_REQUIRED'?'Extraction produced an unconfirmed draft. Check every page and unresolved item before continuing.':draft.issues.map(i=>i.message).join(' ');
+      const request={timetable:await source(timetable),academicCalendar:await source(calendar),section,subgroup,programmingGroup:programming,onProgress:p=>{status.dataset.importStage='processing';status.textContent=`Processing ${p.sourceRole==='TIMETABLE'?'timetable':'calendar'}: ${p.stage.toLowerCase().replaceAll('_',' ')}${p.page?` · page ${p.page} of ${p.pages}`:''}. Nothing is confirmed yet.`;}};
+      if(token!==generation)return;draft=await jobs.run(request);status.dataset.importStage=draft.status==='REVIEW_REQUIRED'?'needs-review':'error';status.textContent=draft.status==='REVIEW_REQUIRED'?'Draft created. Review every page and unresolved entry, then confirm actual counts and applicability before saving.':`Could not prepare a reviewable draft. ${draft.issues.map(i=>i.message).join(' ')||'Check the file format and retry.'}`;
       if(draft.status==='REVIEW_REQUIRED')reviewDraft(output);
-    }catch(e){if(e.name!=='AbortError')status.textContent=e.message;}
+    }catch(e){if(e.name!=='AbortError'){status.dataset.importStage='error';status.setAttribute('role','alert');status.textContent=`Extraction could not finish: ${e.message}. Your selected files and cohort fields remain available; correct them and try again.`;}}
     finally{if(token===generation){busy=false;run.disabled=false;}}
   });
-  action(root,'Cancel / discard import',()=>{reset();tt.value='';cal.value='';timetable=calendar=null;status.textContent='Import discarded. Personal state was not changed.';});root.append(output);
-  function reset(){generation++;jobs.cancel();busy=false;run.disabled=false;draft=null;output.replaceChildren();submitted=false;status.textContent='Source changed. Extract again; previous draft discarded.';}
+  run.classList.add('import-primary');
+  const discard=action(root,'Discard selection',()=>{reset();tt.value='';cal.value='';timetable=calendar=null;status.dataset.importStage='empty';status.setAttribute('role','status');status.textContent='Import discarded. Nothing was saved or changed.';});discard.classList.add('import-secondary');root.append(output);
+  function reset(){generation++;jobs.cancel();busy=false;run.disabled=false;draft=null;output.replaceChildren();submitted=false;status.dataset.importStage='empty';status.setAttribute('role','status');status.textContent='Source changed. Extract again; the old unconfirmed draft was discarded. Your selected files and cohort entries remain.';}
   return root;
 }
 function reviewDraft(parent){

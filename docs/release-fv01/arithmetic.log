@@ -1,0 +1,2 @@
+PASS: 342 public-engine decisions match independent Fraction arithmetic across exhaustive tiny absence subsets.
+Independent feasibility evidence only; not a greedy optimality test or UI verification.

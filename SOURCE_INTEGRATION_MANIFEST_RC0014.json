@@ -1,0 +1,48 @@
+{
+  "release": "RC-001.4",
+  "base": "RC-001.3 A+B+C",
+  "import_head": "6a8d0a09abbfa7cefc0b3cf9a8227fcdb190c115",
+  "import_base": "2eb474f955b76eec4476f9f1c473455ade32a29b",
+  "merged_codex_changed_paths": [
+    "semester-space/docs/IMPORT_DELIVERY.md",
+    "semester-space/src/import/parse.js",
+    "semester-space/src/import/revision-extract.js",
+    "semester-space/src/import/revision-types.d.ts",
+    "semester-space/src/import/revision.js",
+    "semester-space/tests/import/evidence/rc001-layouts/build.log",
+    "semester-space/tests/import/evidence/rc001-layouts/fresh-corpus-report.json",
+    "semester-space/tests/import/evidence/rc001-layouts/initial-flow-interim-report.json",
+    "semester-space/tests/import/evidence/rc001-layouts/parser-before.json",
+    "semester-space/tests/import/evidence/rc001-layouts/recovered-entries.json",
+    "semester-space/tests/import/evidence/rc001-layouts/revision-browser-report.json",
+    "semester-space/tests/import/evidence/rc001-layouts/syntax.log",
+    "semester-space/tests/import/evidence/rc001-layouts/targeted-tests.log",
+    "semester-space/tests/import/evidence/rc001-revision/browser-report.json",
+    "semester-space/tests/import/evidence/rc001-revision/syntax.log",
+    "semester-space/tests/import/evidence/rc001-revision/targeted-tests.log",
+    "semester-space/tests/import/layouts.test.mjs",
+    "semester-space/tests/import/measure-layouts.mjs",
+    "semester-space/tests/import/revision-browser.mjs",
+    "semester-space/tests/import/revision.test.mjs"
+  ],
+  "a_owned_changed_paths": [
+    "semester-space/A_INTEGRATION_REPORT_RC0014.md",
+    "semester-space/RELEASE_CONTRACT_RC001_4_AMENDMENT.md",
+    "semester-space/src/controller.js",
+    "semester-space/src/main.js",
+    "semester-space/src/storage.js",
+    "semester-space/tests/integration/rc0014-importer-real.test.mjs",
+    "semester-space/tests/integration/release-migrations.test.mjs"
+  ],
+  "release_gate": "HOLD",
+  "checks": {
+    "syntax": 56,
+    "targeted": 202,
+    "engine": 26,
+    "arithmetic": 342,
+    "full_pass": 228,
+    "full_module_load_failures": 2,
+    "build": "BLOCKED_MISSING_PDFJS",
+    "real_browser": "NOT_RUN"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "status": "INTERIM_RELEASE_HOLD",
+  "integration": "A+D02+C UI+Codex D01",
+  "codex_commit": "95de7e5e65c5e833529c2fe6db0a929c6c6c9f97",
+  "source_base": "SemesterSpace_RC0014_AC_UI_Interim_Source.zip",
+  "codex_modified_paths": [
+    "semester-space/docs/IMPORT_DELIVERY.md",
+    "semester-space/src/import/revision-types.d.ts",
+    "semester-space/src/import/revision.js"
+  ],
+  "codex_added_paths": [
+    "semester-space/tests/import/evidence/rc14-d-01/results.json",
+    "semester-space/tests/import/legacy-source.test.mjs",
+    "semester-space/tests/import/rc14-legacy-apply.mjs"
+  ],
+  "unresolved": [
+    "RC14-A-C-01 stage completion race",
+    "C legacy metadata null adapter",
+    "clean full suite/build/browser reload",
+    "D final acceptance"
+  ],
+  "historical_manifests_kept": true
+}

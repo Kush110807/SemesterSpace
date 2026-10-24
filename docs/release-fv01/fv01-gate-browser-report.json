@@ -1,0 +1,56 @@
+{
+  "scenario": "Genuine production-dist Chromium, actual PDF reader, C UI and A staging; result delivery latency only",
+  "readSelectedCalendarClicks": 1,
+  "staleApplyBlockedAfterReviewEdit": true,
+  "correctedProposalSuccessfullyStagedWithoutReread": true,
+  "sameDraftEffectIds": true,
+  "oldCompletionDidNotReleaseNewerStage": true,
+  "newerResponseAuthorizedOnlyCurrentProposal": true,
+  "staleApplyBlockedAfterReplacement": true,
+  "noPersistedChangesFromStaging": true,
+  "realControllerCalls": 5,
+  "actualAResponses": [
+    {
+      "ok": true,
+      "code": "REVIEW_REQUIRED",
+      "modelRevision": 7,
+      "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:b061b8bb-34f0-4faa-bf5e-b830ce9a135b",
+      "changeCount": 3,
+      "issues": []
+    },
+    {
+      "ok": true,
+      "code": "REVIEW_REQUIRED",
+      "modelRevision": 7,
+      "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:7f4ae55b-6f3d-40b4-864e-0993cf5ecd1d",
+      "changeCount": 3,
+      "issues": []
+    },
+    {
+      "ok": true,
+      "code": "REVIEW_REQUIRED",
+      "modelRevision": 7,
+      "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:52866c47-2fb6-423f-acef-bb91c925cfa4",
+      "changeCount": 3,
+      "issues": []
+    },
+    {
+      "ok": true,
+      "code": "REVIEW_REQUIRED",
+      "modelRevision": 7,
+      "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:e70b63f7-4309-498a-8561-0fe07d293ce0",
+      "changeCount": 3,
+      "issues": []
+    },
+    {
+      "ok": true,
+      "code": "REVIEW_REQUIRED",
+      "modelRevision": 7,
+      "proposalId": "revision:dd30a1b216a7f42873bcba492825d4d7f3a1486d4a3e07f7d4e8bf088c90b5cb:7:0e078caf-85af-4945-a024-478e9f72e4d4",
+      "changeCount": 3,
+      "issues": []
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": []
+}

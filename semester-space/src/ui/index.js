@@ -1,5 +1,6 @@
 import {IMPORT_SOURCE_PREFIX} from '../import/coverage.js';
 import {documentImport,syncDocumentImport} from './import.js';
+import {renderReleaseFreshness,renderAttendanceReview,renderCalendarRevision,renderRevisionConsequences} from './release.js';
 // SemesterSpace UI — role C, SS-INT-001, contract 1.1.0.
 // DOM-only rendering. A owns every state transition and B owns every decision.
 const WEEKDAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
@@ -28,6 +29,7 @@ let setupRowSerial = 1;
 const setupNonce=Math.random().toString(36).slice(2,10);
 const setupRows = {courses:[0],registers:[0],weekly:[0],extra:[],events:[]};
 let setupStep=0, wizardIssue='', pendingFocusKey=null;
+let workspaceView='today', hadModel=false;
 const STEP_TITLES=['Academic identity','Courses, registers and actual counts','Timetable, exceptions and events','Confirm snapshot and request'];
 const internalId=(kind,row)=>`ss-${kind}-${setupNonce}-${row}`;
 const nameFromDraft=(kind,row,key)=>draftMap().get(`setup-${kind}-${row}::${kind==='courses'?'course':kind==='registers'?'register':'extra'}-${row}-${key}`)??'';
@@ -419,8 +421,11 @@ function resultCard(parent,state,results){
   const wrap=el('div',null,'result-wrap');
   const runtime=results?.runtime??'ERROR';
   if(runtime!=='READY'){
-    const info=runtime==='NO_SETUP'?'No confirmed setup yet. Enter actual details or open the labelled synthetic demo.':runtime==='ENGINE_UNAVAILABLE'?'Planning engine unavailable. This UI shows schedule markers only; no attendance result or feasible date has been verified.':`A runtime error stopped calculations: ${results?.error??'Unknown error'}`;
-    const b=el('div',null,'status-card warning');b.setAttribute('role','status');add(b,el('h3',runtime.replaceAll('_',' ')),el('p',info));wrap.append(b);
+    const info=runtime==='NO_SETUP'?'Finish and confirm your semester setup before planning breaks.':runtime==='ENGINE_UNAVAILABLE'?'The planner is not connected. Calendar dates show known schedule items only; no break has been checked.':'The planner could not check this schedule. No new breaks have been verified.';
+    const label=runtime==='NO_SETUP'?'Setup not finished':'Planning is unavailable';
+    const b=el('div',null,'status-card warning');b.setAttribute('role','status');add(b,el('h3',label),el('p',info));
+    if(runtime==='ERROR'){const diagnostic=el('details',null,'release-technical');add(diagnostic,el('summary','Technical error details'),el('p',results?.error??'No further detail received.'));b.append(diagnostic);}
+    wrap.append(b);
   }
   const evaluation=runtime==='READY'?results.evaluation:null;
   if(runtime==='READY'&&!evaluation){
@@ -429,7 +434,8 @@ function resultCard(parent,state,results){
   if(evaluation){
     const [title,explanation,tone]=STATES[evaluation.status]??[evaluation.status,'Unrecognised status; do not act on this result.','warning'];
     const card=el('div',null,`status-card ${tone}`);card.setAttribute('role','status');
-    add(card,el('p',`Engine contract ${evaluation.contractVersion} · model revision ${evaluation.modelRevision??'unknown'} · evaluated ${evaluation.evaluatedAt?`${evaluation.evaluatedAt.date} ${evaluation.evaluatedAt.time} IST`:'clock unavailable'}`,'eyebrow'),el('h3',title),el('p',explanation));
+    add(card,el('h3',title),el('p',explanation));
+    const technical=el('details',null,'release-technical');add(technical,el('summary','Evaluation details'),el('p',`Contract ${evaluation.contractVersion} · revision ${evaluation.modelRevision??'unknown'} · checked ${evaluation.evaluatedAt?`${evaluation.evaluatedAt.date} ${evaluation.evaluatedAt.time} IST`:'time unavailable'}`));card.append(technical);
     const next={INVALID_SETUP:'Next: correct the reported setup or confirmation fields; no feasible result exists.',ATTENDANCE_UPDATE_NEEDED:'Next: confirm a new completed-day snapshot with actual counts.',EXISTING_UNRECOVERABLE_SHORTFALL:'Next: review the actual counts and planning constraints; no proposed break resolves this shortfall.',PLAN_BLOCKED:'Next: inspect conflicting dates and existing commitments. This evaluation does not authorize additional breaks.',CONDITIONAL_RECOVERY:'Next: review every required recovery meeting before accepting a checked subset.',MEETS_PLANNING_RULES:'Next: inspect dates, then explicitly commit a checked subset if desired.'};
     if(next[evaluation.status])add(card,el('p',next[evaluation.status],'next-action'));
     const invalidDates=evaluation.dates?.filter(d=>d.markers?.includes('INVALID_COMMITMENT')).map(d=>d.date)??[];
@@ -506,7 +512,9 @@ function buildCalendar(parent,state,results,callbacks){
   for(let i=0;i<offset;i++){const blank=el('div',null,'calendar-blank');blank.setAttribute('aria-hidden','true');grid.append(blank);}
   for(let day=1;day<=count;day++){
     const date=`${month}-${String(day).padStart(2,'0')}`;
-    const {marker,dateResult}=modelDateMarkers(state,results,date),names=[...marker];
+    const {marker,dateResult}=modelDateMarkers(state,results,date);
+    const priority=['INVALID_COMMITMENT','COMPULSORY','PROTECTED','COMMITTED','SUGGESTED','HOLIDAY','SELECTED','ALREADY_OFF','TEACHING','HISTORICAL','OUTSIDE_HORIZON'];
+    const names=[...marker].sort((a,b)=>priority.indexOf(a)-priority.indexOf(b));
     const b=button(String(day),()=>callbacks.onSelectDate({date}),{secondary:true,focusKey:`calendar:${date}`});
     b.classList.add('day');b.setAttribute('aria-label',`${date}${names.length?': '+names.map(k=>LABELS[k]??k).join(', '):': no calculated status'}`);
     if(state.selectedDate===date){b.classList.add('selected-day');b.setAttribute('aria-pressed','true');}else b.setAttribute('aria-pressed','false');
@@ -515,7 +523,8 @@ function buildCalendar(parent,state,results,callbacks){
     if(marker.has('SUGGESTED'))b.classList.add('suggested-day');
     if(marker.has('HOLIDAY'))b.classList.add('holiday-day');
     // Never replace a marker with another one: holiday+event+invalid must coexist.
-    for(const code of names){const tag=el('span',null,`marker m-${code.toLowerCase().replaceAll('_','-')}`);add(tag,el('span',LABELS[code]??code.replaceAll('_',' '),'marker-long'),el('span',SHORT_LABELS[code]??code,'marker-short'));b.append(tag);}
+    for(const [index,code] of names.entries()){const tag=el('span',null,`marker m-${code.toLowerCase().replaceAll('_','-')}`);if(index>0)tag.classList.add('marker-mobile-extra');add(tag,el('span',LABELS[code]??code.replaceAll('_',' '),'marker-long'),el('span',SHORT_LABELS[code]??code,'marker-short'));b.append(tag);}
+    if(names.length>1)b.append(el('span',`+${names.length-1}`,'marker-more')); 
     if(dateResult?.conflictScope!=='NONE'&&dateResult?.conflictScope)b.dataset.conflictScope=dateResult.conflictScope;
     grid.append(b);
   }
@@ -526,7 +535,7 @@ function buildCalendar(parent,state,results,callbacks){
     if(dateResult){
       for(const message of dateResult.messages??[])add(box,el('p',message));
       if(dateResult.absenceUnits?.length)add(box,el('p',`Attendance units on this date: ${dateResult.absenceUnits.map(u=>`${state.model?.registers.find(r=>r.id===u.registerId)?.name??u.registerId} ${u.units}`).join('; ')}. Missed only if a full-day break is taken.`));
-      if(dateResult.conflictScope!=='NONE')add(box,el('p',`Conflict scope: ${dateResult.conflictScope.toLowerCase()} (joint-plan failures cannot necessarily be assigned to a single date).`,'form-note'));
+      if(dateResult.conflictScope!=='NONE'){const technical=el('details',null,'release-technical');add(technical,el('summary','Why this date may be blocked'),el('p',`Conflict scope: ${dateResult.conflictScope.toLowerCase()}. Joint-plan failures cannot necessarily be assigned to a single date.`));box.append(technical);}
     }else notice(box,'No current engine evaluation for this date. Schedule facts below are not a feasibility verdict.');
     for(const s of state.model?.sessions.filter(x=>x.date===date)??[]){
       const label=state.model.registers.find(r=>r.id===s.registerId)?.name??s.registerId;
@@ -548,6 +557,7 @@ function buildCalendar(parent,state,results,callbacks){
 }
 function planSection(parent,state,results,callbacks){
   resultCard(parent,state,results);
+  renderRevisionConsequences(parent,state,results);
   if(state.model){
     const actionRow=el('div',null,'cta-row');actionRow.setAttribute('aria-label','Next planning actions');
     actionRow.append(button('Find suggested teaching days off',()=>callbacks.onSuggest(),{disabled:results.runtime==='ENGINE_UNAVAILABLE',focusKey:'plan:suggest'}));
@@ -699,10 +709,12 @@ export function render(state,results,callbacks){
     chosenEvent=state.model?.events.some(e=>e.id===chosenEvent)?chosenEvent:'new';
   }
   const setupJustSucceeded=pendingSubmission?.group==='initial-submit'&&state.model&&results?.runtime==='READY';
-  if(setupJustSucceeded){setupStep=0;wizardIssue='';pendingFocusKey='plan-heading';}
+  if(setupJustSucceeded){setupStep=0;wizardIssue='';workspaceView='today';pendingFocusKey='view:today';}
+  if(state.model&&!hadModel){workspaceView='today';hadModel=true;}
+  if(!state.model){workspaceView='setup';hadModel=false;}
   const root=el('div',null,'layout');
   const header=el('header',null,'site-header');
-  const branding=el('div');add(branding,el('p','SEMESTERSPACE  /  SEMESTER PLANNER','eyebrow'),el('h1','Make room for a break.'),el('p','See every date, separate register and consequence before you commit.','hero-subtitle'));
+  const branding=el('div',null,'product-identity');add(branding,el('p','ACADEMIC PLANNING, WITHOUT GUESSWORK','eyebrow'),el('h1','SemesterSpace'),el('p',state.model?'Make room for what matters. Every date has a reason.':'Your timetable, attendance and time off — in one clear view.','hero-subtitle'));
   add(header,branding,button(state.mode==='demo'?'Exit synthetic demo':'Open synthetic demo',()=>{pendingFocusKey='switch-demo';state.mode==='demo'?callbacks.onExitDemo():callbacks.onEnterDemo();},{secondary:true,focusKey:'switch-demo'}));root.append(header);
   if(state.mode==='demo'){
     const b=el('div',null,'demo-banner');b.setAttribute('role','status');add(b,el('strong','SYNTHETIC DEMO · NOT YOUR COLLEGE DATA'),el('span','Fixed clock: 2 Nov 2026, 08:00 IST. All edits stay in isolated demo memory.'),button('Exit demo / restore personal setup',()=>{pendingFocusKey='switch-demo';callbacks.onExitDemo();},{secondary:true,focusKey:'demo-exit'}));root.append(b);
@@ -710,20 +722,48 @@ export function render(state,results,callbacks){
   const noticeArea=el('div',null,'notices');
   if(state.notice){const n=el('p',state.notice,'notice');n.setAttribute('role','status');noticeArea.append(n);}
   const savingProblem=state.persistence.status==='FAILED'||state.persistence.status==='QUARANTINED';
-  const persistence=el('p',`${state.persistence.status.replaceAll('_',' ')} — ${state.persistence.message}${savingProblem?' Changes may exist only in this tab. Do not rely on reload until storage is restored.':''}`,`persistence ${savingProblem?'save-failed':'muted'}`);persistence.setAttribute('role',savingProblem?'alert':'status');noticeArea.append(persistence);root.append(noticeArea);
-  const grid=el('div',null,`main-grid ${state.model?'has-setup':'needs-setup'}`);
-  const sidebar=el('div',null,'sidebar');
-  const setup=section('Academic setup','Confirm actual counts or review the original source details. Plans never change actual attendance.');
-  if(state.model){const advanced=details(setup,'existing-setup-controls','Review setup, counts and targets',false);existingSetup(advanced,state,callbacks);}
-  else {setup.append(documentImport(state,callbacks,timeNow));const manual=details(setup,'manual-setup-fallback','Or enter setup manually',false);initialSetup(manual,callbacks);}
-  sidebar.append(setup);
-  const review=section('Updates & history','Edit individual future meetings/events, inspect commitments and retained history.');
-  if(state.model){const advanced=details(review,'review-controls','Open updates and commitment review',false);reviewSection(advanced,state,callbacks);sidebar.append(review);}
-  const main=el('div',null,'planning-column');
-  const plan=section('Current plan & calendar','Check the engine result and each date before suggesting or committing new breaks.');
-  plan.querySelector('h2').dataset.uiKey='plan-heading';plan.querySelector('h2').tabIndex=-1;
-  planSection(plan,state,results,callbacks);main.append(plan);
-  if(state.model)add(grid,main,sidebar);else add(grid,sidebar,main);
+  const storageText=savingProblem?`Your saved data needs attention. ${state.persistence.message} Do not rely on reload until storage is restored.`:state.mode==='demo'?'Synthetic demo data is kept separately from your personal setup.':!state.model?'No personal setup is saved on this device yet.':'Saved-data status: '+(state.persistence.status==='SAVED'||state.persistence.status==='LOADED'?'available on this device':state.persistence.message);
+  const persistence=el('p',storageText,`persistence ${savingProblem?'save-failed':'muted'}`);persistence.setAttribute('role',savingProblem?'alert':'status');
+  noticeArea.append(persistence);root.append(noticeArea);
+  if(state.model){
+    const overview=el('section',null,'workspace-overview');
+    overview.setAttribute('aria-label','Current data status');
+    renderReleaseFreshness(overview,state);
+    const tabs=el('nav',null,'workspace-nav');tabs.setAttribute('aria-label','Workspace views');
+    const links=[['today','Today’s attendance'],['calendar','Calendar & breaks'],['revision','Calendar updates'],['setup','Setup & history']];
+    for(const [view,name] of links){
+      const b=button(name,()=>{workspaceView=view;pendingFocusKey=`view:${view}`;refreshLocal();},{secondary:true,focusKey:`view:${view}`});
+      b.classList.add('workspace-link');
+      if(workspaceView===view)b.setAttribute('aria-current','page');
+      tabs.append(b);
+    }
+    root.append(tabs,overview);
+  }
+  const grid=el('main',null,'workspace-main');grid.id='main-content';
+  if(workspaceView==='today'&&state.model){
+    const view=el('div',null,'workspace-content');
+    renderAttendanceReview(view,state,callbacks,refreshLocal);
+    grid.append(view);
+  }else if(workspaceView==='revision'&&state.model){
+    const view=el('div',null,'workspace-content');
+    renderCalendarRevision(view,state,callbacks,refreshLocal);
+    renderRevisionConsequences(view,state,results);
+    grid.append(view);
+  }else if(workspaceView==='calendar'&&state.model){
+    const plan=section('Calendar & break planner','Review the current plan, choose dates, and confirm a proposed set of breaks.');
+    plan.querySelector('h2').dataset.uiKey='plan-heading';plan.querySelector('h2').tabIndex=-1;
+    planSection(plan,state,results,callbacks);grid.append(plan);
+  }else{
+    const setup=section(state.model?'Academic setup & original sources':'Start with your timetable','Use verified documents or enter your schedule and confirmed attendance totals manually.');
+    if(state.model){const advanced=details(setup,'existing-setup-controls','Review setup, counts and targets',true);existingSetup(advanced,state,callbacks);}
+    else {setup.append(documentImport(state,callbacks,timeNow));const manual=details(setup,'manual-setup-fallback','Or enter setup manually',false);initialSetup(manual,callbacks);}
+    grid.append(setup);
+    if(state.model){
+      const review=section('Schedule changes and retained history','Review manual changes and saved commitments without erasing confirmed history.');
+      const advanced=details(review,'review-controls','Open schedule changes and commitment review',false);
+      reviewSection(advanced,state,callbacks);grid.append(review);
+    }
+  }
   root.append(grid);
   const footer=el('footer','Local-only prototype · No automatic college verification, cloud backup, institutional approval or guarantees.');root.append(footer);
   // Build before clearing to preserve keyboard focus and unsubmitted inputs.

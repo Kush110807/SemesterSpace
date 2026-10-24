@@ -143,9 +143,11 @@ test('storage: schema-valid but engine-invalid data stays quarantined',()=>{
   const loaded=loadModel({getItem:()=>JSON.stringify({schemaVersion:1,model:makeCombinedModel()})},()=>({ok:false,issues:[{message:'Invalid counts'}]}),FIXED_CLOCK);
   assert.equal(loaded.persistence.status,'QUARANTINED');assert.match(loaded.persistence.message,/Invalid counts/);
 });
-test('storage: quota failure is disclosed while in-memory updates survive',()=>{
-  const h=harness({failSave:true});h.app.callbacks.onSetPreferences({...h.app.getState().model.preferences,requestedDays:1});
-  assert.equal(h.app.getState().model.preferences.requestedDays,1);assert.equal(h.app.getState().persistence.status,'FAILED');
+test('storage: quota failure rejects in-memory edit and discloses non-persistence',()=>{
+  const h=harness({failSave:true}),before=h.app.getState().model;
+  h.app.callbacks.onSetPreferences({...before.preferences,requestedDays:1});
+  assert.deepEqual(h.app.getState().model,before);
+  assert.equal(h.app.getState().persistence.status,'FAILED');
   assert.equal(saveModel({setItem(){throw new Error('disabled');}},{}).status,'FAILED');
 });
 test('real facade: demo calculates and commits without overwriting personal storage',()=>{

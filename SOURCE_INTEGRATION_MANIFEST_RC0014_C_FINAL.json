@@ -1,0 +1,18 @@
+{
+  "candidate": "RC-001.4 C final integrated / RELEASE HOLD",
+  "base_archive_sha256": "43c4ee4ae4a490d8fcb4487703f9f755059be6058c17f9a7ab55fd7916cdecce",
+  "c_delivery_sha256": "d1c1be7a8f34e42dcfeb9f4f96ddd7596ac5044e003bade62d433c2540c97361",
+  "imported_codex_commit": "95de7e5e65c5e833529c2fe6db0a929c6c6c9f97",
+  "changed_C_paths": [
+    "src/ui/index.js",
+    "src/ui/release.js",
+    "src/ui/revision-review.js",
+    "src/ui/styles.css",
+    "tests/ui/browser-fixture.py",
+    "tests/ui/revision-rc0014-browser-fixture.py",
+    "tests/ui/legacy-rc14-d01-browser-fixture.py",
+    "docs/UI_DELIVERY.md"
+  ],
+  "dependencies_build_status": "blocked by missing pdfjs-dist",
+  "native_browser_status": "unrun"
+}

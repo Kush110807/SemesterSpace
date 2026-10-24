@@ -1,72 +1,76 @@
-# SemesterSpace C — bounded SS-INT-001 UI/UX release-validation delta
+# SemesterSpace — C final bounded UI correction and refinement
 
-**Handoff:** 24 October 2026. **Apply to:** accepted integrated package **SS-INT-001**, source commit `209a519bd260a1fec53ea43b8a43f4a958e9febf` (from original `BASELINE.txt`), **CONTRACT.md 1.1.0**, **PRODUCT_SPEC.md revision 2**, schema version 1. A alone merges. B accepted A's same-day recovery correction; D independently accepted the integrated milestone, as reported in the current C assignment. Neither engine nor controller is altered by this patch.
+**Disposition:** C-only patch for A to integrate; **NOT** merged, deployed, independently release-approved or proven in a connected served browser. The source is the attached `SemesterSpace_UI_Source_Resent(1).zip` (SHA-256 `241f1f4c1be8d4a5e8ba796c93445bd9fd6283a20dfdd2c37460ae4a318ca7a9`). The attached handoff ZIP describes the A-integrated, C-connected RC-001.4 candidate and prior reproduced async staging race.
 
-## Owned paths and exact boundary
+**Important upstream delta:** During this task A reported Codex RC14-D-01 repaired at commit `95de7e5`, enabling the importer to accept explicitly reviewed legacy `{sha256,fileName}`. That newer importer source was **not** part of the attached archive. C did **not** alter the supplied old importer. This patch passes legacy metadata through unchanged only after required review; A must apply the patch to its newer authoritative source and rerun actual importer/connected tests. In the attached older importer, direct legacy comparison still returns `SOURCE_METADATA_REVIEW` and can block staging. This is an integration dependency, not an invitation to bypass the review.
 
-| File | Delta |
-| --- | --- |
-| `src/ui/index.js` | Generated stable initial row IDs and name-based *display* selectors; four-stage setup wizard; plan/calendar-first view after setup; accessible controls, failure evidence and keyboard-focus handling. |
-| `src/ui/styles.css` | Restrained 390px/desktop styling; full marker preservation with shorter **visual-only** labels on small screens; minimum 44px action targets; wizard and status styles. |
-| `docs/UI_DELIVERY.md` | This evidence and merge note. |
+## Exact modified paths (all C-owned)
 
-**NO requested or proposed interface change.** `render(state, results, callbacks)` and every `Callbacks` name/payload remain exactly contract 1.1.0. No new dependency, backend, API, college lookup, schema/config/shared/controller/storage/engine changes. No source/roster data are inferred by an AI or network. Original source manifest is a **baseline manifest**, not a post-C-delta manifest; A should regenerate it **after** review/merge, rather than accepting expected UI-path hash mismatches as evidence of tampering.
+1. `src/ui/revision-review.js`: invalidates pending stage completions on source/review/revision changes; independently authorizes only the exact locally reviewed stage; disables apply immediately after edit; preserves user draft after failure; passes the original legacy metadata unchanged through review gate; makes revoked consent checkbox visibly clear without requiring redraw.
+2. `src/ui/release.js`: extra synchronous apply-click authorization guard, concise freshness descriptions and attendance hierarchy. A's callbacks/results and persistence unchanged.
+3. `src/ui/index.js`: concise app identity, four-screen navigation before status, deterministic marker priority, legible multi-status calendar day grid, mobile marker count.
+4. `src/ui/styles.css`: slate/navy identity, indigo actions, off-white canvas, compact header, full-width calendar, responsive attendance rows, accessible focus and reduced-motion styling; semantic safety states remain labeled.
+5. `tests/ui/revision-rc0014-browser-fixture.py`: removes unsafe expectation that discarding a new review reauthorizes a previously staged proposal.
+6. `tests/ui/browser-fixture.py`: strengthens keyboard traversal assertion to tolerate the focus cycle passing via BODY while requiring reachability of a real input/button/control.
+7. `tests/ui/legacy-rc14-d01-browser-fixture.py` (new): verifies valid legacy metadata is not used before explicit review, reaches preparation unchanged after review, and then stages via exact callback without implicit apply.
+8. `docs/UI_DELIVERY.md`: this delivery, evidence and risks.
 
-## Shipped behavior
+**Pre-existing tests used without modification:** `tests/ui/staging-race-browser-fixture.py` (delayed source replacement, cancellation/discard, model-revision change, review edit), `tests/ui/workspace-views-fixture.py`, `tests/ui/release-requests.test.mjs`. The complete diff is limited to the eight paths above. No `src/controller.js`, storage, engine, attendance, importer, shared types, integration test, dependency, schema or clock code changed.
 
-1. **Stable identities with human-readable selection.** An opaque ID is generated once per unsaved local course, register, weekly-template, extra-session, or compulsory-event row. Its identity is tied to a row instance, *never* a label or render count. Courses, registers and extra meetings are chosen through explicit select controls that display row number and name; two registers named "Lecture" remain separate independent IDs and count maps. A removed row leaves a visibly invalid selected reference; the UI refuses to silently remap it. Existing IDs in persisted model objects are preserved. One-by-one added meetings/events also generate noneditable session-unique IDs rather than requiring manual text entry. Advanced existing-session diagnostics retain IDs for tracing. In **initial setup only**, a linked compulsory event may reference an **extra dated meeting** already entered; recurring instances do not exist until A expands the timetable, so linking to those occurs using the advanced existing-event editor afterward. No bulk edits to initialized recurring patterns are added.
-2. **Four short setup steps**: academic identity and applicability; named courses/registers, R/T/B and **both complete counts**; weekly/extra sessions, weights, holidays, replacements and compulsory events; completed-day snapshot and preferences (hard range, K, preferred dates, notes). Back/Check & continue validate the current step with inline `role=alert` correction. The final form validates the same contract fields and calls `onReplaceSetup({model})` exactly once; A's P1 controller captures/overwrites the non-authoritative initial `confirmedAt` Clock-shaped placeholder. No invented historical confirmation time. Unknown attendance counts, requirement R and buffer B start blank, **not zero**; T is optional, B must be explicit even if zero. Mandatory applicability/schedule/snapshot assertions remain explicit; `completeToday` is not presumed.
-3. **Plan-primary after setup.** Current engine status, next contextual action, failure consequence, projected register results, suggestion/refresh actions and calendar precede secondary setup/editing disclosures. Manual joint checks, range/K preferences, and updates remain available. Until setup, setup comes first and an empty, unverified calendar is not shown. `PLAN_BLOCKED` explicitly identifies engine-labelled invalid commitments without deleting them; user can navigate months to inspect date facts and all overlapping markers. Failure explanations lead with the consequence; exact event/session IDs, counts, R, F, and combined absences remain under an expanded-on-demand evidence disclosure. No fabricated ratio, floor, or feasibility verdict is computed by UI.
-4. **Mobile/focus and save disclosure.** At 390px, calendar marker chips use short **visual** wording, while calendar `aria-label`s retain full names and never drop overlapping markers (holiday + protected/compulsory + invalid + committed + teaching etc.). Stable element keys preserve user edits, cursor/selection, and general button focus across controller/clock rerenders. Wizard transitions focus the new step heading; initial success focuses the primary plan heading; removed rows/uncommit focus a surviving relevant control; demo entry/exit restores an available header control and unfinished personal drafts. Save/QUARANTINED conditions are separately announced via `role=alert`, warning that unsaved changes cannot be relied on after reload. Keyboard controls are native buttons, inputs, selects, details, summaries and checkboxes. No drag-and-drop or cosmetic animation is introduced.
-5. **Six engine statuses and data limits retained**: `INVALID_SETUP`, `ATTENDANCE_UPDATE_NEEDED`, `EXISTING_UNRECOVERABLE_SHORTFALL`, `PLAN_BLOCKED`, `CONDITIONAL_RECOVERY`, and `MEETS_PLANNING_RULES`. Runtime `NO_SETUP`, `ENGINE_UNAVAILABLE`, `ERROR` never appear as a passing result. Existing 0/0 -> "Not started", nullable error metadata and invalid requested K behavior remain intact. Structured content is rendered with `textContent`, not innerHTML. Linked events still reference immutable underlying session IDs; snapshot/commitment/persistence rules are owned entirely by A/B.
+## P0: async staging authorization
 
-## Reproduction commands: actually executed in the final working tree
+A's `state.stagedCalendarRevision` is transient controller state, never a local review authorization. C records the selected `File` instance, reviewed-proposal instance, local monotonically advancing `generation`, `model.revision` and matching `proposalId` at staging. A success is accepted for UI application **only** when those still match. Any new file, reviewed field/evidence/coverage edit, extraction cancellation, discarded review or observed model-revision change revokes authorization. The apply action checks again synchronously, not only during rendering. Older A transient data can remain available for audit but its apply control is disabled. Review fields remain editable after rejected callbacks and aborted reads.
 
-From the unmodified integrated package with **only C-owned files** overlaid:
+## Legacy metadata (RC14-D-01 additive requirement)
 
-```bash
-node --check src/ui/index.js
-npm run check
-npm test
-node --test tests/engine/*.test.mjs
-python3 tests/checker.py       # on Windows: python tests/checker.py
-npm run build
-npm start                      # server starts; sandbox browser-origin navigation is blocked
-```
+When an original source has no version-1 crosswalk (including valid legacy `{sha256,fileName}`), the editor requires `review.legacySourceReviewed=true`, a substantive `legacySourceNote`, reviewed pages, scope, applicability, coverage, and a separate final approval **before** `prepareCalendarRevision`. The exact stored `state.release.calendar.sourceRevision` is passed through without converting legacy records to null or fabricating links. A/B/Codex still decide validity. Missing rows are never auto-cancellations; cancellation/removal needs affirmative source evidence. No institutional Physics group, academic policy, activity interpretation, counts or teaching horizon is inferred.
 
-| Evidence | Actual result |
-| --- | --- |
-| `node --check src/ui/index.js` | **PASS** |
-| `npm run check` | **PASS**, 23 JS modules syntax-checked |
-| `npm test` | **PASS**, **70/70**, 0 failures/skips/TODO |
-| `node --test tests/engine/*.test.mjs` | **PASS**, **26/26** |
-| `python3 tests/checker.py` | **PASS**, **342** independent Fraction-based tiny cases; not an optimality proof |
-| `npm run build` | **PASS**, static build; not deployment validation |
-| Integrated **headless Chromium 390px isolated document**, loading exact C UI + actual A controller/B engine modules via browser Blob imports | **PASS**, real input → `onReplaceSetup` → expanded schedule → real `READY` engine result → 31-date calendar → suggestion → selected-subset commit → new completed-day snapshot → `PLAN_BLOCKED` + `INVALID_COMMITMENT` (existing commitment retained) → new controller instance reloaded from the same in-memory storage map. This is real controller/engine execution with an **isolated test document and simulated reload**, **NOT served-origin/native browser reload**. |
-| Isolated real Chromium **fixed-clock demo** with same A/B/C modules | **PASS**, synthetic linked event creation, single future-session move and effective compulsory marker, event title replacement without ID change, suggestion, acceptance, uncommit with focus recovery, exit restores personal identity and state |
-| Isolated 390px browser DOM harness | **PASS**, wizard per-step errors, missing counts/requirements rejection, identical display names remain distinct, stable refs after rename, no silent remap on unsaved-row removal, extra-event link payload, P1 placeholder shape, draft retention across mode transitions, screen-reader names exposed by labels/ARIA, quota-failure `role=alert`, combined holiday/event/invalid/teaching/committed marker visibility (synthetic overlap fixture), re-rendered focus, mobile document-width check |
-| Chromium **1440px** desktop screenshot | **CAPTURED** from same isolated A/B/C module browser test, no claimed physical-device proof |
-| Native served-origin navigation | **BLOCKED/UNRUN**: Chromium returned `net::ERR_BLOCKED_BY_ADMINISTRATOR` at `http://127.0.0.1:5173/`; also blocked `file:///...` navigation. Local `npm start` reported server start, but this is not origin-level functional evidence. |
-| Physical touchscreen/device, NVDA/VoiceOver, deployed domain, native reload/real quota behavior across origin | **UNRUN**; harness `role`/`aria-label` assertions and in-memory reload do not substitute for assistive-technology, origin or persistent-storage testing. |
+## P1: design system and navigation
 
-**Browser test separation:** `browser_check.py` and `integrated_browser.py` were run as temporary verification scripts **outside C-owned production paths** and are **not included** in the merge package. The tests validate actual modules injected into a headless Chromium document. The accepted source's independent A/D check record is not treated as proof of newly edited UI paths. Screenshots are rendered evidence, not user-testing metrics.
+| Token | Value | Intended use |
+|---|---|---|
+| Navy / identity | `#18243d` | headings, high-contrast labels |
+| Indigo / primary | `#304bbd` (`#263b96` hover) | primary actions, selected dates, navigation |
+| Canvas | `#f6f7fb` | quiet off-white background |
+| White / surface | `#ffffff` | important working surfaces |
+| Text secondary | `#53617a` | helper text, secondary metadata |
+| Border | `#dfe4ed` | dividers and subtle boundaries |
+| Positive | `#17644b` / `#e8f5ee` | confirmed/success (with text icon/label) |
+| Warning | `#835315` / `#fff5df` | unknown/coverage/uncertain status |
+| Danger | `#a32942` / `#fff0f2` | invalidated/blocked/error states |
+| Focus | `#365cd1` | 3px visible keyboard outline |
+
+System-font stack only, no external icons, images, fonts or animations. Predominant corner radius 9–13px, subtle shadow, >=44px main touch controls; media breakpoints refine calendar markers and attendance selection at 390px. Month controls remain visible; multiple semantic calendar markers remain represented and are exposed in the date's accessible name and selected-day details. Technical evidence and raw JSON remain under disclosures as needed; no hidden safety outcomes. Reduced-motion preference turns transitions off. **Automated WCAG AA audit, physical device and screen-reader evaluation remain unrun; token choices alone are not WCAG certification.**
+
+## Actually executed checks (the exact C working tree)
+
+| Command | Result | Scope |
+|---|---|---|
+| `npm run check` | **PASS, 58 JS modules** | syntax; not runtime integration |
+| `node --test tests/ui/release-requests.test.mjs` | **PASS, 3/3** | exact UI request payloads |
+| `node --test tests/integration/*.test.mjs tests/attendance/*.test.mjs tests/import/revision.test.mjs tests/import/link-effects.test.mjs tests/import/coverage.test.mjs tests/ui/release-requests.test.mjs` | **PASS, 211/211** | installed-dependency-independent integration/attendance/import regression subset on **supplied older importer** |
+| `node --test tests/engine/*.test.mjs` | **PASS, 26/26** | unchanged engine |
+| `python3 tests/checker.py` | **PASS, 342/342** | independent arithmetic checker |
+| `python3 tests/ui/staging-race-browser-fixture.py` | **PASS, 6 fixture messages** | inline Chromium mock-A delayed stage; no live persistence |
+| `python3 tests/ui/legacy-rc14-d01-browser-fixture.py` | **PASS, 3 fixture messages** | reviewed metadata identity, staged callback; mock importer |
+| `python3 tests/ui/revision-rc0014-browser-fixture.py` | **PASS, 7 fixture messages** | local review, attempted rejection, cancellation and mobile |
+| `python3 tests/ui/browser-fixture.py` | **PASS, 5 fixture messages** | attendance, blocked ambiguous revision, focus |
+| `python3 tests/ui/workspace-views-fixture.py` | **PASS, 5 fixture messages** | onboarding plus four screens, desktop/390px |
+| `npm test` | **237 passed, 2 module-load failures (239 total)** | absent `pdfjs-dist` in `tests/import/draft.test.mjs` and `layouts.test.mjs`; cannot call full suite passed |
+| `npm run build` | **FAIL** missing `node_modules/pdfjs-dist/build/pdf.min.mjs` | no build success claimed |
+| `npm ci --offline --no-audit --no-fund --ignore-scripts` | **FAIL ENOTCACHED** for `zlibjs-0.3.1.tgz` | pinned dependencies unavailable in this runtime |
+
+The browser checks use **synthetic inline Chromium fixtures** with mocked importer and controller responses. They do not prove actual file decoding, atomic storage, authoritative clocks or native reload. Real served-origin connected workflow, official import corpus/OCR, after-install build, localStorage native reload and D independent release approval remain **UNRUN**.
 
 ## Screenshot evidence
 
-- `SemesterSpace_C_Setup_Mobile_390.png`: guided Step 4 setup, 390px.
-- `SemesterSpace_C_Invalid_Mobile_390.png`: live engine `PLAN_BLOCKED`, invalid commitment in November at 390px.
-- `SemesterSpace_C_Integrated_Desktop_1440.png`: 1440px planning-first layout, actual engine status and secondary setup disclosure.
+The separately bundled labelled **BEFORE** and **AFTER** captures provide 1440px and 390px comparisons for onboarding, today's attendance, calendar, calendar updates and setup/history. All use synthetic fixtures, shown in a banner. Additional review/compare and mobile-state fixtures document source confirmation and failed-save feedback. Screenshots are not proof of connected RC14-D01 integration.
 
-These three PNGs are separate handoff artifacts, not source changes.
+## Required A integration checks
 
-## Known limitations / release gate
+1. Apply the eight C paths against A's **latest** authoritative source containing Codex commit `95de7e5`. Verify no importer/shared/interface changes from C.
+2. Confirm real imported `prepareCalendarRevision` receives the original reviewed `{sha256,fileName}` unchanged, produces appropriate comparison and does not bypass source/historical controls.
+3. Reproduce stale asynchronous stage response using the actual controller when file is replaced, review edited or model revision changes. A transient proposal may exist but cannot become actionable; exact selected changes must be preserved after failure.
+4. Clean install, full 239-case suite, build, native PDF/OCR → review → stage → selective apply → reload; test failed storage and stale revisions. Keep the release gate HOLD until this and D independent review pass.
 
-- **No production-origin validation** in this environment, native browser reload, storage quota manipulation under a real origin, keyboard test on physical equipment, or screen reader run. A should conduct a short human Tab/Shift+Tab/Enter/Space traversal, phone viewport/device check, same-origin reload and storage-denied/quota smoke test after merging. Check color/contrast with automated tools or human audit before public release; this bounded pass has no formal WCAG audit.
-- Some users may need to inspect register ordinal/course and advanced stable IDs when duplicate human labels exist. That is intentional; duplicate labels are **never merged** or guessed. A linked event initially references only an explicitly added extra session; selecting an expanded recurring session remains an advanced one-by-one action after initialization.
-- The CSS intentionally uses ordinary native disclosure and compact marker labels, not elaborate animation, charts, a full component library, or "Apple-level" parity. No application-wide restructuring is authorized.
-- The original contract's real policy applicability and any college timetable/exam claims still require independent human verification. This UI is not institutional approval.
-- A owns deployment/submission, merge, final QA, and the protected final four-hour release reserve. C recommends **no further UI feature scope** before those checks.
-
-## Short merge instruction for Chat A
-
-> Apply the C-owned SS-INT-001 delta only (`src/ui/index.js`, `src/ui/styles.css`, `docs/UI_DELIVERY.md`) onto A's accepted integrated source. Baseline `209a519bd260a1fec53ea43b8a43f4a958e9febf`, contract 1.1.0. **No interface/schema changes proposed.** Rerun the full five commands listed above. Browser harness passed a real A/B/C module flow including snapshot invalidation, reload-through-new-controller, and fixed-clock demo linked-event/uncommit/isolation; however `127.0.0.1` and `file://` navigation were sandbox-blocked. Please perform served-origin/native reload, mobile keyboard and storage-error smoke checks yourself and regenerate any source manifest only after merging. Do not reset A/B code or consume the protected 4h deployment reserve on further polish.
+**No merge, deployment or final release approval.**
