@@ -1,0 +1,132 @@
+{
+  "clock": "Synthetic browser clock: 2026-10-24 20:00 Asia/Kolkata",
+  "syntheticBrowserApiCoverageCases": [
+    {
+      "name": "omitted",
+      "ok": false,
+      "codes": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "name": "readable-opaque",
+      "ok": false,
+      "codes": [
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    },
+    {
+      "name": "deleted",
+      "ok": false,
+      "codes": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_COVERAGE_LINK"
+      ]
+    },
+    {
+      "name": "information-only",
+      "ok": false,
+      "codes": [
+        "CALENDAR_RESOLUTION_LINK",
+        "CALENDAR_COVERAGE_LINK"
+      ]
+    },
+    {
+      "name": "page-reviewed",
+      "ok": false,
+      "codes": [
+        "CALENDAR_CANDIDATE_REMOVED",
+        "CALENDAR_MANUAL_COMPLETION"
+      ]
+    }
+  ],
+  "dImp01SyntheticBrowserApi": [
+    {
+      "kind": "EXAM_WINDOW",
+      "rejected": {
+        "ok": false,
+        "codes": [
+          "CALENDAR_RESOLUTION_EFFECT",
+          "CALENDAR_RESOLUTION_EFFECT",
+          "CALENDAR_COVERAGE_EFFECT"
+        ]
+      },
+      "corrected": {
+        "before": false,
+        "ok": true,
+        "events": 1,
+        "holidays": 0,
+        "sessions": 1,
+        "replacements": 0
+      }
+    },
+    {
+      "kind": "NON_TEACHING",
+      "rejected": {
+        "ok": false,
+        "codes": [
+          "CALENDAR_RESOLUTION_EFFECT",
+          "CALENDAR_RESOLUTION_EFFECT",
+          "CALENDAR_COVERAGE_EFFECT"
+        ]
+      },
+      "corrected": {
+        "before": false,
+        "ok": true,
+        "events": 0,
+        "holidays": 1,
+        "sessions": 0,
+        "replacements": 0
+      }
+    },
+    {
+      "kind": "REPLACEMENT",
+      "rejected": {
+        "ok": false,
+        "codes": [
+          "CALENDAR_RESOLUTION_EFFECT",
+          "CALENDAR_RESOLUTION_EFFECT",
+          "CALENDAR_COVERAGE_EFFECT"
+        ]
+      },
+      "corrected": {
+        "before": false,
+        "ok": true,
+        "events": 0,
+        "holidays": 0,
+        "sessions": 1,
+        "replacements": 1
+      }
+    }
+  ],
+  "extractionMs": 33888,
+  "unresolvedBlocked": true,
+  "draftMobileWidths": {
+    "client": 390,
+    "scroll": 390
+  },
+  "pageViewingCannotCompleteCoverage": true,
+  "sourceSpecificReconciliationUi": true,
+  "connectedSetup": true,
+  "subsetAccepted": true,
+  "actualInvalidationCounts": {
+    "registerId": "5c1fe401-57b0-4119-af0b-b8d2bd1452c5-register-29",
+    "attended": 3,
+    "held": 5,
+    "priorProjectedUnits": 4,
+    "recoverySessionDate": "2026-11-05"
+  },
+  "actualInvalidation": true,
+  "nativeReload": true,
+  "keyboardRecheck": true,
+  "demoIsolation": true,
+  "mobileWidths": {
+    "client": 390,
+    "scroll": 390
+  },
+  "cancelPreservesState": true,
+  "missingAssetsActionable": true,
+  "pageErrors": [],
+  "externalRequests": []
+}

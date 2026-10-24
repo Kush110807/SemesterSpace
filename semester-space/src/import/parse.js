@@ -54,11 +54,32 @@ export function validDate(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(s??''))return false;
 export function dateKey(y,m,d){const s=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;return validDate(s)?s:null;}
 export function parseDates(text,year){
   const results=[];let m;
-  const numeric=/\b(\d{1,2})[./-](\d{1,2})[./-](20\d{2})\b/g;
+  const numeric=/\b(\d{1,2})\s*[./:-]\s*(\d{1,2})\s*[./:-]\s*(20\d{2})(?=\b|t[o0]\b)/g;
   while((m=numeric.exec(text)))results.push({date:dateKey(+m[3],+m[2],+m[1]),index:m.index,raw:m[0]});
-  const named=/\b(?:(\d{1,2})(?:st|nd|rd|th)?\s*[-–]?\s*)?(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\b\.?\s*(\d{1,2}\b)?(?:\s*[-–]\s*(\d{1,2}\b))?(?:[\s,.]*(20\d{2}))?/ig;
-  while((m=named.exec(text))){const mon=months.indexOf(m[2].toLowerCase().slice(0,3))+1,day=m[1]??m[3];if(!day)continue;results.push({date:dateKey(+(m[5]??year),mon,+day),index:m.index,raw:m[0]});if(m[4])results.push({date:dateKey(+(m[5]??year),mon,+m[4]),index:m.index+1,raw:m[0]});}
-  const compact=/\b(\d{2})[.]?(\d{2})[.]?(20\d{2})\b/g; while((m=compact.exec(text)))results.push({date:dateKey(+m[3],+m[2],+m[1]),index:m.index,raw:m[0]});
+  const malformed=/\b\d{1,2}\s*[./:-]\s*\d{1,2}\s*[./:-]\s*20\d{3,}\b/g;
+  while((m=malformed.exec(text)))results.push({date:null,index:m.index,raw:m[0]});
+  // Scan whole named-date phrases, so a day-first date cannot consume the next date's day.
+  // Academic year headings are not a day before a month ("2026-27 Jan 05, 2027").
+  const namedText=text.replace(/\b20\d{2}\s*[-–/]\s*(?:20)?\d{2}\b/g,v=>' '.repeat(v.length));
+  const month='(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)';
+  const ord='(?:st|nd|rd|th)?',yr='(?:[\\s,.]*(20\\d{2}))?',candidates=[];
+  const patterns=[
+    [new RegExp('\\b(\\d{1,2})'+ord+'\\s*(?:[-–—]|to|&)\\s*(\\d{1,2})'+ord+'\\s*'+month+'\\b\\.?'+yr,'ig'),m=>[m[3],m[1],m[2],m[4]]],
+    [new RegExp('\\b'+month+'\\b\\.?\\s*(\\d{1,2})'+ord+'\\s*(?:[-–—]|to|&)\\s*(\\d{1,2})(?!\\d)'+ord+yr,'ig'),m=>[m[1],m[2],m[3],m[4]]],
+    // OCR may lose a range dash, but only two explicit day numbers followed by a year qualify.
+    [new RegExp('\\b'+month+'\\b\\.?\\s*(\\d{1,2})\\s+(\\d{1,2})[.,]?\\s*(20\\d{2})\\b','ig'),m=>[m[1],m[2],m[3],m[4]]],
+    [new RegExp('\\b(\\d{1,2})'+ord+'\\s*[-.]?\\s*'+month+'\\b\\.?'+yr,'ig'),m=>[m[2],m[1],null,m[3]]],
+    [new RegExp('\\b'+month+'\\b\\.?\\s*(\\d{1,2})(?!\\d)'+ord+yr,'ig'),m=>[m[1],m[2],null,m[3]]],
+  ];
+  for(const [pattern,fields] of patterns)while((m=pattern.exec(namedText))){const [mon,a,b,y]=fields(m);candidates.push({index:m.index,end:m.index+m[0].length,mon,a,b,y,raw:text.slice(m.index,m.index+m[0].length)});}
+  let until=-1;
+  for(const c of candidates.sort((a,b)=>a.index-b.index||b.end-a.end)){
+    if(c.index<until)continue;until=c.end;
+    const mon=months.indexOf(c.mon.toLowerCase().slice(0,3))+1;
+    results.push({date:dateKey(+(c.y??year),mon,+c.a),index:c.index,raw:c.raw});
+    if(c.b)results.push({date:dateKey(+(c.y??year),mon,+c.b),index:c.index+1,raw:c.raw});
+  }
+  const compact=/\b(\d{2})[.]?(\d{2})[.]?(20\d{2})\b/g;while((m=compact.exec(text)))results.push({date:dateKey(+m[3],+m[2],+m[1]),index:m.index,raw:m[0]});
   return results.filter((r,i)=>results.findIndex(v=>v.index===r.index&&v.date===r.date)===i).sort((a,b)=>a.index-b.index);
 }
 export function pageLines(page){
@@ -70,14 +91,14 @@ export function pageLines(page){
   return lines.sort((a,b)=>a.y-b.y).map(l=>({...l,items:l.items.sort((a,b)=>a.x-b.x),text:clean(l.items.map(i=>i.text).join(' '))}));
 }
 function category(text){
-  if(/(?:time\s*table|timetable)\s*(?:adjustment|substitution)|(?:time\s*table|timetable)\s+of\s+(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)|in\s+lieu|\bTTA\b/i.test(text))return 'REPLACEMENT';
+  if(/(?:time\s*table|timetable)\s*(?:adjustment|substitution)|(?:time\s*table|timetable)\s+of\s+[a-z]+|in\s+lieu|\bTTA\b/i.test(text))return 'REPLACEMENT';
   if(/working\s+saturday/i.test(text))return 'WORKING_DAY_NOTICE';
   if(/celebration|observance/i.test(text))return 'ACADEMIC_ACTIVITY';
   if(/holiday|janmashtami|independence day|diwali|dussehra|christmas|guru nanak|gandhi jayanti|raksha|milad/i.test(text))return 'HOLIDAY';
   if(/non.?teaching|suspend|\brecess\b|\bNT\b/i.test(text))return 'NON_TEACHING';
   if(/teaching\s+period\s+ends|end\s+of\s+instruction|teaching\s+and\s+continuous\s+evaluation/i.test(text))return 'TEACHING_BOUNDARY';
   if(/exam|sessional|mid.?term|end.?term|\bMST\b|\bEST\b/i.test(text))return 'EXAM_WINDOW';
-  if(/classes.*(?:begin|start|end|commence)|teaching.*(?:period|end|start)|last.*(?:working|teaching|class)|day of class/i.test(text))return 'TEACHING_BOUNDARY';
+  if(/(?:start|commencement) of classes|classes.*(?:begin|start|end|commence)|teaching.*(?:period|end|start)|last.*(?:working|teaching|class)|day of class/i.test(text))return 'TEACHING_BOUNDARY';
   if(/vacation|winter break/i.test(text))return 'VACATION';
   if(/orientation|induction|student|spardha|sports|cultural/i.test(text))return 'ACADEMIC_ACTIVITY';
   return 'UNKNOWN';
@@ -91,7 +112,7 @@ export function parseCalendar(source,pages,id){
     }
     const lines=pageLines(page);
     // Serial-numbered activity tables: associate wrapped cells using actual row anchors.
-    const hasSerialHeader=page.items.some(i=>(/^No[.|:]?$/i.test(i.text)&&i.x<page.width*.15||/^Responsibility/i.test(i.text))&&i.y<page.height*.2);
+    const hasSerialHeader=!(/Week\s*(?:[-–]?\d|No)/i.test(page.text)&&!page.items.some(i=>/^Responsibility/i.test(i.text)))&&page.items.some(i=>(/^No[.|:]?$/i.test(i.text)&&i.x<page.width*.15||/^Responsibility/i.test(i.text))&&i.y<page.height*.2);
     const serials=page.items.filter(i=>/^\d{1,3}[.)]?$/.test(i.text)&&i.x<page.width*0.13&&i.y>page.height*0.08).sort((a,b)=>a.y-b.y);
     let chunks;
     const oddHeader=page.items.find(i=>/^ODD$/i.test(i.text)),evenHeader=page.items.find(i=>/^EVEN$/i.test(i.text));
@@ -118,21 +139,56 @@ export function parseCalendar(source,pages,id){
     const dateAnchors=holidayPage?page.items.filter(i=>i.y>(page.items.find(j=>/^date$/i.test(j.text)&&j.y<page.height*.13)?.y??page.height*0.1)&&i.y<page.height*0.9&&parseDates(i.text,year).some(d=>d.date)).sort((a,b)=>a.y-b.y):[];
     if(chunks){ /* dual-term geometry already separated above */ }
     else if(holidayPage&&dateAnchors.length>=3){chunks=dateAnchors.map((s,n)=>{const top=n?(dateAnchors[n-1].y+s.y)/2:s.y-s.h*2,bottom=dateAnchors[n+1]?(dateAnchors[n+1].y+s.y)/2:s.y+s.h*2;const items=page.items.filter(i=>i.y>=top&&i.y<bottom);return {items,text:pageLines({...page,items}).map(l=>l.text).join(' ')};});}
-    else if(hasSerialHeader&&serials.length>=3&&serials[0].y<page.height*0.35){chunks=serials.map((s,n)=>{const top=s.y-s.h*0.7,bottom=serials[n+1]?serials[n+1].y-serials[n+1].h*0.7:page.height*0.96;const items=page.items.filter(i=>i.y>=top&&i.y<bottom);return {items,text:pageLines({...page,items}).map(l=>l.text).join(' ')};});}
+    else if(hasSerialHeader&&serials.length>=3&&serials[0].y<page.height*0.35){chunks=serials.map((s,n)=>{const top=s.y-s.h*0.7,bottom=serials[n+1]?serials[n+1].y-serials[n+1].h*0.7:page.height*0.96;const items=page.items.filter(i=>i.y>=top&&i.y<bottom);return {serialRow:true,items,text:pageLines({...page,items}).map(l=>l.text).join(' ')};});}
     else chunks=lines.map(l=>({items:l.items,text:l.text}));
     if(hasSerialHeader&&serials.length>=3&&serials[0].y<page.height*.35)chunks.unshift(...lines.filter(l=>l.y<serials[0].y&&/teaching.*continuous.*evaluation/i.test(l.text)&&parseDates(l.text,year).length).map(l=>({items:l.items,text:l.text})));
     // A wrapped makeup note is a single semantic block, even beside unrelated holiday columns.
     for(const anchor of page.items.filter(i=>/^lieu$/i.test(i.text))){const items=page.items.filter(i=>i.x>=anchor.x-page.width*.09&&i.y>=anchor.y-anchor.h*1.5&&i.y<anchor.y+anchor.h*4);chunks.push({items,text:pageLines({...page,items}).map(l=>l.text).join(' '),makeup:true});}
+    // Recover explicit printed exam ranges from OCR text when word boxes lose tokens.
+    // Do not synthesize grid dates, colours or omitted Sundays.
+    if(page.method==='OCR')for(const text of page.text.split('\n')){
+      const dates=parseDates(text,year).filter(d=>d.date);
+      if(text.length<600&&/exam/i.test(text)&&dates.length===2&&dates[0].date<=dates[1].date&&!chunks.some(c=>c.text===text))chunks.push({items:[],text,rawEvidence:text});
+    }
+    // English event/date tables can put merged parent labels between cohort rows.
+    // Keep cohort qualifiers separate; this is geometry-driven, not institution/filename selection.
+    const eventHeader=page.items.find(i=>/^EVENTS?$/i.test(i.text)),dateHeader=page.items.find(i=>/^DATES?$/i.test(i.text));
+    if(page.method==='PDF_TEXT'&&eventHeader&&dateHeader&&eventHeader.x<dateHeader.x){
+      const split=(eventHeader.x+dateHeader.x)/2,dateCells=page.items.filter(i=>i.x>split&&parseDates(i.text,year).some(d=>d.date));
+      const parents=page.items.filter(i=>i.x<split&&/^(?:Start of Classes\b|Classes End$|End Semester Examination$)/i.test(i.text));
+      for(const parent of parents){
+        const exam=/^End Semester Examination$/i.test(parent.text),band=exam?parent.h*5:parent.h*1.7;
+        const anchors=dateCells.filter(i=>exam?i.y>=parent.y-parent.h&&i.y<parent.y+band:Math.abs(i.y-parent.y)<band);
+        for(const date of anchors){
+          const qualifiers=page.items.filter(i=>i.x>parent.x+Math.max(parent.w*.9,page.width*.05)&&i.x<split&&/first\s+sem|except|all other/i.test(i.text)&&Math.abs(i.y-date.y)<parent.h*2).sort((a,b)=>Math.abs(a.y-date.y)-Math.abs(b.y-date.y));
+          const items=[parent,...qualifiers.slice(0,1),date];chunks.push({items,text:items.map(i=>i.text).join(' ')});
+        }
+      }
+      if(parents.length)issues.push(issue('MERGED_COHORT_REVIEW','calendarEntries','Merged event/date labels were associated by geometry. Review cohort qualifiers and wrapped programme/semester exceptions against the page.',[],[],'WARNING'));
+    }
     for(const chunk of chunks){
       const text=chunk.text,dates=parseDates(text,year),kind=category(text);
       if(!dates.length&&kind==='UNKNOWN')continue;
+      // A malformed OCR line immediately before an exam's readable endpoint may be its start.
+      // Keep it unresolved rather than guessing the year or narrowing the examination window.
+      if(chunk.serialRow&&page.method==='OCR'&&kind==='EXAM_WINDOW'&&dates.length===1&&dates[0].date){
+        const rawLines=page.text.split('\n'),at=rawLines.findIndex(line=>/exam/i.test(line)&&parseDates(line,year).some(d=>d.date===dates[0].date));
+        const prior=at>0?rawLines[at-1]:null;
+        if(prior&&parseDates(prior,year).some(d=>!d.date)){dates.unshift({date:null,index:-1,raw:prior});chunk.rawPrefix=prior;}
+      }
+      if(dates.some(d=>!d.date))issues.push(issue('DATE_TOKEN_REVIEW','calendarEntries','An invalid or malformed printed/OCR date remains unresolved. Compare the page; a readable endpoint does not complete the source window.',[],[evidence(source,page,chunk.items)],'WARNING'));
       const ev=[evidence(source,page,chunk.items)],week=DAYS.findIndex(d=>new RegExp(`\\b${d}\\b`,'i').test(text));
+      if(chunk.rawEvidence)ev[0].rawText=chunk.rawEvidence;
+      if(chunk.rawPrefix){ev[0].rawText=chunk.rawPrefix+'\n'+ev[0].rawText;ev[0].bbox=null;}
       const pattern=text.match(/(?:time\s*table(?:\s+of)?|timetable(?:\s+of)?)\s+(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/i)?.[1]??text.match(/\b(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)(?:'s)?\s+(?:TT|time\s*table|timetable)\b/i)?.[1];
       const replacementWeekday=pattern?DAYS.findIndex(d=>d.toLowerCase()===pattern.toLowerCase())+1:null;
       // Never interpret weekday words in an adjustment as the source date's weekday.
       const term=chunk.term??(/\bodd\b/i.test(text)?'ODD':/\beven\b/i.test(text)?'EVEN':/\bodd\b/i.test(all)&&!/\beven\b/i.test(all)?'ODD':'UNSPECIFIED');
       const separateBoundary=kind==='TEACHING_BOUNDARY'&&dates.length===2;
-      rows.push({id:`${id}-calendar-${++serial}`,title:text,kind,startDate:dates[0]?.date??null,endDate:separateBoundary||chunk.makeup?dates[0]?.date??null:dates.at(-1)?.date??null,rawDateText:dates.map(d=>d.raw).join(' — ')||text,term,audienceText:text,printedCalendarWeekday:kind==='REPLACEMENT'?null:week<0?null:week+1,replacementWeekday:kind==='REPLACEMENT'?replacementWeekday:null,replacesDate:chunk.makeup?dates[1]?.date??null:null,certainty:/tentative/i.test(text)?'TENTATIVE':/announced|notified|unspecified|decided|\bTBA\b/i.test(text)?'UNSPECIFIED':'AS_LISTED',applicability:'UNRESOLVED',treatment:'UNRESOLVED',allDay:null,startTime:null,endTime:null,review:'UNREVIEWED',evidence:ev});
+      const separateNotice=['WORKING_DAY_NOTICE','REPLACEMENT'].includes(kind)&&dates.length===2&&/\d{1,2}\s*(?:&|and)\s*\d{1,2}/i.test(text);
+      rows.push({id:`${id}-calendar-${++serial}`,title:text,kind,startDate:dates[0]?.date??null,endDate:separateBoundary||separateNotice||chunk.makeup?dates[0]?.date??null:dates.at(-1)?.date??null,rawDateText:dates.map(d=>d.raw).join(' — ')||text,term,audienceText:text,printedCalendarWeekday:kind==='REPLACEMENT'?null:week<0?null:week+1,replacementWeekday:kind==='REPLACEMENT'?replacementWeekday:null,replacesDate:chunk.makeup?dates[1]?.date??null:null,certainty:/tentative/i.test(text)?'TENTATIVE':/announced|notified|unspecified|decided|\bTBA\b/i.test(text)?'UNSPECIFIED':'AS_LISTED',applicability:'UNRESOLVED',treatment:'UNRESOLVED',allDay:null,startTime:null,endTime:null,review:'UNREVIEWED',evidence:ev});
+      if(separateNotice)rows.push({...rows.at(-1),id:`${id}-calendar-${++serial}`,startDate:dates[1].date,endDate:dates[1].date});
+      if(kind==='REPLACEMENT'&&!replacementWeekday)issues.push(issue('UNKNOWN_REPLACEMENT_PATTERN','calendarEntries','The source substitution pattern is unreadable or unspecified. Confirm the weekday from the page; the actual calendar weekday is not a substitute.',[rows.at(-1).id],ev,'WARNING'));
       if(separateBoundary)rows.push({...rows.at(-1),id:`${id}-calendar-${++serial}`,title:(/last.*working day/i.test(text)?'Last ordinary working day: ':'Other teaching boundary: ')+text,startDate:dates[1].date,endDate:dates[1].date});
     }
     if(!/\b(?:teaching|academic|holiday|calendar|semester|classes|timetable|examination)\b/i.test(page.text)||!page.items.length)issues.push(issue('TEXT_ENCODING_OR_LAYOUT',`pages.${source.id}.${page.page}`,'Text may be encoded, unreadable, or outside supported layouts. Review the page image; untranslated text is not parsed as English.',[],[evidence(source,page,page.items)],'WARNING'));

@@ -53,7 +53,7 @@ test('range extraction cannot be represented by one unreviewed day',()=>{
 });
 test('ambiguous existing exam matches need explicit identity confirmation; corrected event keeps ID',()=>{
  const f=setup('Exam 02.11.2026');const e=f.d.review.effects[0];Object.assign(e.after,{start:'10:00',end:'11:00'});f.m.events=[{...e.after,id:'known-exam'}];
- let r=prepare(f);assert.ok(r.proposal.unresolved.some(i=>i.code==='AMBIGUOUS_MATCH'));assert.equal(r.proposal.changes[0].match,'AMBIGUOUS');
+ let r=prepare(f);assert.ok(r.proposal.unresolved.some(i=>i.code==='AMBIGUOUS_MATCH'));assert.equal(r.proposal.changes[0].match,'AMBIGUOUS');assert.ok(r.proposal.changes.some(c=>c.before?.id==='known-exam'));assert.ok(r.proposal.changes.some(c=>c.before===null));
  Object.assign(e,{targetId:'known-exam',matchConfirmed:true,matchReason:'Explicitly recognized source occurrence'});e.after.date='2026-11-03';reconcileRevisionEffect(f.d,e.id,'The printed date was visually corrected for this exam');r=prepare(f);assert.deepEqual(r.proposal.unresolved,[]);const c=build(f,r.proposal);assert.ok(c.ok,JSON.stringify(c.issues));assert.equal(c.proposedModel.events.length,1);assert.equal(c.proposedModel.events[0].id,'known-exam');assert.equal(c.proposedModel.events[0].date,'2026-11-03');
  assert.equal(evaluatePlan(c.proposedModel,{additionalDates:['2026-11-03'],clock:f.clock}).status,'PLAN_BLOCKED');
 });
@@ -124,4 +124,22 @@ test('source links remain absent as a deletion until an explicit holiday removal
  const f=setup('Holiday cancelled 02.11.2026');f.m.schedule.holidays=[{date:'2026-11-02',label:'Previous holiday'}];f.m.sessions=f.m.sessions.filter(s=>s.date!=='2026-11-02');
  const e=f.d.review.effects[0];Object.assign(e,{kind:'REMOVE_HOLIDAY',targetId:'2026-11-02',matchConfirmed:true,matchReason:'Reviewed old holiday date',reason:'Explicit source cancellation',evidence:{sourceId:'new-source',page:1,excerpt:'Holiday cancelled 02.11.2026',basis:'EXPLICIT_CANCELLATION'}});
  const c=build(f,prepare(f).proposal);assert.ok(c.ok,JSON.stringify(c.issues));assert.ok(!c.proposedModel.schedule.holidays.length);assert.equal(c.proposedModel.sessions.find(s=>s.date==='2026-11-02').id,'weekly:t:2026-11-02');
+});
+test('linked compulsory events cannot conceal already-started attendance when moved to a future date',()=>{
+ const f=setup('Exam 03.11.2026'),s=f.m.sessions.find(s=>s.date==='2026-11-02');f.m.events=[{id:'linked-event',title:'Recorded linked obligation',cancelled:false,sessionId:s.id,date:null,start:null,end:null}];
+ const e=f.d.review.effects[0];Object.assign(e,{targetId:'linked-event',matchConfirmed:true,matchReason:'Recognized existing linked obligation'});Object.assign(e.after,{start:'10:00',end:'11:00'});
+ f.clock={date:'2026-11-02',time:'10:30',timeZone:'Asia/Kolkata'};assert.ok(codes(build(f,prepare(f).proposal)).includes('HISTORICAL_CONFLICT'));
+});
+test('true added sessions use a once-assigned draft token independent of editable date/time',()=>{
+ const f=setup('Additional lab 27.10.2026');f.d.review.effects=[{id:'once-extra-token',sourceRef:f.d.calendarEntries[0].id,kind:'ADD_SESSION',after:{id:null,registerId:'r',date:'2026-10-27',start:'11:00',end:'12:00',weight:1,protected:false,cancelled:false,origin:'extra',templateId:null},confirmed:true,applicabilityConfirmed:true,effectiveDateConfirmed:true}];
+ reconcileRevisionEffect(f.d,'once-extra-token','Explicit reviewed additional attendance occurrence; weight confirmed synthetically.');let p=prepare(f).proposal,c=build(f,p);assert.ok(c.ok,JSON.stringify(c.issues));assert.equal(c.proposedModel.sessions.at(-1).id,'extra:revision:once-extra-token');
+ Object.assign(f.d.review.effects[0].after,{date:'2026-10-28',start:'12:00',end:'13:00'});reconcileRevisionEffect(f.d,'once-extra-token','Corrected this draft addition before staging.');c=build(f,prepare(f).proposal);assert.ok(c.ok,JSON.stringify(c.issues));assert.equal(c.proposedModel.sessions.at(-1).id,'extra:revision:once-extra-token');
+});
+test('confirmed teaching-boundary changes project related future occurrences without changing history/commitments',()=>{
+ for(const date of ['2026-11-16','2026-11-01']){
+  const f=setup('Teaching period ends '+date.slice(8)+'.11.2026');f.d.review.scope.end='2026-11-16';const e=f.d.review.effects[0];e.matchConfirmed=true;e.matchReason='Explicitly confirmed last teaching day boundary';
+  const c=build(f,prepare(f).proposal);assert.ok(c.ok,JSON.stringify(c.issues));assert.equal(c.proposedModel.schedule.teachingEnd,date);assert.deepEqual(c.proposedModel.snapshots,f.m.snapshots);assert.deepEqual(c.proposedModel.commitments,f.m.commitments);
+  if(date==='2026-11-16')assert.ok(c.proposedModel.sessions.some(s=>s.id==='weekly:t:2026-11-16'));
+  else assert.ok(c.proposedModel.sessions.filter(s=>s.date>date).every(s=>s.cancelled));
+ }
 });

@@ -1,0 +1,538 @@
+[
+  {
+    "file": "Academic_Calendar_Odd_Semester_2026-2027.pdf",
+    "referenceCheckId": "winter-vacation",
+    "actualCandidates": [
+      {
+        "id": "26a818bd-f0f4-40ec-a6f0-5e61dd68af2d-calendar-92",
+        "title": "| Monday 1 | | 84 Winter Vacation 04:01:2027t0 to | As per GGSIPU Academic Calendar 17.01.2027 Sunday | | | | Within 15 | Course Coordinators ) / PAC /",
+        "kind": "VACATION",
+        "startDate": "2027-01-04",
+        "endDate": "2027-01-17",
+        "rawDateText": "04:01:2027 \u2014 17.01.2027",
+        "term": "ODD",
+        "audienceText": "| Monday 1 | | 84 Winter Vacation 04:01:2027t0 to | As per GGSIPU Academic Calendar 17.01.2027 Sunday | | | | Within 15 | Course Coordinators ) / PAC /",
+        "printedCalendarWeekday": 1,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "26a818bd-f0f4-40ec-a6f0-5e61dd68af2d-academicCalendar",
+            "page": 6,
+            "bbox": [
+              0,
+              0.30272727272727273,
+              0.971704623878537,
+              0.35863636363636364
+            ],
+            "rawText": "1 | 84 Winter Vacation | 04:01:2027t0 | Monday to | As per GGSIPU Academic Calendar | 17.01.2027 Sunday | | | Within 15 ) | Course Coordinators / PAC /",
+            "method": "OCR",
+            "confidence": 81
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "Academic_Calendar_Odd_Semester_2026-2027.pdf",
+    "unresolvedExamExample": [
+      {
+        "id": "26a818bd-f0f4-40ec-a6f0-5e61dd68af2d-calendar-51",
+        "title": "26.09.2026 be utilized the notified 36 Sessional Examination-I | | per as Satur examination (Tentative) schedule | triday | | ER \u2014 _ \u2014 - SN ~ _ Review",
+        "kind": "EXAM_WINDOW",
+        "startDate": null,
+        "endDate": "2026-09-26",
+        "rawDateText": ".                               | 21.09. 202610 |   Monday to   Examination Cell / HoDs; Saturday may  1 \u2014 26.09.2026",
+        "term": "ODD",
+        "audienceText": "26.09.2026 be utilized the notified 36 Sessional Examination-I | | per as Satur examination (Tentative) schedule | triday | | ER \u2014 _ \u2014 - SN ~ _ Review",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "TENTATIVE",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "26a818bd-f0f4-40ec-a6f0-5e61dd68af2d-academicCalendar",
+            "page": 3,
+            "bbox": null,
+            "rawText": ".                               | 21.09. 202610 |   Monday to   Examination Cell / HoDs; Saturday may  1\n36 Sessional Examination-I | 26.09.2026 | Satur be utilized as per the notified | (Tentative) | examination schedule _ SN ~ \u2014 - ER \u2014 _ triday | Review",
+            "method": "OCR",
+            "confidence": 73
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "IIT_BHU_calendar_26-27_odd.pdf",
+    "referenceCheckId": "bhu-start-other",
+    "actualCandidates": [
+      {
+        "id": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-calendar-50",
+        "title": "Start of Classes for all students (except First Semester UG/PG/Ph.D. Jul 23, 2026 (Thu)",
+        "kind": "TEACHING_BOUNDARY",
+        "startDate": "2026-07-23",
+        "endDate": "2026-07-23",
+        "rawDateText": "Jul 23, 2026",
+        "term": "UNSPECIFIED",
+        "audienceText": "Start of Classes for all students (except First Semester UG/PG/Ph.D. Jul 23, 2026 (Thu)",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.08529411519607842,
+              0.20984687689393947,
+              0.7775101091926071,
+              0.22863636553030306
+            ],
+            "rawText": "Start of Classes for all students (except First Semester UG/PG/Ph.D. Jul 23, 2026 (Thu)",
+            "method": "PDF_TEXT",
+            "confidence": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "IIT_BHU_calendar_26-27_odd.pdf",
+    "referenceCheckId": "bhu-end-other",
+    "actualCandidates": [
+      {
+        "id": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-calendar-51",
+        "title": "Classes End except UG/PG/Ph.D. First Semester Students Nov 10, 2026 (Tue)",
+        "kind": "TEACHING_BOUNDARY",
+        "startDate": "2026-11-10",
+        "endDate": "2026-11-10",
+        "rawDateText": "Nov 10, 2026",
+        "term": "UNSPECIFIED",
+        "audienceText": "Classes End except UG/PG/Ph.D. First Semester Students Nov 10, 2026 (Tue)",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.08529411519607842,
+              0.582271103219697,
+              0.7834349970411052,
+              0.6012121259469697
+            ],
+            "rawText": "Classes End except UG/PG/Ph.D. First Semester Students Nov 10, 2026 (Tue)",
+            "method": "PDF_TEXT",
+            "confidence": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "IIT_BHU_calendar_26-27_odd.pdf",
+    "referenceCheckId": "bhu-end-first",
+    "actualCandidates": [
+      {
+        "id": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-calendar-52",
+        "title": "Classes End UG/PG/Ph.D. First Semester Students Nov 17, 2026 (Tue)",
+        "kind": "TEACHING_BOUNDARY",
+        "startDate": "2026-11-17",
+        "endDate": "2026-11-17",
+        "rawDateText": "Nov 17, 2026",
+        "term": "UNSPECIFIED",
+        "audienceText": "Classes End UG/PG/Ph.D. First Semester Students Nov 17, 2026 (Tue)",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.08529411519607842,
+              0.589392334280303,
+              0.7834349970411052,
+              0.6093939583333334
+            ],
+            "rawText": "Classes End UG/PG/Ph.D. First Semester Students Nov 17, 2026 (Tue)",
+            "method": "PDF_TEXT",
+            "confidence": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "IIT_BHU_calendar_26-27_odd.pdf",
+    "referenceCheckId": "bhu-exams-other",
+    "actualCandidates": [
+      {
+        "id": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-calendar-53",
+        "title": "End Semester Examination except First Sem. UG/PG/Ph.D. Nov 12 \u2013 25, 2026 (Thu-Wed)",
+        "kind": "EXAM_WINDOW",
+        "startDate": "2026-11-12",
+        "endDate": "2026-11-25",
+        "rawDateText": "Nov 12 \u2013 25, 2026 \u2014 Nov 12 \u2013 25, 2026",
+        "term": "UNSPECIFIED",
+        "audienceText": "End Semester Examination except First Sem. UG/PG/Ph.D. Nov 12 \u2013 25, 2026 (Thu-Wed)",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.08529411519607842,
+              0.611968059659091,
+              0.8561272046841096,
+              0.6306060445075757
+            ],
+            "rawText": "End Semester Examination except First Sem. UG/PG/Ph.D. Nov 12 \u2013 25, 2026 (Thu-Wed)",
+            "method": "PDF_TEXT",
+            "confidence": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "IIT_BHU_calendar_26-27_odd.pdf",
+    "referenceCheckId": "bhu-exams-first",
+    "actualCandidates": [
+      {
+        "id": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-calendar-54",
+        "title": "End Semester Examination First Sem. UG/PG/Ph.D. Students Nov 19\u201330, 2026 (Thu-Mon)",
+        "kind": "EXAM_WINDOW",
+        "startDate": "2026-11-19",
+        "endDate": "2026-11-30",
+        "rawDateText": "Nov 19\u201330, 2026 \u2014 Nov 19\u201330, 2026",
+        "term": "UNSPECIFIED",
+        "audienceText": "End Semester Examination First Sem. UG/PG/Ph.D. Students Nov 19\u201330, 2026 (Thu-Mon)",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "0e48f741-eec5-473d-aeb3-d2741b94fb0f-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.08529411519607842,
+              0.6120467575757574,
+              0.8469121398590235,
+              0.6557575568181817
+            ],
+            "rawText": "End Semester Examination First Sem. UG/PG/Ph.D. Students Nov 19\u201330, 2026 (Thu-Mon)",
+            "method": "PDF_TEXT",
+            "confidence": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "calendar_grid_colour_150735.png",
+    "referenceCheckId": "grid1-midterms",
+    "actualCandidates": [
+      {
+        "id": "d3ea7687-749e-47a4-a4d1-2eb0619c6f57-calendar-6",
+        "title": "p                   [re                                                          mr                                                          Ph.D.      gare                          Mid Sem Exams (20Sept - 28 Sept)                          |",
+        "kind": "EXAM_WINDOW",
+        "startDate": "2026-09-20",
+        "endDate": "2026-09-28",
+        "rawDateText": "20Sept \u2014 28 Sept",
+        "term": "UNSPECIFIED",
+        "audienceText": "p                   [re                                                          mr                                                          Ph.D.      gare                          Mid Sem Exams (20Sept - 28 Sept)                          |",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "d3ea7687-749e-47a4-a4d1-2eb0619c6f57-academicCalendar",
+            "page": 1,
+            "bbox": null,
+            "rawText": "p                   [re                                                          mr                                                          Ph.D.      gare                          Mid Sem Exams (20Sept - 28 Sept)                          |",
+            "method": "OCR",
+            "confidence": 69
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "calendar_grid_colour_150735.png",
+    "referenceCheckId": "grid1-end-exams",
+    "actualCandidates": [
+      {
+        "id": "d3ea7687-749e-47a4-a4d1-2eb0619c6f57-calendar-7",
+        "title": "End-Sem Examinations {29th Nov - 8th Dec)                                               LL                     5            ons _        H            eration                  B                                 Dedlaraton    Evaluation",
+        "kind": "EXAM_WINDOW",
+        "startDate": "2026-11-29",
+        "endDate": "2026-12-08",
+        "rawDateText": "29th Nov \u2014 8th Dec",
+        "term": "UNSPECIFIED",
+        "audienceText": "End-Sem Examinations {29th Nov - 8th Dec)                                               LL                     5            ons _        H            eration                  B                                 Dedlaraton    Evaluation",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "d3ea7687-749e-47a4-a4d1-2eb0619c6f57-academicCalendar",
+            "page": 1,
+            "bbox": null,
+            "rawText": "End-Sem Examinations {29th Nov - 8th Dec)                                               LL                     5            ons _        H            eration                  B                                 Dedlaraton    Evaluation",
+            "method": "OCR",
+            "confidence": 69
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "calendar_dual_term_150940.png",
+    "referenceCheckId": "dual-midterm-odd",
+    "actualCandidates": [
+      {
+        "id": "38d3106d-d966-46e7-9741-3f5c0427fdc4-calendar-12",
+        "title": "| I 15 Mid Term Examination October 05 10. 2026 Monday - Saturday - - JE\u2014 |",
+        "kind": "EXAM_WINDOW",
+        "startDate": "2026-10-05",
+        "endDate": "2026-10-10",
+        "rawDateText": "October 05 10. 2026 \u2014 October 05 10. 2026",
+        "term": "ODD",
+        "audienceText": "| I 15 Mid Term Examination October 05 10. 2026 Monday - Saturday - - JE\u2014 |",
+        "printedCalendarWeekday": 1,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "38d3106d-d966-46e7-9741-3f5c0427fdc4-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.08022388059701492,
+              0.3902684563758389,
+              0.5345149253731343,
+              0.41140939597315435
+            ],
+            "rawText": "| I 15 Mid Term Examination | JE\u2014 October 05 - 10. 2026 - Monday - Saturday",
+            "method": "OCR",
+            "confidence": 82
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "calendar_dual_term_150940.png",
+    "referenceCheckId": "dual-endterm-odd",
+    "actualCandidates": [
+      {
+        "id": "38d3106d-d966-46e7-9741-3f5c0427fdc4-calendar-18",
+        "title": "\u201c7 {As comvenience Deptt) per i Ead ) i - 22 Term Examination December 04 15, 2026 Friday Tuesday - - - |",
+        "kind": "EXAM_WINDOW",
+        "startDate": "2026-12-04",
+        "endDate": "2026-12-15",
+        "rawDateText": "December 04 15, 2026 \u2014 December 04 15, 2026",
+        "term": "ODD",
+        "audienceText": "\u201c7 {As comvenience Deptt) per i Ead ) i - 22 Term Examination December 04 15, 2026 Friday Tuesday - - - |",
+        "printedCalendarWeekday": 2,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "38d3106d-d966-46e7-9741-3f5c0427fdc4-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.08488805970149253,
+              0.5187919463087248,
+              0.5340485074626866,
+              0.5476510067114094
+            ],
+            "rawText": "\u201c7 {As per comvenience Deptt) ) i - i 22 Ead Term Examination | December 04 - 15, 2026 - Friday - Tuesday",
+            "method": "OCR",
+            "confidence": 82
+          }
+        ]
+      },
+      {
+        "id": "38d3106d-d966-46e7-9741-3f5c0427fdc4-calendar-60",
+        "title": "22   Ead Term Examination                                        |    December 04 - 15, 2026 - Friday - Tuesday                           Mey 06 - 19, 2027 - Thursday - Wednesday",
+        "kind": "EXAM_WINDOW",
+        "startDate": "2026-12-04",
+        "endDate": "2026-12-15",
+        "rawDateText": "December 04 - 15, 2026 \u2014 December 04 - 15, 2026",
+        "term": "UNSPECIFIED",
+        "audienceText": "22   Ead Term Examination                                        |    December 04 - 15, 2026 - Friday - Tuesday                           Mey 06 - 19, 2027 - Thursday - Wednesday",
+        "printedCalendarWeekday": 2,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "38d3106d-d966-46e7-9741-3f5c0427fdc4-academicCalendar",
+            "page": 1,
+            "bbox": null,
+            "rawText": "22   Ead Term Examination                                        |    December 04 - 15, 2026 - Friday - Tuesday                           Mey 06 - 19, 2027 - Thursday - Wednesday",
+            "method": "OCR",
+            "confidence": 82
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "calendar_dual_term_150940.png",
+    "referenceCheckId": "dual-working-2026-12-12",
+    "actualCandidates": [
+      {
+        "id": "38d3106d-d966-46e7-9741-3f5c0427fdc4-calendar-55",
+        "title": "December 05 & 12 will be Working Saturdays in view of End Term Exams",
+        "kind": "WORKING_DAY_NOTICE",
+        "startDate": "2026-12-12",
+        "endDate": "2026-12-12",
+        "rawDateText": "December 05 & 12 \u2014 December 05 & 12",
+        "term": "UNSPECIFIED",
+        "audienceText": "December 05 & 12 will be Working Saturdays in view of End Term Exams",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "38d3106d-d966-46e7-9741-3f5c0427fdc4-academicCalendar",
+            "page": 1,
+            "bbox": [
+              0.12779850746268656,
+              0.8617449664429531,
+              0.46455223880597013,
+              0.8684563758389262
+            ],
+            "rawText": "December 05 & 12 will be Working Saturdays in view of End Term Exams",
+            "method": "OCR",
+            "confidence": 82
+          }
+        ]
+      },
+      {
+        "id": "38d3106d-d966-46e7-9741-3f5c0427fdc4-calendar-62",
+        "title": "Saturdays. December 05 & 12 will be Working Saturdays in view of the End Term Exams",
+        "kind": "WORKING_DAY_NOTICE",
+        "startDate": "2026-12-12",
+        "endDate": "2026-12-12",
+        "rawDateText": "December 05 & 12 \u2014 December 05 & 12",
+        "term": "UNSPECIFIED",
+        "audienceText": "Saturdays. December 05 & 12 will be Working Saturdays in view of the End Term Exams",
+        "printedCalendarWeekday": null,
+        "replacementWeekday": null,
+        "replacesDate": null,
+        "certainty": "AS_LISTED",
+        "applicability": "UNRESOLVED",
+        "treatment": "UNRESOLVED",
+        "allDay": null,
+        "startTime": null,
+        "endTime": null,
+        "review": "UNREVIEWED",
+        "evidence": [
+          {
+            "sourceId": "38d3106d-d966-46e7-9741-3f5c0427fdc4-academicCalendar",
+            "page": 1,
+            "bbox": null,
+            "rawText": "Saturdays. December 05 & 12 will be Working Saturdays in view of the End Term Exams",
+            "method": "OCR",
+            "confidence": 82
+          }
+        ]
+      }
+    ]
+  }
+]

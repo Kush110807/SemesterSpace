@@ -34,3 +34,5 @@ export type RevisionDraft={
 export declare function extractCalendarRevision(request:{academicCalendar:{fileName:string;bytes:Uint8Array};section?:string;signal?:AbortSignal;onProgress?:(p:unknown)=>void}):Promise<RevisionDraft>;
 export declare function prepareCalendarRevision(input:{currentModel:Model;existingSourceRevision:SourceRevision|null;extractedDraft:RevisionDraft}):{proposal:CalendarRevisionProposal;comparison:{sourceRef:string;changeId:string|null;status:'UNCHANGED'|'ADDED'|'CHANGED'|'NEEDS_REVIEW'|'POSSIBLE_REMOVAL';targetId:string|null}[]};
 export declare function buildRevisionCandidate(input:{model:Model;proposal:CalendarRevisionProposal;acceptedChangeIds:string[];clock:Clock}):{ok:boolean;issues:{code:string;message:string;changeId?:string;occurrenceId?:string}[];proposedModel:Model|null;sourceRevisionPatch:SourceRevision|null;engineStatus:string|null;preservedCommitmentIds?:string[]};
+
+export declare function reconcileRevisionEffect(draft:RevisionDraft,effectId:string,note:string):void;

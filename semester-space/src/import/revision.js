@@ -23,6 +23,7 @@ function effectValue(model,kind,id,after){
 function historical(model,before,after,clock=null){
   const snapshot=model.snapshots.at(-1)?.date;
   return [before,after].filter(Boolean).some(r=>{
+    if(r.sessionId)r=model.sessions.find(s=>s.id===r.sessionId)??r;
     const anchored=r.id?.match(/^weekly:.+:(\d{4}-\d{2}-\d{2})$/)?.[1];if(anchored&&anchored<=snapshot)return true;
     const date=r.date;if(!validDate(date))return false;
     return date<=snapshot||clock&&(date<clock.date||date===clock.date&&(!r.start||r.start<=clock.time));
@@ -73,6 +74,7 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
   const institution=d?.source?.institutionLabel??'';
   if(/BHU/i.test(institution)&&!/BHU/i.test(model.context.college)||/MAHARAJA AGRASEN/i.test(institution)&&!/MAIT|MAHARAJA AGRASEN/i.test(model.context.college))bad('WRONG_INSTITUTION','','The source institution differs from the existing setup.');
   if(review.sourceCoverageConfirmed!==true||!text(review.coverageNote))bad('COVERAGE_REVIEW','', 'Extraction candidates are not complete coverage. Manually complete all pages, including missed exams, boundaries and substitutions.');
+  if(existingSourceRevision&&(existingSourceRevision.version!==1||!Array.isArray(existingSourceRevision.links)))bad('SOURCE_METADATA_REVIEW','','Prior source metadata must be adapted to version-1 source links before comparison.');
   if(!existingSourceRevision)bad('PRIOR_SOURCE_UNAVAILABLE','', 'Legacy setup has no persisted source crosswalk. Explicit matching and a justified legacy-source review are required.');
   if(!existingSourceRevision&&review.legacySourceReviewed===true&&text(review.legacySourceNote))unresolved.splice(unresolved.findIndex(i=>i.code==='PRIOR_SOURCE_UNAVAILABLE'),1);
   const effects=Array.isArray(review.effects)?review.effects:[],seen=new Set();
@@ -95,7 +97,14 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
     let before=effectValue(model,effect.kind,id,effect.after),after=clone(effect.after??null);
     const label=v=>(v??'').toLowerCase().replace(/\d+/g,' ').replace(/[^a-z]+/g,' ').trim();
     const possible=!id&&['ADD_SESSION','UPSERT_EVENT'].includes(effect.kind)?(effect.kind==='UPSERT_EVENT'?model.events:model.sessions).filter(r=>effect.kind==='UPSERT_EVENT'?(text(after?.title)&&label(r.title)===label(after.title)||r.date===after?.date&&r.start===after?.start):r.registerId===after?.registerId&&r.date===after?.date):[];
-    if(possible.length&&!(effect.additionConfirmed===true&&text(effect.reason))){match='AMBIGUOUS';bad('AMBIGUOUS_MATCH',ref,'Possible existing target(s) require a reviewed crosswalk or explicit confirmation of a distinct addition.');}
+    if(possible.length&&!(effect.additionConfirmed===true&&text(effect.reason))){
+      match='AMBIGUOUS';bad('AMBIGUOUS_MATCH',ref,`Possible existing targets (${possible.map(r=>r.id).join(', ')}) require a reviewed crosswalk or explicit confirmation of a distinct addition.`);
+      for(const target of possible){
+        const alternative={...clone(after),id:target.id},changeId=`change:${effect.id}:candidate:${target.id}`;
+        changes.push({changeId,kind:effect.kind==='ADD_SESSION'?'EDIT_SESSION':effect.kind,occurrenceId:effect.kind==='ADD_SESSION'?target.id:null,before:clone(target),after:alternative,evidence:clone(ev),match:'AMBIGUOUS',affectsConfirmedHistory:historical(model,target,alternative)});
+        comparison.push({sourceRef:ref,changeId,status:'NEEDS_REVIEW',targetId:target.id});
+      }
+    }
     if(effect.kind==='ADD_HOLIDAY'&&['NON_TEACHING','VACATION'].includes(row?.kind)&&model.schedule.holidayTeachingDates.includes(after?.date))bad('TEACHING_OVERRIDE_CONFLICT',ref,'An explicit nonteaching source cannot be represented by a holiday label while teaching remains enabled.');
     if(effect.kind==='UPSERT_EVENT'&&after?.cancelled===true&&!affirmative(ev))bad('INEFFECTIVE_EVENT',ref,'A cancelled event requires affirmative cancellation/correction evidence.');
     if(effect.kind==='REPLACE_PATTERN'&&!model.schedule.weeklyTemplates.some(t=>t.weekday===after?.weekday))bad('INEFFECTIVE_PATTERN',ref,'This substitution has no known weekly obligations; resolve the pattern/zero-unit provenance manually.');
@@ -129,7 +138,7 @@ export function prepareCalendarRevision({currentModel:model,existingSourceRevisi
   }
   const represented=new Set(effects.map(e=>e.previousSourceRef).filter(Boolean));
   for(const link of existingSourceRevision?.links??[]){
-    if(represented.has(link.sourceRef)||link.value===null||link.value?.date<=model.snapshots.at(-1)?.date)continue;
+    if(represented.has(link.sourceRef)||link.value===null||link.value?.cancelled===true||link.value?.date<=model.snapshots.at(-1)?.date||link.value?.date<scope.start||link.value?.date>scope.end)continue;
     // Exact current effect is still represented even if its source row moved/reordered.
     if(changes.some(c=>c.kind===link.kind&&same(c.after,link.value)))continue;
     const keep=review.missing?.find(r=>r.sourceRef===link.sourceRef&&r.decision==='KEEP_EXISTING'&&r.confirmed===true&&text(r.reason));
