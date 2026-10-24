@@ -1,4 +1,4 @@
-import {COVERAGE_AREAS,calendarPages,blankPageCoverage,recordPageCoverage,coverageSummary} from '../import/coverage.js';
+import {COVERAGE_AREAS,calendarPages,blankPageCoverage,recordPageCoverage,coverageSummary,recordSourceReconciliation} from '../import/coverage.js';
 import {extractDocuments,createImportJob,compileConfirmedImport} from '../import/index.js';
 import {DAYS,evidence,issue} from '../import/parse.js';
 let root=null,draft=null,live=null,busy=false,submitted=false;
@@ -112,14 +112,23 @@ function reviewDraft(parent){
     box.append(el('p',`Source certainty: ${r.certainty}. Source date text: ${r.rawDateText}`));rowNote(box,r);
     field(box,'Review decision','select',r.review,v=>{r.review=v;invalidate();},choices(['UNREVIEWED','CONFIRMED','CORRECTED']));
     const resolution=r.coverageResolution??(r.coverageResolution={decision:'UNRESOLVED',rowIds:[],note:'',confirmed:false});
+    let resolutionCheckbox;const unconfirmResolution=()=>{resolution.confirmed=false;if(resolutionCheckbox)resolutionCheckbox.checked=false;invalidate();};
     const resolve=detail(box,'Resolve original source candidate explicitly');
     resolve.append(el('p','Changing the category, deleting text or marking information-only does not remove the original source requirement. Keep the candidate and record how it is represented or why it has no applicable student effect.'));
-    field(resolve,'Source candidate resolution','select',resolution.decision,v=>{resolution.decision=v;resolution.confirmed=false;invalidate();},[['UNRESOLVED','Unresolved'],['REPRESENTED','Represented by reviewed planner entries'],['NO_APPLICABLE_EFFECT','Explicitly no applicable planner effect']]);
+    field(resolve,'Source candidate resolution','select',resolution.decision,v=>{resolution.decision=v;unconfirmResolution();},[['UNRESOLVED','Unresolved'],['REPRESENTED','Represented by reviewed planner entries'],['NO_APPLICABLE_EFFECT','Explicitly no applicable planner effect']]);
     const links=field(resolve,'Planner entries representing this source candidate','select','',()=>{});links.multiple=true;links.size=4;
     for(const target of d.calendarEntries){const opt=el('option',`${target.startDate??'Date?'} · ${target.title.slice(0,95)}`);opt.value=target.id;opt.selected=resolution.rowIds.includes(target.id);links.append(opt);}
-    links.addEventListener('change',()=>{resolution.rowIds=[...links.selectedOptions].map(n=>n.value);resolution.confirmed=false;invalidate();});
-    field(resolve,'Source-based resolution explanation','textarea',resolution.note,v=>{resolution.note=v;resolution.confirmed=false;invalidate();});
-    field(resolve,'I explicitly confirm this source candidate resolution','checkbox',resolution.confirmed,v=>{resolution.confirmed=v;invalidate();});
+    links.addEventListener('change',()=>{resolution.rowIds=[...links.selectedOptions].map(n=>n.value);unconfirmResolution();});
+    field(resolve,'Source-based resolution explanation','textarea',resolution.note,v=>{resolution.note=v;unconfirmResolution();});
+    resolve.append(el('p','Links must generate effective restrictions after the snapshot and within the teaching horizon, and must cover the source dates/times or substitution pattern. A shared page and treatment label are insufficient. Use NO APPLICABLE EFFECT for genuine exclusions.'));
+    let correctionNote=resolution.reconciliation?.note??'';
+    field(resolve,'Source-specific date or pattern correction explanation','textarea',correctionNote,v=>{correctionNote=v;resolution.reconciliation=null;unconfirmResolution();});
+    const correctionStatus=message(resolve,'If corrected dates or patterns differ from this original source candidate, fill the final academic scope/horizon first, inspect the preview, then confirm the selected mapping here.');
+    action(resolve,'Confirm source-specific reconciliation for selected planner entries',()=>{
+      try{if(!correctionNote.trim())throw Error('Explain the exact source correction before confirming it.');recordSourceReconciliation(d,options(),r.id,correctionNote);unconfirmResolution();correctionStatus.textContent='Source and target mapping recorded for the current scope. Reconfirm this source resolution. Ineffective or out-of-scope targets still cannot pass validation.';}
+      catch(e){correctionStatus.textContent=e.message;}
+    });
+    resolutionCheckbox=field(resolve,'I explicitly confirm this source candidate resolution','checkbox',resolution.confirmed,v=>{resolution.confirmed=v;invalidate();});
     sourceEvidence(box,r);
   }};renderCalendar();
   action(calendar,'Confirm clearly administrative rows as information after review',()=>{let count=0;for(const r of d.calendarEntries)if(/committee|HoDs|IQAC|\bPAC\b|\bDAC\b|faculty workload|CO-PO|course files|\bERP\b|audit|SAR/i.test(r.title)&&!/student|sessional|exam|orientation|holiday|teaching period/i.test(r.title)){r.review='CONFIRMED';r.applicability='APPLIES';r.treatment='INFORMATION_ONLY';r.resolutionNote='Reviewed staff/administrative information; no student restriction.';count++;}renderCalendar();invalidate();message(calendar,`${count} clearly administrative rows reviewed. Remaining ambiguous obligations still require decisions.`);});

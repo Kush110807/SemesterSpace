@@ -1,6 +1,7 @@
 // Import-layer review only. No coverage metadata is added to the shared Model schema.
 // Neither readable OCR nor a parser candidate list establishes complete calendar coverage.
 import {parseCalendar,validDate,issue} from './parse.js';
+import {targetRestriction,datesForSource,naturallyCorresponds,reconciled,makeSourceReconciliation,fitsCalendarScope} from './link-effects.js';
 export const COVERAGE_AREAS=[
   ['OBLIGATIONS','Exams and compulsory student obligations'],
   ['SUBSTITUTIONS','Timetable substitutions and exceptional working days'],
@@ -27,7 +28,8 @@ export function relevantCalendarRow(row,o,d){
   if(!validDate(row.startDate)||!validDate(row.endDate)||row.startDate>row.endDate)return true;
   const source=d.sources.find(s=>s.id===row.evidence?.[0]?.sourceId);
   if(source?.academicYear&&Math.abs(Number(row.startDate.slice(0,4))-source.academicYear)>1)return true;
-  return row.endDate>=(o.snapshot?.date??o.startDate)&&row.startDate<=o.teachingEnd;
+  if(!validDate(o.snapshot?.date)||!validDate(o.startDate)||!validDate(o.teachingEnd))return true;
+  return row.endDate>o.snapshot.date&&row.endDate>=o.startDate&&row.startDate<=o.teachingEnd;
 }
 export function representsArea(row,area){
   if(!reviewed(row)||row.applicability!=='APPLIES')return false;
@@ -43,6 +45,14 @@ export function recordPageCoverage(d,o,record){record.confirmed=true;record.fing
 export function coverageSummary(d,o){
   const records=d.calendarCoverage?.pages??[],fingerprint=calendarCoverageFingerprint(d,o);
   return {pages:calendarPages(d).length,confirmed:records.filter(r=>r.confirmed===true&&r.fingerprint===fingerprint&&r.answersFingerprint===JSON.stringify(r.areas)&&COVERAGE_AREAS.every(([a])=>['ENTERED','NONE_APPLICABLE'].includes(r.areas?.[a]?.decision)&&nonempty(r.areas[a].note))).length};
+}
+export function recordSourceReconciliation(d,o,rowId,note){
+  const row=d.calendarEntries.find(r=>r.id===rowId),source=sourceCalendarCandidates(d).find(r=>r.id===rowId)??row;
+  const ids=row?.coverageResolution?.rowIds;
+  if(!Array.isArray(ids)||!ids.length||new Set(ids).size!==ids.length)throw Error('Select at least one distinct planner row before reconciling this source.');
+  const targets=ids.map(id=>d.calendarEntries.find(r=>r.id===id));
+  if(targets.some(r=>!r))throw Error('Select existing planner rows before reconciling this source.');
+  row.coverageResolution.reconciliation=makeSourceReconciliation(source,targets,d,o,note);
 }
 export function validateCalendarCoverage(d,o){
   const errors=[],bad=(code,message,row=null)=>errors.push(issue(code,'calendarCoverage',message,row?[row.id]:[],row?.evidence??[]));
@@ -69,9 +79,23 @@ export function validateCalendarCoverage(d,o){
       if(!Array.isArray(ids)||!ids.length||new Set(ids).size!==ids.length||ids.some(id=>{
         const target=current.get(id);return !target||!representsArea(target,area)||original.kind==='REPLACEMENT'&&target.treatment!=='REPLACEMENT'||!original.evidence.some(e=>onPage(target,e))||!validDate(target.startDate)||!validDate(target.endDate);
       }))bad('CALENDAR_RESOLUTION_LINK','Link this source candidate to reviewed, applicable planner entries of the required type on its source page. Information-only rows do not represent an obligation or substitution.',original);
+      else {
+        const targets=ids.map(id=>current.get(id)),effects=targets.map(target=>targetRestriction(target,area,d,o));
+        if(!fitsCalendarScope(original,o))bad('CALENDAR_RESOLUTION_SCOPE','An out-of-scope source is an exclusion, not a represented obligation. Use the justified NO_APPLICABLE_EFFECT decision.',original);
+        else if(effects.some(e=>!e||!datesForSource(e,original,area).length))bad('CALENDAR_RESOLUTION_EFFECT','Every represented target must produce the claimed future planner effect after the snapshot and within the teaching horizon. Reconciliation cannot rescue an ineffective target.',original);
+        else if(!naturallyCorresponds(original,effects,area,o)&&!reconciled(original,targets,d,o,decision.reconciliation))bad('CALENDAR_RESOLUTION_CORRESPONDENCE','Linked effects do not cover the source dates/times or substitution pattern. Confirm a source-specific reconciliation against the original evidence, or use a justified exclusion.',original);
+      }
     }else if(decision.decision==='NO_APPLICABLE_EFFECT'){
       if(!reviewed(row)||!['INFORMATION_ONLY','DOES_NOT_APPLY'].includes(row.treatment)||row.treatment==='INFORMATION_ONLY'&&row.applicability!=='APPLIES'||row.treatment==='DOES_NOT_APPLY'&&row.applicability!=='DOES_NOT_APPLY')bad('CALENDAR_EXCLUSION_DECISION','An explicit no-effect decision needs a reviewed information-only or non-applicable row and its justification.',original);
     }else bad('CALENDAR_SOURCE_RESOLUTION','The source candidate resolution is still unknown.',original);
+  }
+  function reconcilesEntered(source,target,area){
+    const ids=target.coverageResolution?.rowIds;
+    if(!Array.isArray(ids)||!ids.length||!ids.includes(target.id)||new Set(ids).size!==ids.length)return false;
+    const targets=ids.map(id=>current.get(id));
+    if(targets.some(r=>!r||!source.evidence.some(e=>onPage(r,e))||source.kind==='REPLACEMENT'&&r.treatment!=='REPLACEMENT'))return false;
+    if(targets.some(r=>{const e=targetRestriction(r,area,d,o);return !e||!datesForSource(e,source,area).length;}))return false;
+    return reconciled(source,targets,d,o,target.coverageResolution?.reconciliation);
   }
   const records=d.calendarCoverage?.pages;
   if(!Array.isArray(records)){bad('CALENDAR_MANUAL_COMPLETION','Calendar extraction produced candidates, not confirmed coverage. Manually complete every calendar page and each coverage area before saving.');return errors;}
@@ -85,6 +109,12 @@ export function validateCalendarCoverage(d,o){
       if(!answer||!nonempty(answer.note)||!['ENTERED','NONE_APPLICABLE'].includes(answer.decision)){bad('CALENDAR_MANUAL_COMPLETION',`Calendar page ${page.page}: explicitly complete “${label}” with a source-based explanation. Readable text or a viewed-page checkbox cannot supply this answer.`);continue;}
       if(answer.decision==='ENTERED'){
         if(!Array.isArray(answer.rowIds)||!answer.rowIds.length||new Set(answer.rowIds).size!==answer.rowIds.length||answer.rowIds.some(id=>!current.has(id)||!onPage(current.get(id),page)||!representsArea(current.get(id),area))||required.some(r=>!answer.rowIds.includes(r.id)))bad('CALENDAR_COVERAGE_LINK',`Calendar page ${page.page}: link all applicable entered ${label.toLowerCase()} to actual planner entries; information-only rows do not count.`);
+        else for(const id of answer.rowIds){
+          const target=current.get(id),effect=targetRestriction(target,area,d,o),source=originals.find(r=>r.id===id)??target;
+          if(!fitsCalendarScope(source,o))bad('CALENDAR_COVERAGE_SCOPE',`Calendar page ${page.page}: this source belongs to another term/cohort; an exclusion cannot be recorded as ENTERED.`,target);
+          else if(!effect||!datesForSource(effect,source,area).length)bad('CALENDAR_COVERAGE_EFFECT',`Calendar page ${page.page}: an ENTERED link has no effective future ${label.toLowerCase()} within this scope/horizon.`,target);
+          else if(!naturallyCorresponds(source,[effect],area,o)&&!reconcilesEntered(source,target,area))bad('CALENDAR_COVERAGE_CORRESPONDENCE',`Calendar page ${page.page}: this ENTERED row differs from its original source dates or pattern and needs an explicit source-specific reconciliation.`,target);
+        }
       }else if(required.length||answer.rowIds?.length)bad('CALENDAR_COVERAGE_CONTRADICTION',`Calendar page ${page.page}: “none applicable” conflicts with entered ${label.toLowerCase()}.`);
     }
     if(record.confirmed!==true)bad('CALENDAR_MANUAL_COMPLETION',`Calendar page ${page.page}: explicitly confirm manual completion for the current cohort and teaching horizon.`);
