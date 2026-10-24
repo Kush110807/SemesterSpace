@@ -1,0 +1,11 @@
+
+> semester-space@0.1.0 build
+> node tools/build.mjs
+
+Prepared 39 self-hosted PDF/OCR assets in /workspace/ss-shared-release-baseline/SemesterSpace/semester-space/src/import/vendor/
+Static files copied to dist/. Build success alone does not establish release readiness.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

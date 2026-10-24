@@ -1,0 +1,16 @@
+{
+  "scope": "Supplemental evidence files only; self excluded; not a replacement source package manifest.",
+  "baseline_zip_sha256": "fb9b86db42bfc2d738ca8326b3cc063fcf1271879b9121eb877aee798a51bed2",
+  "files_sha256": {
+    "D_IMP_01_RECHECK.md": "c5edc3398f5dda0591495a5b7eeeb86685a6b3916e88bf3a2a84cf9568f6f9a1",
+    "arithmetic.log": "ba32c954c2718da97d3e55926fd1b4af0b9f8b78138dc55cea2b6492c94938b6",
+    "browser-report.json": "3d5b98482193ae916120d3b7318834ea9ea6b5d528052a7c3fe263e4cbeb296a",
+    "build.log": "03d97242ca4cb15a6b07200c4cdb8cd8d03afe46e1e373b4047b17f3b2a99e9d",
+    "check.log": "0f9f0d0f76732376b2ec119ca8a9e80dcff496b3e51da83981a1323dca08baeb",
+    "connected-mobile.png": "54b0c665dfb7b77f1ce0e6fb20ad5041d721e7fa0ab7b50ef38147ac45fe060a",
+    "corpus-report.json": "9c2f2cbcecda2b5c9f57b8adf091d48d58397b25f36ac12f1cc90ebb3501600b",
+    "engine.log": "4d6ddcfad84de3ac51d04fdeee8bd808a607068a596d253beb57c37dc64a17f1",
+    "install.log": "35dbbdb1b3e58f3bbce702badbbdbb18e37abab1289090c37823ed17a2982661",
+    "tests.log": "9b3eb403a47f0ea14a7363fe0e3b4d0f3b50992718dd54c806c17582f1e26f97"
+  }
+}
