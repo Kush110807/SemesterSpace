@@ -1,0 +1,50 @@
+[
+  {
+    "path": "reference-inputs/1stSemPoolB.pdf",
+    "originalName": "1stSemPoolB.pdf",
+    "sha256": "4f98eac317c7a761aaa9cb3f1823e9e289cf35c40bb7f46c3d083780af17440a",
+    "bytes": 675491,
+    "role": "TIMETABLE",
+    "usage": "ACTIVE_DECLARED_SCOPE"
+  },
+  {
+    "path": "reference-inputs/Academic_Calendar_Odd_Semester_2026-2027.pdf",
+    "originalName": "Academic Calendar (Odd Semester 2026-2027).pdf",
+    "sha256": "e0c4d59bf25ac307b49064c7fbf3d373e860bfff2572299e5e726eb0a5e20e0e",
+    "bytes": 4570262,
+    "role": "ACADEMIC_CALENDAR",
+    "usage": "ACTIVE_DECLARED_SCOPE"
+  },
+  {
+    "path": "reference-inputs/IIT_BHU_calendar_26-27_odd.pdf",
+    "originalName": "calendar_26-27_odd.pdf",
+    "sha256": "030ae8ca084ac1c385ca8f259a529cf55cfeae4eab3f611b73407c2c821cebe3",
+    "bytes": 1155367,
+    "role": "ACADEMIC_CALENDAR",
+    "usage": "FORMAT_TEST_ONLY"
+  },
+  {
+    "path": "reference-inputs/calendar_grid_colour_150735.png",
+    "originalName": "Screenshot 2026-10-24 150735.png",
+    "sha256": "192adfd7c57080f9d9316bc01888506c48ac63d7adb09c97f74c4067b2c42710",
+    "bytes": 385400,
+    "role": "ACADEMIC_CALENDAR",
+    "usage": "FORMAT_TEST_ONLY"
+  },
+  {
+    "path": "reference-inputs/calendar_grid_cohort_150809.png",
+    "originalName": "Screenshot 2026-10-24 150809.png",
+    "sha256": "55e4f58e8d1f642ab40850b2b9f6c3e637e7aea39d336ec2a236e05732a7f893",
+    "bytes": 479312,
+    "role": "ACADEMIC_CALENDAR",
+    "usage": "FORMAT_TEST_ONLY"
+  },
+  {
+    "path": "reference-inputs/calendar_dual_term_150940.png",
+    "originalName": "Screenshot 2026-10-24 150940.png",
+    "sha256": "546dfc3858e731be4e1e51c9905a8aebee14268806260a205cc27c285efbd66d",
+    "bytes": 488054,
+    "role": "ACADEMIC_CALENDAR",
+    "usage": "FORMAT_TEST_ONLY"
+  }
+]

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SemesterSpace served QA — synthetic only</title>
+<link rel="stylesheet" href="../src/ui/styles.css">
+<aside style="padding:8px;background:#fff3cc;color:#352b12" aria-label="QA controls">
+  <strong>QA entry only · isolated native storage · actual production modules</strong>
+  <button id="fill">Fill synthetic QA storage to browser quota</button>
+  <button id="free">Free synthetic quota filler</button>
+  <button id="refresh">Reload QA page</button>
+  <output id="qa-message" role="status"></output>
+</aside><main id="app"></main>
+<script type="module">
+import * as engine from '../src/engine/index.js';
+import {render} from '../src/ui/index.js';
+import {createController} from '../src/controller.js';
+const prefix='semesterspace-ui-release-qa:';
+const storage={getItem:key=>localStorage.getItem(prefix+key),setItem:(key,value)=>localStorage.setItem(prefix+key,value)};
+const app=createController({engine,render,storage});
+document.querySelector('#refresh').onclick=()=>location.reload();
+document.querySelector('#fill').onclick=()=>{
+ let i=0; const block='Q'.repeat(8192);
+ try {for(;i<2000;i++)localStorage.setItem(prefix+'quota:'+i,block);}
+ catch(e){for(let size=4096;size>=1;size=Math.floor(size/2)){try{localStorage.setItem(prefix+'quota:tail:'+size,'Q'.repeat(size));}catch{}}document.querySelector('#qa-message').textContent=`Actual browser quota reached after ${i} filler blocks: ${e.name}`;}
+};
+document.querySelector('#free').onclick=()=>{
+ for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i);if(key?.startsWith(prefix+'quota:'))localStorage.removeItem(key);}
+ document.querySelector('#qa-message').textContent='Synthetic quota filler removed; saved QA model retained.';
+};
+window.addEventListener('focus',()=>app.callbacks.onRefresh());
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)app.callbacks.onRefresh();});
+setInterval(()=>app.callbacks.onRefresh(),60000);
+</script></html>

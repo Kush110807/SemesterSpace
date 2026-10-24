@@ -1,0 +1,9 @@
+SemesterSpace DOCUMENT-IMPORT-STARTER-002
+Source commit: 621a4ff10797ac05a0e5bb9c5dbd0ba8ae67c7fe
+Prior starter001 source: 6a4066b0801445672c9afb10902c9aae388ca125
+Runtime unchanged from SS-INT-002 deployed source709db192f6c91e99e4f40c449416cf952120d8f5
+Engine contract1.1.0 / schema1
+Prospective import contract0.2.0; no browser importer implementation
+Declared active SectionQ, practicalQ3, programmingQ23; Q3 Physics unresolved
+New calendars are FORMAT_TEST_ONLY, not active MAIT input
+No credentials or Git history included.

@@ -1,0 +1,1662 @@
+{
+  "fixtureVersion": "0.2.0",
+  "purpose": "Human-audited extraction reference, NOT an initialized/passing student Model. No actual attendance/policy weights provided. Not a parser output or generic-extraction accuracy claim.",
+  "sourceDocuments": [
+    {
+      "id": "timetable-pool-b",
+      "fileName": "1stSemPoolB.pdf",
+      "sha256": "4f98eac317c7a761aaa9cb3f1823e9e289cf35c40bb7f46c3d083780af17440a",
+      "pageCount": 4,
+      "textLayer": true,
+      "section": "Q",
+      "sectionPage": 2,
+      "sectionRegionPdfPoints": [
+        50.88,
+        68.0,
+        698.52,
+        300.72
+      ]
+    },
+    {
+      "id": "academic-calendar",
+      "fileName": "Academic Calendar (Odd Semester 2026-2027).pdf",
+      "sha256": "e0c4d59bf25ac307b49064c7fbf3d373e860bfff2572299e5e726eb0a5e20e0e",
+      "pageCount": 8,
+      "textLayer": false
+    }
+  ],
+  "section": "Q",
+  "declaredSubgroup": "Q3",
+  "periods": [
+    {
+      "period": 1,
+      "start": "08:10",
+      "end": "09:00"
+    },
+    {
+      "period": 2,
+      "start": "09:00",
+      "end": "09:50"
+    },
+    {
+      "period": 3,
+      "start": "09:50",
+      "end": "10:40"
+    },
+    {
+      "period": 4,
+      "start": "10:40",
+      "end": "11:30"
+    },
+    {
+      "period": 5,
+      "start": "11:30",
+      "end": "12:20"
+    },
+    {
+      "period": 6,
+      "start": "12:20",
+      "end": "13:10"
+    },
+    {
+      "period": 7,
+      "start": "13:40",
+      "end": "14:30"
+    },
+    {
+      "period": 8,
+      "start": "14:30",
+      "end": "15:20"
+    },
+    {
+      "period": 9,
+      "start": "15:20",
+      "end": "16:10"
+    },
+    {
+      "period": 10,
+      "start": "16:10",
+      "end": "17:00"
+    }
+  ],
+  "lunch": {
+    "start": "13:10",
+    "end": "13:40",
+    "treatment": "BREAK"
+  },
+  "subjects": [
+    {
+      "id": "physics",
+      "name": "Applied Physics -I",
+      "aliases": [
+        "Applied Physics -I",
+        "Applied Physics -I Lab"
+      ],
+      "mustAttend": false,
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "c",
+      "name": "Programming in C",
+      "aliases": [
+        "Prog. In C",
+        "Prog. in C Lab"
+      ],
+      "mustAttend": false,
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "evs",
+      "name": "Environmental Studies",
+      "aliases": [
+        "Environmental Studies",
+        "Environmental Studies Lab"
+      ],
+      "mustAttend": false,
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "communication",
+      "name": "Communication Skills",
+      "aliases": [
+        "Communication Skills"
+      ],
+      "mustAttend": false,
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "modelling",
+      "name": "System Modelling Techniques - I",
+      "aliases": [
+        "Sys. Modelling Tech. - I"
+      ],
+      "mustAttend": false,
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "manufacturing",
+      "name": "Manufacturing Process",
+      "aliases": [
+        "Manufacturing Process"
+      ],
+      "mustAttend": false,
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "graphics",
+      "name": "Engineering Graphics-I",
+      "aliases": [
+        "Engineering Graphics-I"
+      ],
+      "mustAttend": false,
+      "review": "UNREVIEWED"
+    }
+  ],
+  "registers": [
+    {
+      "id": "physics-theory",
+      "subjectId": "physics",
+      "name": "Applied Physics -I — theory",
+      "kind": "THEORY",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "physics-practical",
+      "subjectId": "physics",
+      "name": "Applied Physics -I — practical",
+      "kind": "PRACTICAL",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "c-theory",
+      "subjectId": "c",
+      "name": "Programming in C — theory",
+      "kind": "THEORY",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "c-practical",
+      "subjectId": "c",
+      "name": "Programming in C — practical",
+      "kind": "PRACTICAL",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "evs-theory",
+      "subjectId": "evs",
+      "name": "Environmental Studies — theory",
+      "kind": "THEORY",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "evs-practical",
+      "subjectId": "evs",
+      "name": "Environmental Studies — practical",
+      "kind": "PRACTICAL",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "communication-theory",
+      "subjectId": "communication",
+      "name": "Communication Skills — theory",
+      "kind": "THEORY",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "modelling-theory",
+      "subjectId": "modelling",
+      "name": "System Modelling Techniques - I — theory",
+      "kind": "THEORY",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "manufacturing-theory",
+      "subjectId": "manufacturing",
+      "name": "Manufacturing Process — theory",
+      "kind": "THEORY",
+      "review": "UNREVIEWED"
+    },
+    {
+      "id": "graphics-practical",
+      "subjectId": "graphics",
+      "name": "Engineering Graphics-I — practical",
+      "kind": "PRACTICAL",
+      "review": "UNREVIEWED"
+    }
+  ],
+  "timetableEntries": [
+    {
+      "id": "q-1-p9-communication",
+      "kind": "LECTURE",
+      "subjectId": "communication",
+      "registerId": "communication-theory",
+      "weekday": 1,
+      "start": "15:20",
+      "end": "16:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 1,
+          "periods": [
+            9
+          ],
+          "rawText": "Communication Skills",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-1-p10-communication",
+      "kind": "LECTURE",
+      "subjectId": "communication",
+      "registerId": "communication-theory",
+      "weekday": 1,
+      "start": "16:10",
+      "end": "17:00",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 1,
+          "periods": [
+            10
+          ],
+          "rawText": "Communication Skills",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p5-evs",
+      "kind": "LECTURE",
+      "subjectId": "evs",
+      "registerId": "evs-theory",
+      "weekday": 2,
+      "start": "11:30",
+      "end": "12:20",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            5
+          ],
+          "rawText": "Environmental Studies",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p6-physics",
+      "kind": "LECTURE",
+      "subjectId": "physics",
+      "registerId": "physics-theory",
+      "weekday": 2,
+      "start": "12:20",
+      "end": "13:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            6
+          ],
+          "rawText": "Applied Physics -I",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p7-communication",
+      "kind": "LECTURE",
+      "subjectId": "communication",
+      "registerId": "communication-theory",
+      "weekday": 2,
+      "start": "13:40",
+      "end": "14:30",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            7
+          ],
+          "rawText": "Communication Skills",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p8-modelling",
+      "kind": "LECTURE",
+      "subjectId": "modelling",
+      "registerId": "modelling-theory",
+      "weekday": 2,
+      "start": "14:30",
+      "end": "15:20",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            8
+          ],
+          "rawText": "Sys. Modelling Tech. - I",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p9-manufacturing",
+      "kind": "LECTURE",
+      "subjectId": "manufacturing",
+      "registerId": "manufacturing-theory",
+      "weekday": 2,
+      "start": "15:20",
+      "end": "16:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            9
+          ],
+          "rawText": "Manufacturing Process",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p10-c",
+      "kind": "LECTURE",
+      "subjectId": "c",
+      "registerId": "c-theory",
+      "weekday": 2,
+      "start": "16:10",
+      "end": "17:00",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            10
+          ],
+          "rawText": "Prog. In C",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-3-p5-manufacturing",
+      "kind": "LECTURE",
+      "subjectId": "manufacturing",
+      "registerId": "manufacturing-theory",
+      "weekday": 3,
+      "start": "11:30",
+      "end": "12:20",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 3,
+          "periods": [
+            5
+          ],
+          "rawText": "Manufacturing Process",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-3-p6-modelling",
+      "kind": "LECTURE",
+      "subjectId": "modelling",
+      "registerId": "modelling-theory",
+      "weekday": 3,
+      "start": "12:20",
+      "end": "13:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 3,
+          "periods": [
+            6
+          ],
+          "rawText": "Sys. Modelling Tech. - I",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-3-p9-physics",
+      "kind": "LECTURE",
+      "subjectId": "physics",
+      "registerId": "physics-theory",
+      "weekday": 3,
+      "start": "15:20",
+      "end": "16:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 3,
+          "periods": [
+            9
+          ],
+          "rawText": "Applied Physics -I",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-4-p4-c",
+      "kind": "LECTURE",
+      "subjectId": "c",
+      "registerId": "c-theory",
+      "weekday": 4,
+      "start": "10:40",
+      "end": "11:30",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 4,
+          "periods": [
+            4
+          ],
+          "rawText": "Prog. In C",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-4-p5-physics",
+      "kind": "LECTURE",
+      "subjectId": "physics",
+      "registerId": "physics-theory",
+      "weekday": 4,
+      "start": "11:30",
+      "end": "12:20",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 4,
+          "periods": [
+            5
+          ],
+          "rawText": "Applied Physics -I",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-4-p6-evs",
+      "kind": "LECTURE",
+      "subjectId": "evs",
+      "registerId": "evs-theory",
+      "weekday": 4,
+      "start": "12:20",
+      "end": "13:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 4,
+          "periods": [
+            6
+          ],
+          "rawText": "Environmental Studies",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-4-p9-manufacturing",
+      "kind": "LECTURE",
+      "subjectId": "manufacturing",
+      "registerId": "manufacturing-theory",
+      "weekday": 4,
+      "start": "15:20",
+      "end": "16:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 4,
+          "periods": [
+            9
+          ],
+          "rawText": "Manufacturing Process",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-5-p7-evs",
+      "kind": "LECTURE",
+      "subjectId": "evs",
+      "registerId": "evs-theory",
+      "weekday": 5,
+      "start": "13:40",
+      "end": "14:30",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 5,
+          "periods": [
+            7
+          ],
+          "rawText": "Environmental Studies",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-5-p8-modelling",
+      "kind": "LECTURE",
+      "subjectId": "modelling",
+      "registerId": "modelling-theory",
+      "weekday": 5,
+      "start": "14:30",
+      "end": "15:20",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 5,
+          "periods": [
+            8
+          ],
+          "rawText": "Sys. Modelling Tech. - I",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-5-p9-c",
+      "kind": "LECTURE",
+      "subjectId": "c",
+      "registerId": "c-theory",
+      "weekday": 5,
+      "start": "15:20",
+      "end": "16:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 5,
+          "periods": [
+            9
+          ],
+          "rawText": "Prog. In C",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-1-p7-8-graphics-lab",
+      "kind": "LAB",
+      "subjectId": "graphics",
+      "registerId": "graphics-practical",
+      "weekday": 1,
+      "start": "13:40",
+      "end": "15:20",
+      "groupOptions": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "groupChoice": "Q3",
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 1,
+          "periods": [
+            7,
+            8
+          ],
+          "rawText": "Engineering Graphics-I / EG-LAB / Q1, Q2, Q3",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-3-p3-4-evs-lab",
+      "kind": "LAB",
+      "subjectId": "evs",
+      "registerId": "evs-practical",
+      "weekday": 3,
+      "start": "09:50",
+      "end": "11:30",
+      "groupOptions": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "groupChoice": "Q3",
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 3,
+          "periods": [
+            3,
+            4
+          ],
+          "rawText": "Environmental Studies Lab / CHEM-EVS-LAB / Q1, Q2, Q3",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-3-p7-8-c-lab",
+      "kind": "LAB",
+      "subjectId": "c",
+      "registerId": "c-practical",
+      "weekday": 3,
+      "start": "13:40",
+      "end": "15:20",
+      "groupOptions": [
+        "Q12",
+        "Q23"
+      ],
+      "groupChoice": "Q23",
+      "applicability": "APPLIES",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 3,
+          "periods": [
+            7,
+            8
+          ],
+          "rawText": "Prog. in C Lab (Q12) / PROG-LAB (332) Dr. Nitesh Kumar; Prog. in C Lab (Q23) / PROG-LAB (332) Dr. Sunil Maggu",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-4-p7-8-physics-lab",
+      "kind": "LAB",
+      "subjectId": "physics",
+      "registerId": "physics-practical",
+      "weekday": 4,
+      "start": "13:40",
+      "end": "15:20",
+      "groupOptions": [
+        "Q1",
+        "Q2"
+      ],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "ATTENDANCE",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 4,
+          "periods": [
+            7,
+            8
+          ],
+          "rawText": "Applied Physics -I Lab / PHY-LAB / Q1-- 514 Dr. Neha Jain / Q2-- 512 Dr.Shashi Kant Pandey",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-1-p4-activity",
+      "kind": "ACTIVITY",
+      "subjectId": null,
+      "registerId": null,
+      "weekday": 1,
+      "start": "10:40",
+      "end": "11:30",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 1,
+          "periods": [
+            4
+          ],
+          "rawText": "Library",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-1-p5-activity",
+      "kind": "ACTIVITY",
+      "subjectId": null,
+      "registerId": null,
+      "weekday": 1,
+      "start": "11:30",
+      "end": "12:20",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 1,
+          "periods": [
+            5
+          ],
+          "rawText": "NCC/NSS/Sports",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-1-p6-activity",
+      "kind": "ACTIVITY",
+      "subjectId": null,
+      "registerId": null,
+      "weekday": 1,
+      "start": "12:20",
+      "end": "13:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 1,
+          "periods": [
+            6
+          ],
+          "rawText": "NCC/NSS/Sports",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p3-activity",
+      "kind": "ACTIVITY",
+      "subjectId": null,
+      "registerId": null,
+      "weekday": 2,
+      "start": "09:50",
+      "end": "10:40",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            3
+          ],
+          "rawText": "NCC/NSS/Sports",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-2-p4-activity",
+      "kind": "ACTIVITY",
+      "subjectId": null,
+      "registerId": null,
+      "weekday": 2,
+      "start": "10:40",
+      "end": "11:30",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 2,
+          "periods": [
+            4
+          ],
+          "rawText": "NCC/NSS/Sports",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-4-p3-activity",
+      "kind": "ACTIVITY",
+      "subjectId": null,
+      "registerId": null,
+      "weekday": 4,
+      "start": "09:50",
+      "end": "10:40",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 4,
+          "periods": [
+            3
+          ],
+          "rawText": "NCC/NSS/Sports",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "q-5-p6-activity",
+      "kind": "ACTIVITY",
+      "subjectId": null,
+      "registerId": null,
+      "weekday": 5,
+      "start": "12:20",
+      "end": "13:10",
+      "groupOptions": [],
+      "groupChoice": null,
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "weight": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "timetable-pool-b",
+          "page": 2,
+          "region": "Section Q upper table",
+          "day": 5,
+          "periods": [
+            6
+          ],
+          "rawText": "Library",
+          "method": "PDF_TEXT",
+          "confidence": null
+        }
+      ]
+    }
+  ],
+  "calendarEntries": [
+    {
+      "id": "holiday-1",
+      "title": "Independence Day",
+      "kind": "HOLIDAY",
+      "startDate": "2026-08-15",
+      "endDate": "2026-08-15",
+      "rawDateText": "15.08.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 1",
+          "rawText": "Independence Day | 15.08.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-2",
+      "title": "Milad-un-Nabi or Id-e-Milad (Birthday of Prophet Mohammad)",
+      "kind": "HOLIDAY",
+      "startDate": "2026-08-26",
+      "endDate": "2026-08-26",
+      "rawDateText": "26.08.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 2",
+          "rawText": "Milad-un-Nabi or Id-e-Milad (Birthday of Prophet Mohammad) | 26.08.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-3",
+      "title": "Janmashtami (Vaishnava)",
+      "kind": "HOLIDAY",
+      "startDate": "2026-09-04",
+      "endDate": "2026-09-04",
+      "rawDateText": "04.09.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 3",
+          "rawText": "Janmashtami (Vaishnava) | 04.09.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-4",
+      "title": "Mahatma Gandhi's Birthday",
+      "kind": "HOLIDAY",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-02",
+      "rawDateText": "02.10.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 4",
+          "rawText": "Mahatma Gandhi's Birthday | 02.10.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-5",
+      "title": "Dussehra",
+      "kind": "HOLIDAY",
+      "startDate": "2026-10-20",
+      "endDate": "2026-10-20",
+      "rawDateText": "20.10.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 5",
+          "rawText": "Dussehra | 20.10.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-6",
+      "title": "Maharishi Valmiki's Birthday",
+      "kind": "HOLIDAY",
+      "startDate": "2026-10-26",
+      "endDate": "2026-10-26",
+      "rawDateText": "26.10.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 6",
+          "rawText": "Maharishi Valmiki's Birthday | 26.10.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-7",
+      "title": "Diwali (Deepavali)",
+      "kind": "HOLIDAY",
+      "startDate": "2026-11-08",
+      "endDate": "2026-11-08",
+      "rawDateText": "08.11.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 7",
+          "rawText": "Diwali (Deepavali) | 08.11.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-8",
+      "title": "Guru Nanak's Birthday",
+      "kind": "HOLIDAY",
+      "startDate": "2026-11-24",
+      "endDate": "2026-11-24",
+      "rawDateText": "24.11.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 8",
+          "rawText": "Guru Nanak's Birthday | 24.11.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "holiday-9",
+      "title": "Christmas Day",
+      "kind": "HOLIDAY",
+      "startDate": "2026-12-25",
+      "endDate": "2026-12-25",
+      "rawDateText": "25.12.2026",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 8,
+          "region": "Annexure II holiday row 9",
+          "rawText": "Christmas Day | 25.12.2026",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "teaching-start",
+      "title": "Commencement of Instruction/Laboratory Work and Continuous Evaluation",
+      "kind": "TEACHING_BOUNDARY",
+      "startDate": "2026-08-03",
+      "endDate": "2026-08-03",
+      "rawDateText": "03.08.2026 (row 13); first-year applicability requires confirmation",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 2,
+          "region": "Annexure I / cited row or note",
+          "rawText": "Commencement of Instruction/Laboratory Work and Continuous Evaluation | 03.08.2026 (row 13); first-year applicability requires confirmation",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "first-year-orientation",
+      "title": "Orientation Programme for First-Year Students (Batch 2026–30)",
+      "kind": "ACADEMIC_ACTIVITY",
+      "startDate": "2026-08-17",
+      "endDate": "2026-08-17",
+      "rawDateText": "17.08.2026 (row 19); orientation is not proof of first teaching date",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 2,
+          "region": "Annexure I / cited row or note",
+          "rawText": "Orientation Programme for First-Year Students (Batch 2026–30) | 17.08.2026 (row 19); orientation is not proof of first teaching date",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "sessional-one",
+      "title": "Sessional Examination-I",
+      "kind": "EXAM_WINDOW",
+      "startDate": "2026-09-21",
+      "endDate": "2026-09-26",
+      "rawDateText": "21.09.2026 to 26.09.2026 (Tentative), row 36",
+      "certainty": "TENTATIVE",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 3,
+          "region": "Annexure I / cited row or note",
+          "rawText": "Sessional Examination-I | 21.09.2026 to 26.09.2026 (Tentative), row 36",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "sessional-two",
+      "title": "Sessional Examination-II",
+      "kind": "EXAM_WINDOW",
+      "startDate": "2026-10-27",
+      "endDate": "2026-10-31",
+      "rawDateText": "27.10.2026 to 31.10.2026 (Tentative), row 50",
+      "certainty": "TENTATIVE",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 4,
+          "region": "Annexure I / cited row or note",
+          "rawText": "Sessional Examination-II | 27.10.2026 to 31.10.2026 (Tentative), row 50",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "practical-window",
+      "title": "Sessional/Practical Examination, Final Project Review and Academic-Record Finalization",
+      "kind": "EXAM_WINDOW",
+      "startDate": "2026-11-30",
+      "endDate": "2026-12-05",
+      "rawDateText": "30.11.2026 to 05.12.2026; as per notified schedule, row 66",
+      "certainty": "UNSPECIFIED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 5,
+          "region": "Annexure I / cited row or note",
+          "rawText": "Sessional/Practical Examination, Final Project Review and Academic-Record Finalization | 30.11.2026 to 05.12.2026; as per notified schedule, row 66",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "last-ordinary-day",
+      "title": "Last regular working day, except notified sessional/examination work",
+      "kind": "TEACHING_BOUNDARY",
+      "startDate": "2026-12-04",
+      "endDate": "2026-12-04",
+      "rawDateText": "Friday, 04.12.2026; remarks to row 72",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 5,
+          "region": "Annexure I / cited row or note",
+          "rawText": "Last regular working day, except notified sessional/examination work | Friday, 04.12.2026; remarks to row 72",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "teaching-end",
+      "title": "End of Instruction/Laboratory Work and Continuous Evaluation Period",
+      "kind": "TEACHING_BOUNDARY",
+      "startDate": "2026-12-06",
+      "endDate": "2026-12-06",
+      "rawDateText": "06.12.2026 Sunday; row 72",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 5,
+          "region": "Annexure I / cited row or note",
+          "rawText": "End of Instruction/Laboratory Work and Continuous Evaluation Period | 06.12.2026 Sunday; row 72",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "end-term-window",
+      "title": "End Term Examination Including Preparatory Leave",
+      "kind": "EXAM_WINDOW",
+      "startDate": "2026-12-07",
+      "endDate": "2027-01-03",
+      "rawDateText": "07.12.2026 to 03.01.2027; detailed schedule to be issued, row 73",
+      "certainty": "UNSPECIFIED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 5,
+          "region": "Annexure I / cited row or note",
+          "rawText": "End Term Examination Including Preparatory Leave | 07.12.2026 to 03.01.2027; detailed schedule to be issued, row 73",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    },
+    {
+      "id": "winter-vacation",
+      "title": "Winter Vacation",
+      "kind": "VACATION",
+      "startDate": "2027-01-04",
+      "endDate": "2027-01-17",
+      "rawDateText": "04.01.2027 to 17.01.2027, row 84",
+      "certainty": "AS_LISTED",
+      "applicability": "UNRESOLVED",
+      "treatment": "UNRESOLVED",
+      "allDay": null,
+      "startTime": null,
+      "endTime": null,
+      "review": "UNREVIEWED",
+      "evidence": [
+        {
+          "sourceId": "academic-calendar",
+          "page": 6,
+          "region": "Annexure I / cited row or note",
+          "rawText": "Winter Vacation | 04.01.2027 to 17.01.2027, row 84",
+          "method": "HUMAN_VISUAL",
+          "confidence": null
+        }
+      ],
+      "term": "ODD",
+      "audienceText": null,
+      "printedCalendarWeekday": null,
+      "replacementWeekday": null,
+      "replacesDate": null
+    }
+  ],
+  "expectedOpenIssues": [
+    "ACTIVITY_TREATMENT_REQUIRED",
+    "WEIGHTS_AND_ATTENDANCE_POLICY_UNCONFIRMED",
+    "CURRENT_ACTUAL_COUNTS_MISSING",
+    "FIRST_YEAR_START_APPLICABILITY_UNCONFIRMED",
+    "TEACHING_END_EXCEPTION_CONFIRMATION_REQUIRED",
+    "TENTATIVE_EXAM_DATES_REQUIRE_REVIEW",
+    "PHYSICS_Q3_MAPPING_REQUIRED"
+  ],
+  "negativeCases": [
+    {
+      "name": "ocr-holiday-year-mismatch",
+      "observedOcr": "Janmashtami (Vaishnava) 04.09.2028 Friday",
+      "visualSourceDate": "2026-09-04",
+      "expected": "Flag year/context and weekday mismatch; no silent year correction or compilation."
+    },
+    {
+      "name": "section-leakage",
+      "expected": "Section R lower table / O,P,S,T,U,V must never become Section Q meetings."
+    },
+    {
+      "name": "lab-group-double-count",
+      "expected": "Q12/Q23 alternative staff rows must not become two simultaneous C-lab occurrences."
+    }
+  ],
+  "declaredProgrammingLabGroup": "Q23",
+  "userDeclaration": {
+    "section": "Q",
+    "practicalSubgroup": "Q3",
+    "programmingLabGroup": "Q23",
+    "authority": "Direct user statement in this conversation; not inferred from the timetable."
+  }
+}

@@ -1,0 +1,690 @@
+{
+  "corpusVersion": "0.2.0",
+  "purpose": "Developer-visible calibration/regression reference. Not trained weights, exhaustive ground truth, independent held-out evaluation, or runtime fixture lookup.",
+  "activeStudentScope": {
+    "institution": "MAIT",
+    "section": "Q",
+    "practicalSubgroup": "Q3",
+    "programmingLabGroup": "Q23",
+    "activeCalendar": "original scanned MAIT calendar only"
+  },
+  "calendarDocumentsIncludingOriginal": 5,
+  "newExamples": [
+    {
+      "source": {
+        "id": "bhu-digital-bilingual",
+        "originalName": "calendar_26-27_odd.pdf",
+        "sha256": "030ae8ca084ac1c385ca8f259a529cf55cfeae4eab3f611b73407c2c821cebe3",
+        "bytes": 1155367,
+        "pages": 2,
+        "format": "TEXT_NATIVE_PDF_BILINGUAL",
+        "institutionVisible": "INDIAN INSTITUTE OF TECHNOLOGY (BHU)",
+        "usage": "FORMAT_TEST_ONLY",
+        "applyToActiveMAITSetup": false
+      },
+      "referencePage": 1,
+      "expectedCases": [
+        {
+          "id": "bhu-start-other",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Start of classes except first semester",
+          "startDate": "2026-07-23",
+          "endDate": "2026-07-23",
+          "reviewRequired": true,
+          "audience": "all except first-semester UG/PG/PhD"
+        },
+        {
+          "id": "bhu-start-ug-first",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Classes begin UG first semester",
+          "startDate": "2026-08-07",
+          "endDate": "2026-08-07",
+          "reviewRequired": true,
+          "audience": "UG first semester"
+        },
+        {
+          "id": "bhu-start-pg-first",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Classes begin PG/PhD first semester",
+          "startDate": "2026-08-03",
+          "endDate": "2026-08-03",
+          "reviewRequired": true,
+          "audience": "PG/PhD first semester"
+        },
+        {
+          "id": "bhu-midterm",
+          "kind": "EXAM_WINDOW",
+          "title": "Mid Term Examination",
+          "startDate": "2026-09-21",
+          "endDate": "2026-09-26",
+          "reviewRequired": true
+        },
+        {
+          "id": "bhu-spardha",
+          "kind": "ACADEMIC_ACTIVITY",
+          "title": "Spardha",
+          "startDate": "2026-10-09",
+          "endDate": "2026-10-11",
+          "reviewRequired": true,
+          "certainty": "TENTATIVE"
+        },
+        {
+          "id": "bhu-suspension",
+          "kind": "NON_TEACHING",
+          "title": "Classes suspended on Oct 09",
+          "startDate": "2026-10-09",
+          "endDate": "2026-10-09",
+          "reviewRequired": true,
+          "eventWindowMustNotSuppressOtherDays": true
+        },
+        {
+          "id": "bhu-recess",
+          "kind": "NON_TEACHING",
+          "title": "Intra-Semester Recess",
+          "startDate": "2026-10-17",
+          "endDate": "2026-10-21",
+          "reviewRequired": true,
+          "excludedAudiences": [
+            "M.Tech.",
+            "M.Pharm.",
+            "M.Sc.",
+            "IDD after 8th semester",
+            "PhD"
+          ],
+          "applicabilityUnresolvedWithoutProgramme": true
+        },
+        {
+          "id": "bhu-end-other",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Classes End except first semester",
+          "startDate": "2026-11-10",
+          "endDate": "2026-11-10",
+          "reviewRequired": true,
+          "audience": "all except first semester"
+        },
+        {
+          "id": "bhu-end-first",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Classes End first-semester UG/PG/PhD",
+          "startDate": "2026-11-17",
+          "endDate": "2026-11-17",
+          "reviewRequired": true,
+          "audience": "first-semester UG/PG/PhD"
+        },
+        {
+          "id": "bhu-exams-other",
+          "kind": "EXAM_WINDOW",
+          "title": "End Semester except first semester",
+          "startDate": "2026-11-12",
+          "endDate": "2026-11-25",
+          "reviewRequired": true,
+          "audience": "all except first semester"
+        },
+        {
+          "id": "bhu-exams-first",
+          "kind": "EXAM_WINDOW",
+          "title": "End Semester first semester",
+          "startDate": "2026-11-19",
+          "endDate": "2026-11-30",
+          "reviewRequired": true,
+          "audience": "first-semester UG/PG/PhD"
+        },
+        {
+          "id": "bhu-winter-break",
+          "kind": "VACATION",
+          "title": "Winter Break",
+          "startDate": "2026-12-01",
+          "endDate": "2026-12-30",
+          "reviewRequired": true,
+          "sourcePrintedStartWeekday": "Saturday",
+          "actualStartWeekday": "Tuesday",
+          "expectedIssue": "SOURCE_WEEKDAY_CONFLICT",
+          "excludedAudienceNoteMustBePreserved": true
+        }
+      ],
+      "sourceConflicts": [
+        {
+          "id": "bhu-weekday-dec16",
+          "sourcePage": 1,
+          "sourceText": "Dec 16, 2026 (Mon)",
+          "numericDate": "2026-12-16",
+          "printedIsoWeekday": 1,
+          "actualIsoWeekday": 3,
+          "expected": "Flag source inconsistency; no silent date/weekday repair."
+        },
+        {
+          "id": "bhu-weekday-dec18",
+          "sourcePage": 1,
+          "sourceText": "Dec 18, 2026 (Wed)",
+          "numericDate": "2026-12-18",
+          "printedIsoWeekday": 3,
+          "actualIsoWeekday": 5,
+          "expected": "Flag source inconsistency."
+        },
+        {
+          "id": "bhu-bilingual-year",
+          "sourcePages": [
+            1,
+            2
+          ],
+          "event": "Display of Mid Term Examination Marks",
+          "englishDate": "2026-09-30",
+          "hindiDate": "2025-09-30",
+          "expected": "Cross-language year conflict; do not silently normalize or count translated rows twice."
+        }
+      ],
+      "encodingCase": {
+        "page": 2,
+        "pdftotextPrefix": "Hkkjrh; izkS|ksfxdh",
+        "expected": "Legacy-font text extraction is not usable Unicode Hindi; English page exists. Do not duplicate translated rows. Hindi-only support not established."
+      }
+    },
+    {
+      "source": {
+        "id": "grid-colour-tta",
+        "originalName": "Screenshot 2026-10-24 150735.png",
+        "sha256": "192adfd7c57080f9d9316bc01888506c48ac63d7adb09c97f74c4067b2c42710",
+        "bytes": 385400,
+        "pages": 1,
+        "format": "COLOUR_WEEK_GRID_WITH_LEGEND",
+        "institutionVisible": null,
+        "usage": "FORMAT_TEST_ONLY",
+        "applyToActiveMAITSetup": false
+      },
+      "referencePage": 1,
+      "expectedCases": [
+        {
+          "id": "grid1-first-class",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "1st Day of Class",
+          "startDate": "2026-08-10",
+          "endDate": "2026-08-10",
+          "reviewRequired": true
+        },
+        {
+          "id": "grid1-midterms",
+          "kind": "EXAM_WINDOW",
+          "title": "Mid Sem Exams (20 Sept - 28 Sept)",
+          "startDate": "2026-09-20",
+          "endDate": "2026-09-28",
+          "reviewRequired": true,
+          "includesOmittedSunday": true
+        },
+        {
+          "id": "grid1-recess-one",
+          "kind": "NON_TEACHING",
+          "title": "Mid Recess-I",
+          "startDate": "2026-09-29",
+          "endDate": "2026-10-01",
+          "reviewRequired": true,
+          "audience": "UG students except TAs"
+        },
+        {
+          "id": "grid1-recess-two",
+          "kind": "NON_TEACHING",
+          "title": "Mid Recess-II",
+          "startDate": "2026-11-09",
+          "endDate": "2026-11-10",
+          "reviewRequired": true,
+          "audience": "UG students except TAs"
+        },
+        {
+          "id": "grid1-last-class",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Last Day of Class",
+          "startDate": "2026-11-26",
+          "endDate": "2026-11-26",
+          "reviewRequired": true
+        },
+        {
+          "id": "grid1-end-exams",
+          "kind": "EXAM_WINDOW",
+          "title": "End-Sem Examinations (29 Nov - 8 Dec)",
+          "startDate": "2026-11-29",
+          "endDate": "2026-12-08",
+          "reviewRequired": true,
+          "includesOmittedSunday": true
+        },
+        {
+          "id": "grid1-tta-2026-08-22",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-08-22",
+          "endDate": "2026-08-22",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 5,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-09-08",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-09-08",
+          "endDate": "2026-09-08",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 5,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-09-12",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-09-12",
+          "endDate": "2026-09-12",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 3,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-09-19",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-09-19",
+          "endDate": "2026-09-19",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 2,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-10-10",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-10-10",
+          "endDate": "2026-10-10",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 2,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-10-30",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-10-30",
+          "endDate": "2026-10-30",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 1,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-10-31",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-10-31",
+          "endDate": "2026-10-31",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 2,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-11-21",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-11-21",
+          "endDate": "2026-11-21",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 1,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-11-25",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-11-25",
+          "endDate": "2026-11-25",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 2,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        },
+        {
+          "id": "grid1-tta-2026-11-26",
+          "kind": "REPLACEMENT",
+          "title": "Time Table Adjustment",
+          "startDate": "2026-11-26",
+          "endDate": "2026-11-26",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 5,
+          "sourceRegion": "bottom Time Table Adjustment legend",
+          "notActualCalendarWeekday": true
+        }
+      ],
+      "legendRules": [
+        "H includes weekends/gazetted holidays/no-class days; not every orange day is a named gazetted holiday.",
+        "Red recess has UG-except-TA restriction.",
+        "Dark-blue replacement cells and bottom legend agree; preserve other same-date events.",
+        "Green teaching backgrounds are not automatically holidays; do not confuse with a separate Dropped GH legend colour.",
+        "Unknown institution; never infer it from event name ESYA."
+      ]
+    },
+    {
+      "source": {
+        "id": "grid-cohort-makeup",
+        "originalName": "Screenshot 2026-10-24 150809.png",
+        "sha256": "55e4f58e8d1f642ab40850b2b9f6c3e637e7aea39d336ec2a236e05732a7f893",
+        "bytes": 479312,
+        "pages": 1,
+        "format": "COHORT_WEEK_GRID_WITH_NONTEACHING_MAKEUP",
+        "institutionVisible": null,
+        "usage": "FORMAT_TEST_ONLY",
+        "applyToActiveMAITSetup": false
+      },
+      "referencePage": 1,
+      "expectedCases": [
+        {
+          "id": "grid2-start-pg",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Teaching starts for PG-I",
+          "startDate": "2026-08-03",
+          "endDate": "2026-08-03",
+          "reviewRequired": true,
+          "audience": "PG-I",
+          "dateInferredFromMergedWeekStart": true
+        },
+        {
+          "id": "grid2-start-ug-phd",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Teaching starts for UG-I & PhD-I",
+          "startDate": "2026-08-17",
+          "endDate": "2026-08-17",
+          "reviewRequired": true,
+          "audience": "UG-I / PhD-I",
+          "dateInferredFromMergedWeekStart": true
+        },
+        {
+          "id": "grid2-diwali-break",
+          "kind": "NON_TEACHING",
+          "title": "NT Week / Diwali break",
+          "startDate": "2026-11-09",
+          "endDate": "2026-11-13",
+          "reviewRequired": true
+        },
+        {
+          "id": "grid2-mst",
+          "kind": "EXAM_WINDOW",
+          "title": "MST, week9 and week10",
+          "startDate": "2026-09-28",
+          "endDate": "2026-10-10",
+          "reviewRequired": true,
+          "acronymMeaningUnconfirmed": true,
+          "actualExamSessionsUnknown": true
+        },
+        {
+          "id": "grid2-est",
+          "kind": "EXAM_WINDOW",
+          "title": "EST, week18 and week19",
+          "startDate": "2026-12-07",
+          "endDate": "2026-12-19",
+          "reviewRequired": true,
+          "acronymMeaningUnconfirmed": true,
+          "actualExamSessionsUnknown": true
+        },
+        {
+          "id": "grid2-nt-2026-10-19",
+          "kind": "NON_TEACHING",
+          "title": "Explicit non-teaching date",
+          "startDate": "2026-10-19",
+          "endDate": "2026-10-19",
+          "reviewRequired": true
+        },
+        {
+          "id": "grid2-makeup-2026-10-31",
+          "kind": "REPLACEMENT",
+          "title": "Teaching day in lieu of NT with Monday timetable",
+          "startDate": "2026-10-31",
+          "endDate": "2026-10-31",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 1,
+          "replacesDate": "2026-10-19"
+        },
+        {
+          "id": "grid2-nt-2026-11-23",
+          "kind": "NON_TEACHING",
+          "title": "Explicit non-teaching date",
+          "startDate": "2026-11-23",
+          "endDate": "2026-11-23",
+          "reviewRequired": true
+        },
+        {
+          "id": "grid2-makeup-2026-11-28",
+          "kind": "REPLACEMENT",
+          "title": "Teaching day in lieu of NT with Monday timetable",
+          "startDate": "2026-11-28",
+          "endDate": "2026-11-28",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 1,
+          "replacesDate": "2026-11-23"
+        },
+        {
+          "id": "grid2-holiday-overlap",
+          "kind": "HOLIDAY",
+          "title": "Shaheedi Divas (Guru Teg Bahadur Ji)",
+          "startDate": "2026-12-14",
+          "endDate": "2026-12-14",
+          "reviewRequired": true,
+          "overlapsExamWindow": true,
+          "expected": "Keep holiday/exam-window evidence; do not infer exact exam cancellation or compulsory times."
+        }
+      ],
+      "legendRules": [
+        "NT originals suppress ordinary teaching; T makeup dates use explicitly stated Monday pattern.",
+        "31 Aug / 1 Sep crosses month boundary in week5; do not create 31 September.",
+        "Header cohort UG-I, PG-I, PhD-I has different commencement notes.",
+        "Institution not visible; do not infer from visual resemblance."
+      ]
+    },
+    {
+      "source": {
+        "id": "table-dual-term",
+        "originalName": "Screenshot 2026-10-24 150940.png",
+        "sha256": "546dfc3858e731be4e1e51c9905a8aebee14268806260a205cc27c285efbd66d",
+        "bytes": 488054,
+        "pages": 1,
+        "format": "SIDE_BY_SIDE_ODD_EVEN_TABLE_WITH_FOOTNOTES",
+        "institutionVisible": null,
+        "usage": "FORMAT_TEST_ONLY",
+        "applyToActiveMAITSetup": false
+      },
+      "referencePage": 1,
+      "expectedCases": [
+        {
+          "id": "dual-first-year-start",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Classes & Lab. Commencement (1st Year)",
+          "startDate": "2026-08-05",
+          "endDate": "2026-08-05",
+          "reviewRequired": true,
+          "term": "ODD",
+          "audience": "first year"
+        },
+        {
+          "id": "dual-other-start",
+          "kind": "TEACHING_BOUNDARY",
+          "title": "Classes & Lab. Commencement (All Others)",
+          "startDate": "2026-08-10",
+          "endDate": "2026-08-10",
+          "reviewRequired": true,
+          "term": "ODD",
+          "audience": "all others"
+        },
+        {
+          "id": "dual-midterm-odd",
+          "kind": "EXAM_WINDOW",
+          "title": "Mid Term Examination",
+          "startDate": "2026-10-05",
+          "endDate": "2026-10-10",
+          "reviewRequired": true,
+          "term": "ODD"
+        },
+        {
+          "id": "dual-midterm-even",
+          "kind": "EXAM_WINDOW",
+          "title": "Mid Term Examination",
+          "startDate": "2027-03-01",
+          "endDate": "2027-03-06",
+          "reviewRequired": true,
+          "term": "EVEN",
+          "excludeWhenTerm": "ODD"
+        },
+        {
+          "id": "dual-endterm-odd",
+          "kind": "EXAM_WINDOW",
+          "title": "End Term Examination",
+          "startDate": "2026-12-04",
+          "endDate": "2026-12-15",
+          "reviewRequired": true,
+          "term": "ODD"
+        },
+        {
+          "id": "dual-endterm-even",
+          "kind": "EXAM_WINDOW",
+          "title": "End Term Examination",
+          "startDate": "2027-05-06",
+          "endDate": "2027-05-19",
+          "reviewRequired": true,
+          "term": "EVEN",
+          "excludeWhenTerm": "ODD"
+        },
+        {
+          "id": "dual-student-vac",
+          "kind": "VACATION",
+          "title": "Vacation for Students",
+          "startDate": "2026-12-16",
+          "endDate": "2027-01-01",
+          "reviewRequired": true,
+          "term": "ODD",
+          "yearRollover": true
+        },
+        {
+          "id": "dual-faculty-vac",
+          "kind": "VACATION",
+          "title": "Vacation for Faculty Members",
+          "startDate": "2026-12-16",
+          "endDate": "2027-01-01",
+          "reviewRequired": true,
+          "term": "ODD",
+          "audience": "faculty",
+          "notStudentVacationByInference": true
+        },
+        {
+          "id": "dual-tta-2026-08-22",
+          "kind": "REPLACEMENT",
+          "title": "Timetable substitution in bottom notes",
+          "startDate": "2026-08-22",
+          "endDate": "2026-08-22",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 2,
+          "term": "ODD",
+          "excludeWhenTerm": null
+        },
+        {
+          "id": "dual-tta-2026-09-29",
+          "kind": "REPLACEMENT",
+          "title": "Timetable substitution in bottom notes",
+          "startDate": "2026-09-29",
+          "endDate": "2026-09-29",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 5,
+          "term": "ODD",
+          "excludeWhenTerm": null
+        },
+        {
+          "id": "dual-tta-2026-10-01",
+          "kind": "REPLACEMENT",
+          "title": "Timetable substitution in bottom notes",
+          "startDate": "2026-10-01",
+          "endDate": "2026-10-01",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 5,
+          "term": "ODD",
+          "excludeWhenTerm": null
+        },
+        {
+          "id": "dual-tta-2027-05-04",
+          "kind": "REPLACEMENT",
+          "title": "Timetable substitution in bottom notes",
+          "startDate": "2027-05-04",
+          "endDate": "2027-05-04",
+          "reviewRequired": true,
+          "replacementIsoWeekday": 3,
+          "term": "EVEN",
+          "excludeWhenTerm": "ODD"
+        },
+        {
+          "id": "dual-working-2026-10-10",
+          "kind": "WORKING_DAY_NOTICE",
+          "title": "Working Saturday in view of examinations",
+          "startDate": "2026-10-10",
+          "endDate": "2026-10-10",
+          "reviewRequired": true,
+          "replacementIsoWeekday": null,
+          "expected": "No teaching pattern specified; do not manufacture ordinary classes or Monday timetable."
+        },
+        {
+          "id": "dual-working-2026-12-05",
+          "kind": "WORKING_DAY_NOTICE",
+          "title": "Working Saturday in view of examinations",
+          "startDate": "2026-12-05",
+          "endDate": "2026-12-05",
+          "reviewRequired": true,
+          "replacementIsoWeekday": null,
+          "expected": "No teaching pattern specified; do not manufacture ordinary classes or Monday timetable."
+        },
+        {
+          "id": "dual-working-2026-12-12",
+          "kind": "WORKING_DAY_NOTICE",
+          "title": "Working Saturday in view of examinations",
+          "startDate": "2026-12-12",
+          "endDate": "2026-12-12",
+          "reviewRequired": true,
+          "replacementIsoWeekday": null,
+          "expected": "No teaching pattern specified; do not manufacture ordinary classes or Monday timetable."
+        },
+        {
+          "id": "dual-tba",
+          "kind": "UNKNOWN",
+          "title": "Academic Week including Orientation Programme",
+          "startDate": null,
+          "endDate": null,
+          "reviewRequired": true,
+          "rawDateText": "To be Announced",
+          "term": "ODD",
+          "expected": "No fabricated date/holiday."
+        },
+        {
+          "id": "dual-no-end",
+          "kind": "UNKNOWN",
+          "title": "Last teaching day not explicitly specified",
+          "startDate": null,
+          "endDate": null,
+          "reviewRequired": true,
+          "term": "ODD",
+          "expected": "Do not infer exact teachingEnd from end-term examination or student vacation start."
+        }
+      ],
+      "legendRules": [
+        "Keep odd/even columns and programme cohorts separate.",
+        "Allotment/enrollment deadlines and unknown festival dates are not holidays.",
+        "Working Saturday for examinations does not specify recurring timetable.",
+        "Institution not visible in supplied screenshot."
+      ]
+    }
+  ],
+  "negativeCases": [
+    "No FORMAT_TEST_ONLY example may change MAIT dates.",
+    "No filename/hash keyed cached extraction.",
+    "No cohort/term union to create an invented horizon.",
+    "No silent correction of source year/weekday conflicts.",
+    "No legend-free colour classification as gazetted holidays.",
+    "No duplicate translated events.",
+    "No replacement-pattern/date-weekday confusion.",
+    "No implicit attendance weight from colour, superscript, duration or instructional-hour summary."
+  ]
+}
