@@ -1,5 +1,7 @@
 # FV-01 verified source synchronization
 
+**Subsequent documentation update (25 October 2026):** after the owner-reported final merge/deployment and D acceptance, a root README was added and `semester-space/README.md` was corrected for judges. This note is also documentation-only. All runtime, tests, dependencies, licenses and historical data remain unchanged. The 199-file manifest below identifies the original verified archive; it intentionally retains the original application README checksum and will flag that documented README-only difference in the current tree. Earlier byte-match claims below record the initial publication, not a new hash for the documentation update.
+
 Publication date: 25 October 2026 (Asia/Kolkata). This is source synchronization, not new implementation or deployment.
 
 ## Authoritative identity
