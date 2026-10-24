@@ -66,3 +66,19 @@
 
 /* A integration: small footer text needs at least 4.5:1 on #f3f6f5. */
 footer{color:#536d67}
+
+/* Local document review keeps raw source content readable without horizontal page overflow. */
+.document-import { min-width:0; }
+.document-import details { padding:.65rem; margin:.6rem 0; border:1px solid var(--line,#aab5c5); border-radius:.5rem; }
+.document-import summary { cursor:pointer; overflow-wrap:anywhere; padding:.35rem; }
+.document-import label { display:flex; flex-direction:column; gap:.3rem; margin:.65rem 0; font-weight:600; }
+.document-import input,.document-import select,.document-import textarea { max-width:100%; min-width:0; padding:.6rem; border:1px solid #8692a4; border-radius:.3rem; background:#fff; color:#16253a; }
+.document-import input[type=checkbox] { align-self:flex-start; width:1.2rem; height:1.2rem; }
+.document-import button { padding:.65rem .8rem; margin:.4rem .4rem .4rem 0; border:1px solid #3c566b; border-radius:.35rem; background:#f0f5fa; color:#16253a; cursor:pointer; }
+.document-import button:disabled { cursor:wait; opacity:.6; }
+.document-import img { max-width:100%; height:auto; display:block; }
+.document-import [data-source-view] { max-height:80vh; overflow:auto; }
+.document-import pre,.document-import blockquote { white-space:pre-wrap; overflow-wrap:anywhere; margin:.5rem 0; font-weight:400; }
+.document-import [role=alert] { color:#8c2026; overflow-wrap:anywhere; }
+.import-fields { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:.5rem; }
+.document-import :focus-visible { outline:3px solid #205fa1; outline-offset:3px; }

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { resolve, extname, sep } from 'node:path';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const port=Number(process.env.PORT??5173),host=process.env.HOST??'127.0.0.1';
-const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8'};
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.wasm':'application/wasm','.gz':'application/gzip'};
 export function makeServer(base=root) {
   return createServer(async(req,res)=>{
     try{

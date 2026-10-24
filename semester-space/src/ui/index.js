@@ -1,3 +1,4 @@
+import {documentImport,syncDocumentImport} from './import.js';
 // SemesterSpace UI — role C, SS-INT-001, contract 1.1.0.
 // DOM-only rendering. A owns every state transition and B owns every decision.
 const WEEKDAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
@@ -690,6 +691,7 @@ export function render(state,results,callbacks){
   }
   scope=newScope;
   live={state,results,callbacks};
+  syncDocumentImport(state);
   if(state.mode==='personal'){
     chosenSession=state.model?.sessions.some(s=>s.id===chosenSession)?chosenSession:null;
     chosenEvent=state.model?.events.some(e=>e.id===chosenEvent)?chosenEvent:'new';
@@ -711,7 +713,7 @@ export function render(state,results,callbacks){
   const sidebar=el('div',null,'sidebar');
   const setup=section('Academic setup','Confirm actual counts or review the original source details. Plans never change actual attendance.');
   if(state.model){const advanced=details(setup,'existing-setup-controls','Review setup, counts and targets',false);existingSetup(advanced,state,callbacks);}
-  else initialSetup(setup,callbacks);
+  else {setup.append(documentImport(state,callbacks,timeNow));const manual=details(setup,'manual-setup-fallback','Or enter setup manually',false);initialSetup(manual,callbacks);}
   sidebar.append(setup);
   const review=section('Updates & history','Edit individual future meetings/events, inspect commitments and retained history.');
   if(state.model){const advanced=details(review,'review-controls','Open updates and commitment review',false);reviewSection(advanced,state,callbacks);sidebar.append(review);}
