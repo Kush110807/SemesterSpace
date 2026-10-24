@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
   "manifest_status": "current_review_source_metadata",
-  "purpose": "Corrected source packaging for D independent review; no runtime or extraction behavior changes.",
+  "purpose": "D-IMP-01 confined importer source-to-effect validation repair for independent review.",
   "repository": "Kush110807/SemesterSpace",
   "branch": "feature/document-import",
-  "base_commit": "feb40999bdc59fc7ef41eb55e24665a690985fa6",
-  "feature_commit": "044252287a3bebb7c2199076f52c531b5c2c90bb",
-  "feature_commit_meaning": "Exact independently tested implementation commit. The package contains metadata/documentation-only descendants of this commit.",
+  "base_commit": "16fe844f56c98f8b1d529a250dac3a7d67a6c3c9",
+  "feature_commit": "9486866f1d8f50d584dc8481d516fefbbe0b638e",
+  "feature_commit_meaning": "Exact tested D-IMP-01 repair commit; package contains metadata-only descendants.",
   "repository_intake_commit": "985ae01a7edf0f27dbc96a1c3abb8bef1a6a7a3c",
   "package_revision_identity": "The external D_REVIEW_PACKAGE.json identifies the exact package_source_commit and ZIP SHA-256. It is outside the source payload to avoid circular hashes.",
   "application_directory": "semester-space",
@@ -15,7 +15,7 @@
     "current_file_manifest": "PACKAGE_INTEGRITY.sha256",
     "scope": "Every payload file except PACKAGE_INTEGRITY.sha256 itself; paths relative to the extracted project root.",
     "self_exclusion_reason": "A checksum file cannot contain its own final hash. The entire ZIP is covered by an external SHA-256 sidecar.",
-    "external_zip_checksum": "SemesterSpace-D-review-source.zip.sha256"
+    "external_zip_checksum": "SemesterSpace-D-IMP-01-source.zip.sha256"
   },
   "historical_manifests": [
     {
@@ -38,13 +38,18 @@
     "explanation": "The file was absent from the supplied repository before implementation. Historical manifests reference an older packet containing it. The earlier omission cause is not established; neither its contents nor current hosting state can be inferred from the historical checksum."
   },
   "implementation_verification": {
-    "independently_reported_by_user": true,
-    "full_suite_tests": 108,
+    "performed_in_this_repair": true,
+    "full_suite_tests": 136,
+    "new_regression_tests": 28,
+    "unchanged_prior_unit_tests": 108,
     "engine_tests": 26,
     "independent_arithmetic_cases": 342,
-    "syntax": "passed",
+    "syntax_modules": 52,
+    "clean_install": "passed; 21 packages; 39 local assets",
     "build": "passed",
-    "packaging_only_policy": "Preserve implementation, dependency lockfile, asset-generation scripts, original tests, browser/corpus evidence and reference inputs byte-for-byte against feature_commit."
+    "served_browser": "passed; actual upload/correction/connected flow plus controlled module API cases",
+    "corpus": "five inputs decoded; partial semantic extraction; details in repair handoff",
+    "packaging_only_policy": "Runtime, lockfile, asset scripts, tests, references and evidence unchanged from feature_commit."
   },
   "limitations": {
     "automatic_calendar_extraction": "partial; unsupported meanings require explicit manual completion",
@@ -52,7 +57,7 @@
     "human_coverage_declarations": "not proof that every source event is represented",
     "q3_physics_mapping": "unresolved",
     "fallback": "SS-INT-002",
-    "authoritative_handoff": "semester-space/docs/CALENDAR_COVERAGE_REVIEW.md"
+    "authoritative_handoff": "semester-space/docs/D_IMP_01_REPAIR.md"
   },
   "exclusions": [
     ".git",
@@ -61,5 +66,6 @@
     "dist"
   ],
   "review_instructions": "D_REVIEW_PACKAGE.md",
-  "merge_or_deployment_performed": false
+  "merge_or_deployment_performed": false,
+  "previous_tested_implementation": "044252287a3bebb7c2199076f52c531b5c2c90bb"
 }
