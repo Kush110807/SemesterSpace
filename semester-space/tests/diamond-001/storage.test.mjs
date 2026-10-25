@@ -65,3 +65,5 @@ for(const [name,mut] of [['clock',e=>e.model.snapshots[0].confirmedAt.extension=
 for(const [name,mut] of [['undefined',e=>e.model.preferences.notes=undefined],['getter',(e,hit)=>Object.defineProperty(e.model.preferences,'notes',{enumerable:true,get(){hit();return ''}})]])run('S30c-revision-'+name,{change:mut,options:{...existing,expectedRevision:2}},'PERSISTED_CONFLICT','MODEL_REVISION');
 let extended=fixture();extended.retained={x:1};run('S28b-revision',{stored:extended,options:{...existing,expectedRevision:99}},'PERSISTED_REWRITE_UNSUPPORTED','UNRECOGNIZED_RETAINED_FIELD');
 run('S29c-legacy-hash-spelling',{stored:hash,candidate:clone(hash),serializer:e=>{const v=JSON.parse(native(e));v.release.calendar.sourceRevision.sha256=v.release.calendar.sourceRevision.sha256.toLowerCase();return native(v)}},'SERIALIZATION_FAILED','ROUNDTRIP_MISMATCH');
+
+for(const [i,bad] of ['1',null,false,0,-1,1.5].entries()){let e=fixture();e.schemaVersion=1;e.model.schemaVersion=bad;run('S27a-legacy-combination-'+i,{stored:e},'PERSISTED_DATA_INVALID');}

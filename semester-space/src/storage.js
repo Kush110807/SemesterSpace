@@ -286,7 +286,7 @@ export function saveModel(storage, model, release, options = {}) {
       }
     }
     for(const [path,v,supported] of tags)if(Number.isInteger(v)&&v>0&&!supported.includes(v))return failed('UNSUPPORTED_PERSISTED_VERSION','VERSION',path);
-    if(e.schemaVersion===1 && e.release?.version===1)return failed('PERSISTED_REWRITE_UNSUPPORTED','UNSUPPORTED_COMBINATION','/release');
+    if(e.schemaVersion===1 && e.model?.schemaVersion===1 && e.release?.version===1)return failed('PERSISTED_REWRITE_UNSUPPORTED','UNSUPPORTED_COMBINATION','/release');
     if(tags.some(([,v,supported])=>!supported.includes(v)) || (e.schemaVersion===2&&!object(e.release)))return failed('PERSISTED_DATA_INVALID','VERSION_SHAPE');
     try{if(core(e.model,e.schemaVersion===1?makeEmptyRelease(e.model):e.release).length)return failed('PERSISTED_DATA_INVALID','CORE_INVALID');}
     catch{return failed('PERSISTED_DATA_INVALID','CORE_INVALID');}
