@@ -74,6 +74,16 @@ export async function run(){
  const result=await page.evaluate(overrides=>{const s=diamondApp.getState();return diamondApp.callbacks.onUpsertEvent({requestVersion:1,mode:s.mode,expectedModelId:s.model.id,expectedModelRevision:s.model.revision,operation:'CREATE',targetEventId:null,event:{id:'new',title:'New',cancelled:false,sessionId:null,date:'2026-11-03',start:'14:00',end:'15:00'},...overrides})},overrides);assert.equal(result.code,code);report.cases.push({id:'boundary-'+name,result});
  }
  await page.clock.setSystemTime(new Date('2026-11-02T02:29:00Z'));const clockResult=await page.evaluate(()=>{const s=diamondApp.getState();return diamondApp.callbacks.onUpsertEvent({requestVersion:1,mode:s.mode,expectedModelId:s.model.id,expectedModelRevision:s.model.revision,operation:'UPDATE',targetEventId:s.model.events[0].id,event:s.model.events[0]})});assert.equal(clockResult.code,'CLOCK_CONFLICT');report.cases.push({id:'boundary-clock',result:clockResult});
+ await page.getByRole('button',{name:'Calendar & breaks',exact:true}).click();
+ await page.getByRole('heading',{name:'Clock conflict · retained evaluation',exact:true}).waitFor();
+ await page.clock.setSystemTime(new Date('2026-11-02T02:30:00Z'));
+ await page.evaluate(()=>diamondApp.callbacks.onRefresh());assert.ok(await page.evaluate(()=>diamondApp.getState().clockConflict));
+ await page.getByRole('button',{name:'Recheck current plan',exact:true}).click();assert.equal(await page.evaluate(()=>diamondApp.getState().clockConflict),null);report.explicitClockRecovery=true;
+ const personalBytes=await page.evaluate(()=>nativeGet.call(localStorage,'semesterspace.v1'));
+ await page.getByRole('button',{name:'Open synthetic demo',exact:true}).click();await page.getByRole('button',{name:'Setup & history',exact:true}).click();await page.locator('details').evaluateAll(rows=>rows.forEach(e=>e.open=true));
+ await page.locator('[data-ui-key="choose-event::id"]').selectOption('new');await page.getByLabel('Event title',{exact:true}).fill('Demo local event');await page.getByLabel('Independent event date',{exact:true}).fill('2026-11-03');
+ a=await record(page,'UI-DEMO',()=>page.getByRole('button',{name:'Add compulsory event',exact:true}).click());assert.equal(a.state.eventCommandResult.code,'DEMO_APPLIED');assert.equal(a.bytes,personalBytes);
+ await page.getByRole('button',{name:'Exit synthetic demo',exact:true}).click();assert.equal(await page.evaluate(()=>nativeGet.call(localStorage,'semesterspace.v1')),personalBytes);
  await context.tracing.stop({path:join(out,'second.trace.zip')});assert.deepEqual(report.errors,[]);report.complete=true;
  }catch(e){report.failure=e.stack;throw e}finally{await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));if(context)await context.close()}
  console.log(JSON.stringify({complete:report.complete,cases:report.cases.map(c=>c.id),nativeReopen:report.nativeReopen,mobile:report.mobile,errors:report.errors}));

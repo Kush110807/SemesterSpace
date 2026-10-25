@@ -326,6 +326,8 @@ export function createController({engine, render, storage, clock = currentClock,
     const done=(code,details={})=>{
       const ok=['COMMITTED','DEMO_APPLIED','NO_CHANGE'].includes(code);
       const messages={NO_CHANGE:'No change. No save was attempted.',SOURCE_CHANGE_BLOCKED:'This event has retained source evidence. Source changes require review.',SOURCE_REVIEW_REQUIRED:details.reason==='DATASET_SOURCE_RESTRICTION'?'Source history is incomplete; changes to existing events are temporarily blocked.':"This event’s local entry cannot be established in this session.",HISTORY_PROTECTED:'Historical correction is unsupported; the old or proposed event is protected.',CLOCK_CONFLICT:'The clock precedes retained facts or decisions. Review the clock and explicitly revalidate.',STALE_REVISION:'This draft has an older model or revision. Refresh and review before submitting again.',PERSISTENCE_FAILED:'The complete change could not be saved. Accepted data and draft are retained.',VALIDATION_REJECTED:'The event command or retained data is invalid.',COMMITTED:'Event saved in this browser. Local edit permission expires on reload, mode switch or another kind of change.',DEMO_APPLIED:'Demo event applied in memory only.'};
+      if(code==='CLOCK_CONFLICT')state.clockConflict=copy(details);
+      if(['COMMITTED','DEMO_APPLIED','NO_CHANGE'].includes(code))state.clockConflict=null;
       state.notice=messages[code]??'Event command rejected.';
       const result={ok,code,effect:code==='COMMITTED'||code==='DEMO_APPLIED'?'MUTATED':'NONE',commitState:code==='COMMITTED'?'DURABLE':code==='DEMO_APPLIED'?'MEMORY_ONLY':'NONE',modelRevision:state.model?.revision??null,...details};
       state.eventCommandResult=copy(result);emit();return copy(result);
@@ -503,13 +505,15 @@ export function createController({engine, render, storage, clock = currentClock,
       required(unique(dates),'Select unique dates.');state.manualDates=copy(dates);evaluate();
     }),
     onCheckManual: guarded(() => {
-      const conflict=state.model&&clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
+      const conflict=state.model&&clockIssues(now());if(conflict){state.clockConflict=copy(conflict);state.notice=conflict.code+': Explicit revalidation required.';return;}
+      state.clockConflict=null;
       const evaluation = evaluate(state.manualDates);
       state.batch = passes(evaluation) && state.manualDates.length ? {modelRevision:state.model.revision,evaluatedAt:now(),dates:copy(state.manualDates),evaluation} : null;
       state.notice = state.batch ? 'Manual dates checked together. Explicit acceptance is still required.' : 'No passing manual selection to accept.';
     }),
     onSuggest: guarded(() => {
-      const conflict=state.model&&clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
+      const conflict=state.model&&clockIssues(now());if(conflict){state.clockConflict=copy(conflict);state.notice=conflict.code+': Explicit revalidation required.';return;}
+      state.clockConflict=null;
       required(state.model,'Create a setup first.');
       const search = engine.suggestPlan(state.model,{clock:now()});
       results={runtime:'READY',evaluation:search.evaluation,search,error:null};
@@ -518,7 +522,8 @@ export function createController({engine, render, storage, clock = currentClock,
     }),
     onAccept: guarded(({dates,modelRevision}) => {
       required(state.batch && state.model,'No current checked batch to accept.');
-      const conflict=clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
+      if(state.clockConflict){state.notice='CLOCK_CONFLICT: Explicit revalidation required before accepting.';return;}
+      const conflict=clockIssues(now());if(conflict){state.clockConflict=copy(conflict);state.notice=conflict.code+': Explicit revalidation required.';return;}
       required(modelRevision===state.model.revision && modelRevision===state.batch.modelRevision,'Stale suggestion revision. Generate a new batch.');
       required(unique(dates) && dates.length>0 && dates.every(d=>state.batch.dates.includes(d)), 'Accept a unique nonempty subset of the displayed batch.');
       const evaluation=engine.evaluatePlan(state.model,{additionalDates:dates,clock:now()});
@@ -643,6 +648,7 @@ export function createController({engine, render, storage, clock = currentClock,
     }),
     onApplyCalendarRevision: releaseOperation(request => {
       required(state.model && stagedRevision,'Stage a calendar revision first.');
+      if(state.clockConflict)return {ok:false,code:'CLOCK_CONFLICT',modelRevision:state.model.revision,issues:[]};
       const conflict=clockIssues(now());if(conflict)return {ok:false,...conflict,modelRevision:state.model.revision};
       required(request?.confirmation===true && request.confirmedSourceCoverage===true,
         'Explicit revision/source confirmation is required.');
@@ -684,8 +690,10 @@ export function createController({engine, render, storage, clock = currentClock,
       return {...committed,code:'REVISION_APPLIED',appliedChangeIds:copy(request.acceptedChangeIds),
         preservedCommitmentIds:state.model.commitments.map(c=>c.id)};
     }),
-    onRefresh: guarded(() => {
-      const conflict=state.model&&clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
+    onRefresh: guarded((request={}) => {
+      if(state.clockConflict && request.explicit!==true){state.notice='CLOCK_CONFLICT: Use Recheck current plan for explicit revalidation.';return;}
+      const conflict=state.model&&clockIssues(now());if(conflict){state.clockConflict=copy(conflict);state.notice=conflict.code+': Explicit revalidation required.';return;}
+      state.clockConflict=null;
       const evaluation=evaluate(state.batch?.dates ?? []);
       if (!passes(evaluation) || state.batch?.modelRevision!==state.model?.revision) state.batch=null;
     }),

@@ -435,10 +435,10 @@ function resultCard(parent,state,results){
   if(evaluation){
     const [title,explanation,tone]=STATES[evaluation.status]??[evaluation.status,'Unrecognised status; do not act on this result.','warning'];
     const card=el('div',null,`status-card ${tone}`);card.setAttribute('role','status');
-    add(card,el('h3',title),el('p',explanation));
+    add(card,el('h3',state.clockConflict?'Clock conflict · retained evaluation':title),el('p',state.clockConflict?'This retained result is not a current verdict. Check the clock and explicitly recheck before acceptance.':explanation));
     const technical=el('details',null,'release-technical');add(technical,el('summary','Evaluation details'),el('p',`Contract ${evaluation.contractVersion} · revision ${evaluation.modelRevision??'unknown'} · checked ${evaluation.evaluatedAt?`${evaluation.evaluatedAt.date} ${evaluation.evaluatedAt.time} IST`:'time unavailable'}`));card.append(technical);
     const next={INVALID_SETUP:'Next: correct the reported setup or confirmation fields; no feasible result exists.',ATTENDANCE_UPDATE_NEEDED:'Next: confirm a new completed-day snapshot with actual counts.',EXISTING_UNRECOVERABLE_SHORTFALL:'Next: review the actual counts and planning constraints; no proposed break resolves this shortfall.',PLAN_BLOCKED:'Next: inspect conflicting dates and existing commitments. This evaluation does not authorize additional breaks.',CONDITIONAL_RECOVERY:'Next: review every required recovery meeting before accepting a checked subset.',MEETS_PLANNING_RULES:'Next: inspect dates, then explicitly commit a checked subset if desired.'};
-    if(next[evaluation.status])add(card,el('p',next[evaluation.status],'next-action'));
+    if(!state.clockConflict&&next[evaluation.status])add(card,el('p',next[evaluation.status],'next-action'));
     const invalidDates=evaluation.dates?.filter(d=>d.markers?.includes('INVALID_COMMITMENT')).map(d=>d.date)??[];
     if(invalidDates.length)add(card,el('p',`Committed dates now invalid: ${invalidDates.join(', ')}. Navigate the calendar to inspect each date.`,'invalid-summary'));
     if(evaluation.issues?.length){add(card,el('h4','Input / policy issues'));issueList(card,evaluation.issues);}
@@ -562,7 +562,7 @@ function planSection(parent,state,results,callbacks){
   if(state.model){
     const actionRow=el('div',null,'cta-row');actionRow.setAttribute('aria-label','Next planning actions');
     actionRow.append(button('Find suggested teaching days off',()=>callbacks.onSuggest(),{disabled:results.runtime==='ENGINE_UNAVAILABLE',focusKey:'plan:suggest'}));
-    actionRow.append(button('Recheck current plan',()=>callbacks.onRefresh(),{secondary:true,focusKey:'plan:recheck'}));parent.append(actionRow);
+    actionRow.append(button('Recheck current plan',()=>callbacks.onRefresh({explicit:true}),{secondary:true,focusKey:'plan:recheck'}));parent.append(actionRow);
   }
   if(state.model)buildCalendar(parent,state,results,callbacks);
   else notice(parent,'The calendar and planning controls appear after confirmed setup, not from unverified sample data.');

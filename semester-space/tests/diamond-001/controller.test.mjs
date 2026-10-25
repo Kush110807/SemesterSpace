@@ -12,8 +12,8 @@ function enriched(e,kind='UPSERT_EVENT',targetId='A') {
  e.release.calendar.sourceRevision={version:1,sha256:'a'.repeat(64),fileName:'source.pdf',source:{sha256:'a'.repeat(64),fileName:'source.pdf'},scope:{start:'2026-11-01',end:'2026-11-04',section:'Q',subgroup:null,programmingGroup:null},links:[{sourceRef:'r',changeId:'r',kind,targetId,value:null,evidence:{sourceId:'source',page:1,excerpt:'Exam',basis:'DIRECT_SOURCE'},sourceSha256:'a'.repeat(64)}],sourceHistory:[]};return e;
 }
 const event=(id='B',changes={})=>({id,title:'Local event',cancelled:false,sessionId:null,date:'2026-11-03',start:'14:00',end:'15:00',...changes});
-function harness(e=fixture(),engineInput=engine) {
- let raw=JSON.stringify(e),reads=0,writes=0,c=clone(FIXED_CLOCK),readFault=false,writeFault=false;
+function harness(e=fixture(),engineInput=engine,initialClock=FIXED_CLOCK) {
+ let raw=JSON.stringify(e),reads=0,writes=0,c=clone(initialClock),readFault=false,writeFault=false;
  const storage={getItem(){reads++;if(readFault)throw Object.assign(Error('STALE'),{code:'PERSISTED_CONFLICT'});return raw},setItem(k,v){writes++;if(writeFault)throw Object.assign(Error('STALE'),{code:'PERSISTED_CONFLICT'});raw=v}};
  const open=()=>createController({engine:engineInput,attendance,revision,storage,clock:()=>clone(c),render(){}});
  const app=open();
@@ -171,4 +171,21 @@ test('B1-M12 exact tracked-value mismatch cannot use witness',()=>{
  const wrapped={...engine,evaluatePlan(m,req){const result=engine.evaluatePlan(m,req);if(disturb){m.events.find(e=>e.id==='B').title='unexpected external in-memory change';disturb=false;}return result}};
  const h=harness(fixture(),wrapped);create(h);disturb=true;h.app.callbacks.onRefresh();
  act(h,'B1-M12 mismatched value',update(h,'B',{title:'overwrite'}),'SOURCE_REVIEW_REQUIRED','LOCAL_ORIGIN_UNPROVEN');
+});
+test('H3 rollback hold requires explicit revalidation after clock catches up',()=>{
+ const h=harness();h.app.callbacks.onSuggest();const before=h.app.getState();h.clock={...FIXED_CLOCK,time:'07:59'};act(h,'clock hold',command(h,event()),'CLOCK_CONFLICT');assert.ok(h.app.getState().clockConflict);
+ h.clock=clone(FIXED_CLOCK);h.app.callbacks.onRefresh();assert.ok(h.app.getState().clockConflict);h.app.callbacks.onAccept({dates:[before.batch.dates[0]],modelRevision:0});assert.equal(h.writes,0);
+ h.app.callbacks.onRefresh({explicit:true});assert.equal(h.app.getState().clockConflict,null);
+});
+test('H3 old official confirmation later than captured command, including nonlatest snapshot',()=>{
+ const e=fixture();e.model.snapshots[0].confirmedAt={...FIXED_CLOCK,time:'09:00'};const h=harness(e,engine,{...FIXED_CLOCK,time:'10:00'});assert.ok(h.app.getState().model);
+ const req={expectedModelRevision:0,dayKey:'day',date:'2026-11-02',marks:[{occurrenceId:'s1',registerId:'lecture',disposition:'ATTENDED',note:''}],confirmCompleteDay:true,confirmNoUnlistedMeetings:true};assert.ok(h.app.callbacks.onConfirmAttendanceDay(req).ok);
+ h.clock=clone(FIXED_CLOCK);const r=act(h,'H3 older official clock',command(h,event()),'CLOCK_CONFLICT');assert.ok(r.offending.some(x=>x.path==='model.snapshots[0].confirmedAt'));
+});
+test('IO engine exception before save rejects without phantom acceptance',()=>{
+ const wrapped={...engine,evaluatePlan(m,req){if(m.revision>0)throw Object.assign(Error('STALE'),{code:'PERSISTED_CONFLICT'});return engine.evaluatePlan(m,req)}};
+ const h=harness(fixture(),wrapped);act(h,'IO engine',command(h,event()),'VALIDATION_REJECTED');
+});
+test('H3 ordinary command accessors are rejected without invoking them',()=>{
+ const h=harness();let calls=0;const req=command(h,event());Object.defineProperty(req.event,'title',{enumerable:true,get(){calls++;return 'fake'}});act(h,'H3 event accessor',req,'VALIDATION_REJECTED');assert.equal(calls,0);
 });

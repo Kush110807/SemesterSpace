@@ -8,7 +8,7 @@ Storage executes expectation/read/version/profile/core/closed-record/identity/ca
 
 The event callback now requires manual-event/1's exact seven request properties and seven event properties. Event equality is exact and order-independent. Stale context precedes captured clock checks and no-op. Historical old/new targets and canonical linked identities are checked before source restrictions. Loaded trace-free events are not assumed local. Private acknowledged-CREATE witnesses expire on accepted non-T1 mutations, model/mode replacement and reopen. Source bindings and ambiguous datasets outrank witnesses. Personal acceptance follows SAVE_OK only; demo acceptance is memory-only. No-change performs no storage access. Failed/rejected actions preserve accepted data, stages and batches; they may change diagnostics.
 
-The UI retains a reviewed model/revision per event draft until explicit discard/review or successful submission. CREATE ID is stable through rejection. No ownership checkbox or historical override exists. Outcome notices disclose source/history/clock/save restrictions and witness lifetime.
+The UI retains a reviewed model/revision per event draft until explicit discard/review or successful submission. CREATE ID is stable through rejection. No ownership checkbox or historical override exists. Outcome notices disclose source/history/clock/save restrictions and witness lifetime. A transient clock-conflict hold labels retained evaluations as noncurrent and prevents decision/stage acceptance until explicit revalidation; background refresh does not clear the hold. The UI Recheck action explicitly requests revalidation without changing main.js.
 
 ## Replay
 

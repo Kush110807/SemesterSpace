@@ -102,6 +102,7 @@ export type ViewState = {
   manualDates: DateKey[]; batch: SuggestionBatch|null;
   persistence: {status: 'NOT_SAVED'|'SAVED'|'FAILED'|'QUARANTINED'|'DEMO_MEMORY'; message: string};
   notice: string;
+  clockConflict?: Record<string, unknown>|null;
 };
 export type Results = {
   runtime: 'NO_SETUP'|'ENGINE_UNAVAILABLE'|'ERROR'|'READY';
@@ -128,7 +129,7 @@ export type Callbacks = {
   onSetManualDates(payload: {dates: DateKey[]}): void;
   onCheckManual(): void; onSuggest(): void;
   onAccept(payload: {dates: DateKey[]; modelRevision: number}): void;
-  onRefresh(): void;
+  onRefresh(payload?: {explicit: boolean}): void;
 };
 export declare function render(state: Readonly<ViewState>, results: Readonly<Results>, callbacks: Callbacks): void;
 
