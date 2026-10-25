@@ -669,9 +669,9 @@ function reviewSection(parent,state,callbacks){
   if(!EVENT_BASES.has(baseKey))EVENT_BASES.set(baseKey,{mode:state.mode,expectedModelId:m.id,expectedModelRevision:m.revision});
   const reviewedBase=EVENT_BASES.get(baseKey);
   const ef=form(eg,()=>{
-    const link=linked.value.trim();
+    const link=linked.value;
     if(link&&!m.sessions.some(s=>s.id===link))throw Error('The linked meeting ID does not exist.');
-    const event={id:eid.value.trim(),title:title.value,cancelled:cancelled.checked,sessionId:link||null,date:link?null:evDate.value,start:link?null:evStart.value,end:link?null:evEnd.value};
+    const event={id:eid.value,title:title.value,cancelled:cancelled.checked,sessionId:link||null,date:link?null:evDate.value,start:link?null:evStart.value,end:link?null:evEnd.value};
     if(existing&&event.id!==existing.id)throw Error('Editing an event cannot change its stable ID.');
     if(!event.id||!event.title)throw Error('An event title is required.');
     callbacks.onUpsertEvent({requestVersion:1,...reviewedBase,operation:existing?'UPDATE':'CREATE',targetEventId:existing?.id??null,event});
