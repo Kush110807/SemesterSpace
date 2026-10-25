@@ -1,6 +1,8 @@
+import {validDate, validTime, validClock} from './engine/common.js';
+import {IMPORT_SOURCE_PREFIX} from './import/coverage.js';
 import { PASS_STATUSES } from './shared/constants.js';
 import { FIXED_CLOCK, makeDemoModel } from './shared/fixtures.js';
-import { loadModel, saveModel, makeEmptyRelease, validateRelease } from './storage.js';
+import { loadModel, saveModel, makeEmptyRelease, validateRelease, equalJSON } from './storage.js';
 
 export function currentClock() {
   const parts = new Intl.DateTimeFormat('en-GB', {timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'}).formatToParts(new Date());
@@ -26,6 +28,7 @@ export function createController({engine, render, storage, clock = currentClock,
   const loaded = loadModel(storage, (m,c) => engine.validateModel(m,c), clock());
   let state = {mode:'personal', model:loaded.model, release:loaded.release, month:clock().date.slice(0,7), selectedDate:null, manualDates:[], batch:null, persistence:loaded.persistence, notice:''};
   let results = {runtime:'NO_SETUP',evaluation:null,search:null,error:null};
+  const witnesses=new Map();
   let personal = null;
   let stagedRevision = null; // ephemeral, not persisted or trusted after model changes
   const now = () => state.mode === 'demo' ? copy(FIXED_CLOCK) : clock();
@@ -73,6 +76,7 @@ export function createController({engine, render, storage, clock = currentClock,
       state.notice='Acceptance failed because the complete change could not be saved. Nothing was committed.';
       return false;
     }
+    witnesses.clear();
     state.model = model; state.release = release; stagedRevision=null;
     state.batch = null; state.manualDates = [];
     state.notice = 'Updated; previous suggestions cleared. Commitments are retained for review.';
@@ -111,6 +115,7 @@ export function createController({engine, render, storage, clock = currentClock,
       return {ok:false,code:'PERSISTENCE_FAILED',modelRevision:previous.revision,
         engineStatus:null,issues:[{code:'PERSISTENCE_FAILED',message:saved.message}]};
     }
+    witnesses.clear();
     state.model=model;state.release=release;state.persistence=saved;
     state.batch=null;state.manualDates=[];stagedRevision=null;
     results={runtime:'READY',evaluation,search:null,error:null};
@@ -251,16 +256,138 @@ export function createController({engine, render, storage, clock = currentClock,
     return {version:1,sha256:proposal.source.sha256,fileName:proposal.source.fileName,
       source:copy(proposal.source),scope:copy(proposal.scope),links:[...retained,...incoming],sourceHistory:history};
   }
+  // Manual event command: branch-owned outcomes, never classified from errors.
+  const eventKeys=['id','title','cancelled','sessionId','date','start','end'];
+  const exactData=(value,keys)=>{
+    if(!value || typeof value!=='object' || Array.isArray(value) || ![Object.prototype,null].includes(Object.getPrototypeOf(value)))return false;
+    const d=Object.getOwnPropertyDescriptors(value),own=Reflect.ownKeys(d);
+    return own.length===keys.length && keys.every(k=>d[k]?.enumerable && Object.hasOwn(d[k],'value'));
+  };
+  function clockIssues(c) {
+    if(!validClock(c))return {code:'VALIDATION_REJECTED',reason:'INVALID_CLOCK'};
+    try {
+      const v=engine.validateModel(state.model,{date:'9999-12-31',time:'23:59',timeZone:'Asia/Kolkata'});
+      if(!v.ok)return {code:'VALIDATION_REJECTED',reason:'INVALID_RETAINED_MODEL',issues:v.issues};
+      validateRelease(state.release,state.model);
+    }catch{return {code:'VALIDATION_REJECTED',reason:'INVALID_RETAINED_RECORD'};}
+    const rows=[];
+    const add=(clock,path,kind)=>rows.push({clock,path,kind});
+    state.model.snapshots.forEach((r,i)=>add(r.confirmedAt,`model.snapshots[${i}].confirmedAt`,'SNAPSHOT'));
+    state.release.attendance.records.forEach((r,i)=>add(r.confirmedAt,`release.attendance.records[${i}].confirmedAt`,'ATTENDANCE'));
+    state.release.attendance.closedDays.forEach((r,i)=>add(r.confirmedAt,`release.attendance.closedDays[${i}].confirmedAt`,'DAY_CLOSE'));
+    state.release.calendar.appliedRevisions.forEach((r,i)=>add(r.appliedAt,`release.calendar.appliedRevisions[${i}].appliedAt`,'CALENDAR_REVISION'));
+    for(const [path,value] of [['results.evaluation',results.evaluation],['results.search.evaluation',results.search?.evaluation],['state.batch',state.batch],['state.batch.evaluation',state.batch?.evaluation]])if(value?.evaluatedAt)add(value.evaluatedAt,path+'.evaluatedAt','DECISION_OBSERVATION');
+    if(rows.some(r=>!validClock(r.clock)))return {code:'VALIDATION_REJECTED',reason:'INVALID_RETAINED_CLOCK'};
+    const later=rows.filter(r=>r.clock.date>c.date || r.clock.date===c.date && r.clock.time>c.time);
+    if(state.model.snapshots.some(r=>r.date>c.date) || later.length)return {code:'CLOCK_CONFLICT',reason:'RETAINED_CLOCK',offending:later,capturedClock:copy(c)};
+    try {const current=engine.validateModel(state.model,c);if(!current.ok)return {code:'VALIDATION_REJECTED',reason:'CURRENT_MODEL_INVALID',issues:current.issues};}
+    catch{return {code:'VALIDATION_REJECTED',reason:'CURRENT_MODEL_VALIDATION'};}
+    return null;
+  }
+  function eventTarget(e) {
+    if(!exactData(e,eventKeys) || typeof e.id!=='string'||!e.id.trim() || typeof e.title!=='string'||!e.title.trim()||typeof e.cancelled!=='boolean')return null;
+    if(e.sessionId===null)return validDate(e.date)&&validTime(e.start)&&validTime(e.end)&&e.start<e.end?{date:e.date,start:e.start,occurrenceId:null}:null;
+    if(typeof e.sessionId!=='string'||e.date!==null||e.start!==null||e.end!==null)return null;
+    const row=state.model.sessions.find(r=>r.id===e.sessionId);
+    return row?{date:row.date,start:row.start,occurrenceId:row.id}:null;
+  }
+  function historyTarget(target,side,eventId,c) {
+    const baseline=state.model.snapshots.reduce((d,r)=>r.date>d?r.date:d,'');
+    let reason=null;
+    if(target.date<=baseline)reason='SNAPSHOT_COVERED';
+    else if(target.date<c.date)reason='PAST_DATE';
+    else if(target.date===c.date && target.start<=c.time)reason='STARTED';
+    else if(target.occurrenceId && (state.release.attendance.records.some(r=>r.occurrenceId===target.occurrenceId)||state.release.attendance.closedDays.some(d=>d.recordIds.some(id=>state.release.attendance.records.some(r=>r.recordId===id&&r.occurrenceId===target.occurrenceId)))))reason='CONFIRMED_OCCURRENCE';
+    return reason?{side,eventId,...target,reason,baseline}:null;
+  }
+  function ownership(eventId) {
+    const cal=state.release.calendar,source=cal.sourceRevision;
+    let ambiguous=false,bound=false;
+    if(!source)ambiguous=cal.appliedRevisions.length>0 || state.model.context.sourceLabel.startsWith(IMPORT_SOURCE_PREFIX);
+    else if(source.version!==1)ambiguous=true;
+    else {
+      if(state.model.context.sourceLabel.startsWith(IMPORT_SOURCE_PREFIX))ambiguous=true; // original import has no durable event crosswalk
+      for(const link of source.links) {
+        if(link.kind==='UPSERT_EVENT' && link.targetId===eventId)bound=true;
+        let resolved;
+        if(['ADD_SESSION','EDIT_SESSION','CANCEL_SESSION'].includes(link.kind))resolved=state.model.sessions.some(r=>r.id===link.targetId);
+        else if(link.kind==='UPSERT_EVENT')resolved=state.model.events.some(r=>r.id===link.targetId);
+        else if(link.kind==='ADD_HOLIDAY')resolved=state.model.schedule.holidays.some(r=>r.date===link.targetId);
+        else if(link.kind==='REMOVE_HOLIDAY')resolved=link.value===null&&!state.model.schedule.holidays.some(r=>r.date===link.targetId);
+        else if(link.kind==='REPLACE_PATTERN')resolved=state.model.schedule.replacements.some(r=>r.date===link.targetId);
+        else if(link.kind==='TEACHING_END')resolved=state.model.schedule.teachingEnd===link.targetId;
+        else resolved=false;
+        if(!resolved)ambiguous=true;
+      }
+    }
+    return {bound,ambiguous};
+  }
+  function manualEvent(request) {
+    const done=(code,details={})=>{
+      const ok=['COMMITTED','DEMO_APPLIED','NO_CHANGE'].includes(code);
+      const messages={NO_CHANGE:'No change. No save was attempted.',SOURCE_CHANGE_BLOCKED:'This event has retained source evidence. Source changes require review.',SOURCE_REVIEW_REQUIRED:details.reason==='DATASET_SOURCE_RESTRICTION'?'Source history is incomplete; changes to existing events are temporarily blocked.':"This event’s local entry cannot be established in this session.",HISTORY_PROTECTED:'Historical correction is unsupported; the old or proposed event is protected.',CLOCK_CONFLICT:'The clock precedes retained facts or decisions. Review the clock and explicitly revalidate.',STALE_REVISION:'This draft has an older model or revision. Refresh and review before submitting again.',PERSISTENCE_FAILED:'The complete change could not be saved. Accepted data and draft are retained.',VALIDATION_REJECTED:'The event command or retained data is invalid.',COMMITTED:'Event saved in this browser. Local edit permission expires on reload, mode switch or another kind of change.',DEMO_APPLIED:'Demo event applied in memory only.'};
+      state.notice=messages[code]??'Event command rejected.';
+      const result={ok,code,effect:code==='COMMITTED'||code==='DEMO_APPLIED'?'MUTATED':'NONE',commitState:code==='COMMITTED'?'DURABLE':code==='DEMO_APPLIED'?'MEMORY_ONLY':'NONE',modelRevision:state.model?.revision??null,...details};
+      state.eventCommandResult=copy(result);emit();return copy(result);
+    };
+    try {
+      const keys=['requestVersion','mode','expectedModelId','expectedModelRevision','operation','targetEventId','event'];
+      if(!exactData(request,keys)||request.requestVersion!==1||!['personal','demo'].includes(request.mode)||typeof request.expectedModelId!=='string'||!request.expectedModelId.trim()||!Number.isSafeInteger(request.expectedModelRevision)||request.expectedModelRevision<0||!['CREATE','UPDATE'].includes(request.operation)||!exactData(request.event,eventKeys))return done('VALIDATION_REJECTED',{reason:'REQUEST_PROFILE'});
+      if(request.operation==='CREATE'?request.targetEventId!==null:typeof request.targetEventId!=='string'||!request.targetEventId.trim())return done('VALIDATION_REJECTED',{reason:'TARGET_PROFILE'});
+      const e=request.event;
+      if(typeof e.id!=='string'||!e.id.trim()||typeof e.title!=='string'||!e.title.trim()||typeof e.cancelled!=='boolean'||(e.sessionId!==null&&typeof e.sessionId!=='string')||request.operation==='UPDATE'&&e.id!==request.targetEventId)return done('VALIDATION_REJECTED',{reason:'EVENT_PROFILE'});
+      if(e.sessionId===null ? !validDate(e.date)||!validTime(e.start)||!validTime(e.end)||e.start>=e.end : !e.sessionId.trim()||e.date!==null||e.start!==null||e.end!==null)return done('VALIDATION_REJECTED',{reason:'EVENT_UNION'});
+      if(!state.model)return done('VALIDATION_REJECTED',{reason:'NO_SETUP'});
+      if(request.mode!==state.mode||request.expectedModelId!==state.model.id||request.expectedModelRevision!==state.model.revision)return done('STALE_REVISION');
+      const c=copy(now()),conflict=clockIssues(c);if(conflict)return done(conflict.code,conflict);
+      const old=state.model.events.find(r=>r.id===e.id),target=eventTarget(e);
+      if(!target || (request.operation==='CREATE'?!!old:!old))return done('VALIDATION_REJECTED',{reason:'EVENT_REFERENCE'});
+      const before=old?eventTarget(old):null;if(old&&!before)return done('VALIDATION_REJECTED',{reason:'OLD_REFERENCE'});
+      if(old && equalJSON(old,e))return done('NO_CHANGE');
+      const protectedTarget=(before&&historyTarget(before,'OLD',e.id,c))||historyTarget(target,'NEW',e.id,c);
+      if(protectedTarget)return done('HISTORY_PROTECTED',{history:protectedTarget});
+      if(old) {
+        const source=ownership(e.id);
+        if(source.bound)return done('SOURCE_CHANGE_BLOCKED');
+        if(source.ambiguous)return done('SOURCE_REVIEW_REQUIRED',{reason:'DATASET_SOURCE_RESTRICTION'});
+        const witness=witnesses.get(e.id);
+        if(!witness || witness.mode!==state.mode||witness.modelId!==state.model.id||witness.revision!==state.model.revision||!equalJSON(witness.value,old))return done('SOURCE_REVIEW_REQUIRED',{reason:'LOCAL_ORIGIN_UNPROVEN'});
+      }
+      const model=copy(state.model),release=copy(state.release);
+      if(old)model.events[model.events.findIndex(r=>r.id===e.id)]=copy(e);else model.events.push(copy(e));
+      model.revision++;
+      if(!Number.isSafeInteger(model.revision))return done('VALIDATION_REJECTED',{reason:'REVISION_OVERFLOW'});
+      let evaluation;
+      try{const v=engine.validateModel(model,c);if(!v.ok)return done('VALIDATION_REJECTED',{issues:v.issues});validateRelease(release,model);evaluation=engine.evaluatePlan(model,{additionalDates:[],clock:c});}
+      catch{return done('VALIDATION_REJECTED',{reason:'CANDIDATE_EVALUATION'});}
+      let saved;
+      if(state.mode==='personal') {
+        try{saved=saveModel(storage,model,release,{expectedRevision:state.model.revision,expectedModelId:state.model.id});}catch{return done('PERSISTENCE_FAILED',{reason:'UNCLASSIFIED'});}
+        if(saved?.code!=='SAVE_OK'||saved.status!=='SAVED') {
+          const code=saved?.code==='PERSISTED_CONFLICT'?'STALE_REVISION':saved?.code==='CANDIDATE_INVALID'?'VALIDATION_REJECTED':'PERSISTENCE_FAILED';
+          return done(code,{persistence:saved??null});
+        }
+      } else saved={status:'DEMO_MEMORY',message:'Demo changes are in memory only.'};
+      for(const [id,w] of witnesses) {
+        if(w.mode!==state.mode||w.modelId!==model.id||!equalJSON(w.value,state.model.events.find(r=>r.id===id)))witnesses.delete(id);
+        else w.revision=model.revision;
+      }
+      witnesses.set(e.id,{mode:state.mode,modelId:model.id,revision:model.revision,value:copy(e)});
+      state.model=model;state.release=release;state.persistence=saved;state.batch=null;state.manualDates=[];stagedRevision=null;
+      results={runtime:'READY',evaluation,search:null,error:null};
+      return done(state.mode==='demo'?'DEMO_APPLIED':'COMMITTED',{engineStatus:evaluation.status});
+    } catch{return done('VALIDATION_REJECTED',{reason:'COMMAND_INSPECTION'});}
+  }
   const callbacks = {
     onEnterDemo: guarded(() => {
       if (state.mode === 'demo') return;
-      personal = copy(state);stagedRevision=null;
+      witnesses.clear();personal = copy(state);stagedRevision=null;
       state = {...state, mode:'demo',model:makeDemoModel(),release:makeEmptyRelease(makeDemoModel()),month:FIXED_CLOCK.date.slice(0,7),selectedDate:null,manualDates:[],batch:null,notice:'DEMO ONLY — clock fixed at 2 November 2026, 08:00 IST.',persistence:{status:'DEMO_MEMORY',message:'Demo changes never overwrite personal storage.'}};
       evaluate();
     }),
     onExitDemo: guarded(() => {
       if (personal) {
-        state = personal; personal = null;
+        witnesses.clear();state = personal; personal = null;
         const evaluation=evaluate(state.batch?.dates ?? []);
         if (!passes(evaluation)) state.batch=null;
       }
@@ -285,7 +412,7 @@ export function createController({engine, render, storage, clock = currentClock,
       const saved=state.mode==='demo'?{status:'DEMO_MEMORY',message:'Demo changes never overwrite personal storage.'}
         :saveModel(storage,candidate,release,{expectedRevision:null});
       if(saved.status==='FAILED') {state.persistence=saved;state.notice='Initial setup could not be persisted; no setup was accepted.';return;}
-      state.model = candidate;state.release=release;stagedRevision=null; state.month = transactionClock.date.slice(0,7);
+      witnesses.clear();state.model = candidate;state.release=release;stagedRevision=null; state.month = transactionClock.date.slice(0,7);
       results={runtime:'READY',evaluation,search:null,error:null};state.persistence=saved;
     }),
     onInitializeSchedule: guarded(({draft}) => transact(m => {
@@ -363,10 +490,7 @@ export function createController({engine, render, storage, clock = currentClock,
       required(Object.keys(changes).every(k=>allowed.includes(k)), 'Session ID and origin cannot be changed.');
       Object.assign(s,copy(changes));future(s); if (!s.cancelled) holiday(m,s.date,teachingOnHolidayConfirmed);
     })),
-    onUpsertEvent: guarded(({event}) => transact(m => {
-      const index = m.events.findIndex(x=>x.id===event.id);
-      if (index < 0) m.events.push(copy(event)); else m.events[index]=copy(event);
-    })),
+    onUpsertEvent: manualEvent,
     onUncommit: guarded(({commitmentId}) => transact(m => {
       required(m.commitments.some(x=>x.id===commitmentId),'Unknown commitment.');
       m.commitments=m.commitments.filter(x=>x.id!==commitmentId);
@@ -379,11 +503,13 @@ export function createController({engine, render, storage, clock = currentClock,
       required(unique(dates),'Select unique dates.');state.manualDates=copy(dates);evaluate();
     }),
     onCheckManual: guarded(() => {
+      const conflict=state.model&&clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
       const evaluation = evaluate(state.manualDates);
       state.batch = passes(evaluation) && state.manualDates.length ? {modelRevision:state.model.revision,evaluatedAt:now(),dates:copy(state.manualDates),evaluation} : null;
       state.notice = state.batch ? 'Manual dates checked together. Explicit acceptance is still required.' : 'No passing manual selection to accept.';
     }),
     onSuggest: guarded(() => {
+      const conflict=state.model&&clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
       required(state.model,'Create a setup first.');
       const search = engine.suggestPlan(state.model,{clock:now()});
       results={runtime:'READY',evaluation:search.evaluation,search,error:null};
@@ -392,6 +518,7 @@ export function createController({engine, render, storage, clock = currentClock,
     }),
     onAccept: guarded(({dates,modelRevision}) => {
       required(state.batch && state.model,'No current checked batch to accept.');
+      const conflict=clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
       required(modelRevision===state.model.revision && modelRevision===state.batch.modelRevision,'Stale suggestion revision. Generate a new batch.');
       required(unique(dates) && dates.length>0 && dates.every(d=>state.batch.dates.includes(d)), 'Accept a unique nonempty subset of the displayed batch.');
       const evaluation=engine.evaluatePlan(state.model,{additionalDates:dates,clock:now()});
@@ -516,6 +643,7 @@ export function createController({engine, render, storage, clock = currentClock,
     }),
     onApplyCalendarRevision: releaseOperation(request => {
       required(state.model && stagedRevision,'Stage a calendar revision first.');
+      const conflict=clockIssues(now());if(conflict)return {ok:false,...conflict,modelRevision:state.model.revision};
       required(request?.confirmation===true && request.confirmedSourceCoverage===true,
         'Explicit revision/source confirmation is required.');
       required(request.expectedModelRevision===state.model.revision &&
@@ -557,6 +685,7 @@ export function createController({engine, render, storage, clock = currentClock,
         preservedCommitmentIds:state.model.commitments.map(c=>c.id)};
     }),
     onRefresh: guarded(() => {
+      const conflict=state.model&&clockIssues(now());if(conflict){state.notice=conflict.code+': Explicit revalidation required.';return;}
       const evaluation=evaluate(state.batch?.dates ?? []);
       if (!passes(evaluation) || state.batch?.modelRevision!==state.model?.revision) state.batch=null;
     }),

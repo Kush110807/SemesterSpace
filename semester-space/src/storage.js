@@ -1,3 +1,4 @@
+import {validateModel} from './engine/validation.js';
 import {validateAttendanceJournal} from './attendance/ledger.js';
 import { SCHEMA_VERSION, STORAGE_KEY } from './shared/constants.js';
 
@@ -181,25 +182,134 @@ export function loadModel(storage, validate, clock) {
   }
 }
 
-export function saveModel(storage, model, release = makeEmptyRelease(model), options = {}) {
+// DIAMOND-001 closed write profile. Unknown fixed-record fields remain readable,
+// but cannot be rewritten. Opaque source values are deliberately not projected.
+const profile = {
+ envelope1:'schemaVersion model', envelope2:'schemaVersion model release',
+ model:'schemaVersion revision id timeZone context schedule courses registers sessions events snapshots commitments attendanceConfirmation preferences',
+ context:'college academicYear semester programme section sourceLabel preparedOn applicabilityConfirmed',
+ schedule:'startDate teachingEnd confirmed initialized weeklyTemplates holidays replacements holidayTeachingDates',
+ weeklyTemplates:'id registerId weekday start end weight protected', holidays:'date label', replacements:'date weekday confirmed',
+ courses:'id name mustAttend',registers:'id courseId name requiredBps personalMinBps bufferBps',
+ sessions:'id registerId date start end weight protected cancelled origin templateId',events:'id title cancelled sessionId date start end',
+ snapshots:'id date counts confirmed completeToday confirmedAt sequence',counts:'attended held',
+ commitments:'id date createdAtRevision',attendanceConfirmation:'throughDate noUnlistedClasses',
+ preferences:'candidateStart candidateEnd preferredDates requestedDays notes',release:'version attendance calendar',
+ attendance:'version records closedDays officialSnapshotIds reconciliationIssues',
+ records:'recordId dayKey occurrenceId registerId date weight disposition confirmedAt recordRevision sourceModelRevision supersedesRecordId note',
+ closedDays:'dayKey date recordIds confirmedAt noUnlistedMeetings sourceModelRevision supersedesDayKey',
+ calendar:'version appliedRevisions sourceRevision',appliedRevisions:'proposalId sourceSha256 appliedAt modelRevision changeIds',
+ legacySource:'sha256 fileName',sourceRevision:'version sha256 fileName source scope links sourceHistory',
+ source:'sha256 fileName role coverage section pageRefs',sourceHistory:'sha256 fileName role coverage section pageRefs',
+ scope:'start end section subgroup programmingGroup',links:'sourceRef changeId kind targetId value evidence sourceSha256',
+ evidence:'sourceId page excerpt basis',clock:'date time timeZone'
+};
+const pointer = key => String(key).replaceAll('~','~0').replaceAll('/','~1');
+function unknownField(value, name, path='') {
+  if(value===null || !object(value)) return null;
+  if(name==='sourceRevision' && !Object.hasOwn(value,'version')) name='legacySource';
+  const keys=profile[name]?.split(' ');
+  if(!keys) return null;
+  for(const key of Object.keys(value).sort()) {
+    const at=path+'/'+pointer(key);
+    if(!keys.includes(key)) return at;
+    const child=value[key];
+    if(name==='links' && key==='value') continue;
+    if(name==='snapshots' && key==='counts') {
+      for(const id of Object.keys(child??{}).sort()) {
+        const bad=unknownField(child[id],'counts',at+'/'+pointer(id));if(bad)return bad;
+      }
+    } else if(['confirmedAt','appliedAt'].includes(key)) {
+      const bad=unknownField(child,'clock',at);if(bad)return bad;
+    } else if(Array.isArray(child)) {
+      for(let i=0;i<child.length;i++) {const bad=unknownField(child[i],key,at+'/'+i);if(bad)return bad;}
+    } else {const bad=unknownField(child,key,at);if(bad)return bad;}
+  }
+  return null;
+}
+// Descriptor-only admission: never execute accessors or serialization hooks.
+function detachedJSON(value, ancestors=new Set()) {
+  if(value===null || ['string','boolean'].includes(typeof value)) return value;
+  if(typeof value==='number' && Number.isFinite(value) && !Object.is(value,-0)) return value;
+  if(typeof value!=='object' || ancestors.has(value)) throw new Error('NON_JSON_DATA');
+  const array=Array.isArray(value),proto=Object.getPrototypeOf(value);
+  if(array ? proto!==Array.prototype : proto!==Object.prototype && proto!==null) throw new Error('NON_JSON_DATA');
+  const descriptors=Object.getOwnPropertyDescriptors(value),keys=Reflect.ownKeys(descriptors);
+  if(keys.some(k=>typeof k!=='string'))throw new Error('NON_JSON_DATA');
+  if(array && (keys.length!==value.length+1 || keys.some(k=>k!=='length' && (!/^(0|[1-9][0-9]*)$/.test(k) || Number(k)>=value.length)))) throw new Error('NON_JSON_DATA');
+  const out=array?[]:{};ancestors.add(value);
+  for(const key of keys) {
+    if(array && key==='length')continue;
+    const d=descriptors[key];
+    if(!d.enumerable || !Object.hasOwn(d,'value'))throw new Error('NON_JSON_DATA');
+    Object.defineProperty(out,key,{value:detachedJSON(d.value,ancestors),enumerable:true,writable:true,configurable:true});
+  }
+  ancestors.delete(value);return Object.freeze(out);
+}
+export function equalJSON(a,b) {
+  if(a===b)return true;
+  if(a===null || b===null || typeof a!=='object' || typeof b!=='object' || Array.isArray(a)!==Array.isArray(b))return false;
+  const x=Object.keys(a).sort(),y=Object.keys(b).sort();
+  return x.length===y.length && (!Array.isArray(a)||a.length===b.length) && x.every((k,i)=>k===y[i] && equalJSON(a[k],b[k]));
+}
+const ceiling=Object.freeze({date:'9999-12-31',time:'23:59',timeZone:'Asia/Kolkata'});
+function core(model,release) {
+  const check=validateModel(model,ceiling);
+  if(!check.ok) return check.issues;
+  validateRelease(release,model);return [];
+}
+export function saveModel(storage, model, release, options = {}) {
+  const failed=(code,reason,path=null)=>({status:'FAILED',code,reason,path,message:`Changes were not saved: ${code} (${reason}).`});
+  // P0. No candidate access before all persisted fences and expectations.
+  let expected;
   try {
-    validateRelease(release,model);
-    if (Object.hasOwn(options,'expectedRevision')) {
-      const existing=storage.getItem(STORAGE_KEY);
-      if (options.expectedRevision === null) {
-        if(existing!==null)throw new Error('STALE_PERSISTED_REVISION: setup now exists in browser storage.');
-      } else {
-        if(existing===null)throw new Error('STALE_PERSISTED_REVISION: saved setup is missing.');
-        const parsed=JSON.parse(existing);
-        if(parsed?.model?.revision!==options.expectedRevision ||
-          parsed?.model?.id!==options.expectedModelId)throw new Error('STALE_PERSISTED_REVISION: another version is stored. Reload before changing it.');
+    if(!object(options))return failed('CANDIDATE_INVALID','INVALID_EXPECTATION');
+    if(Object.hasOwn(options,'expectedModelId') && !nonempty(options.expectedModelId))return failed('CANDIDATE_INVALID','INVALID_EXPECTATION');
+    expected=Object.hasOwn(options,'expectedRevision')?options.expectedRevision:undefined;
+    if(expected!==undefined && expected!==null && (!Number.isSafeInteger(expected)||expected<0||!nonempty(options.expectedModelId)))return failed('CANDIDATE_INVALID','INVALID_EXPECTATION');
+    if(Object.hasOwn(options,'expectedRevision') && expected===undefined)return failed('CANDIDATE_INVALID','INVALID_EXPECTATION');
+  }catch{return failed('CANDIDATE_INVALID','INVALID_EXPECTATION');}
+  let raw;
+  try{raw=storage.getItem(STORAGE_KEY);}catch{return failed('STORAGE_READ_FAILED','THREW');}
+  if(raw===null && expected!==null && expected!==undefined)return failed('PERSISTED_CONFLICT','MISSING');
+  if(raw!==null) {
+    let e;
+    try{if(typeof raw!=='string')throw new Error();e=JSON.parse(raw);if(!object(e))throw new Error();}
+    catch{return failed('PERSISTED_DATA_INVALID','JSON_OR_ROOT');}
+    const tags=[['/schemaVersion',e.schemaVersion,[1,2]]];
+    // Do not interpret an unsupported outer body.
+    if([1,2].includes(e.schemaVersion) || !Number.isInteger(e.schemaVersion) || e.schemaVersion<=0) {
+      tags.push(['/model/schemaVersion',e.model?.schemaVersion,[1]]);
+      if(e.release!==undefined) {
+        tags.push(['/release/version',e.release?.version,[1]],['/release/attendance/version',e.release?.attendance?.version,[1]],['/release/calendar/version',e.release?.calendar?.version,[1]]);
+        if(e.release?.calendar?.sourceRevision && Object.hasOwn(e.release.calendar.sourceRevision,'version'))tags.push(['/release/calendar/sourceRevision/version',e.release.calendar.sourceRevision.version,[1]]);
       }
     }
-    const bytes=JSON.stringify({schemaVersion: RELEASE_ENVELOPE_VERSION, model, release});
-    if (typeof bytes !== 'string') throw new Error('Could not serialize model.');
-    storage.setItem(STORAGE_KEY,bytes); // one key, one atomic browser operation
-    return {status: 'SAVED', message: 'Saved in this browser only.'};
-  } catch (error) {
-    return {status: 'FAILED', message: `Changes were not saved. ${error.message}`};
+    for(const [path,v,supported] of tags)if(Number.isInteger(v)&&v>0&&!supported.includes(v))return failed('UNSUPPORTED_PERSISTED_VERSION','VERSION',path);
+    if(e.schemaVersion===1 && e.release?.version===1)return failed('PERSISTED_REWRITE_UNSUPPORTED','UNSUPPORTED_COMBINATION','/release');
+    if(tags.some(([,v,supported])=>!supported.includes(v)) || (e.schemaVersion===2&&!object(e.release)))return failed('PERSISTED_DATA_INVALID','VERSION_SHAPE');
+    try{if(core(e.model,e.schemaVersion===1?makeEmptyRelease(e.model):e.release).length)return failed('PERSISTED_DATA_INVALID','CORE_INVALID');}
+    catch{return failed('PERSISTED_DATA_INVALID','CORE_INVALID');}
+    const bad=unknownField(e,e.schemaVersion===1?'envelope1':'envelope2');
+    if(bad)return failed('PERSISTED_REWRITE_UNSUPPORTED','UNRECOGNIZED_RETAINED_FIELD',bad);
+    if(expected===null)return failed('PERSISTED_CONFLICT','EXPECTED_EMPTY');
+    if(expected!==undefined) {
+      if(e.model.id!==options.expectedModelId)return failed('PERSISTED_CONFLICT','MODEL_ID');
+      if(e.model.revision!==expected)return failed('PERSISTED_CONFLICT','MODEL_REVISION');
+    }
   }
+  let m,r;
+  try{m=detachedJSON(model);r=release===undefined?detachedJSON(makeEmptyRelease(m)):detachedJSON(release);}
+  catch{return failed('CANDIDATE_INVALID','NON_JSON_DATA');}
+  const bad=unknownField(m,'model','/model')??unknownField(r,'release','/release');
+  if(bad)return failed('CANDIDATE_INVALID','UNSUPPORTED_CANDIDATE_FIELD',bad);
+  try{if(core(m,r).length)return failed('CANDIDATE_INVALID','CORE_INVALID');}
+  catch{return failed('CANDIDATE_INVALID','CORE_INVALID');}
+  const envelope=Object.freeze({schemaVersion:2,model:m,release:r});let bytes,roundtrip;
+  try{bytes=JSON.stringify(envelope);}catch{return failed('SERIALIZATION_FAILED','THREW');}
+  if(typeof bytes!=='string')return failed('SERIALIZATION_FAILED','NONSTRING');
+  try{roundtrip=JSON.parse(bytes);}catch{return failed('SERIALIZATION_FAILED','INVALID_SERIALIZED_JSON');}
+  if(!equalJSON(roundtrip,envelope))return failed('SERIALIZATION_FAILED','ROUNDTRIP_MISMATCH');
+  try{storage.setItem(STORAGE_KEY,bytes);}catch{return failed('STORAGE_WRITE_FAILED','THREW');}
+  return {status:'SAVED',code:'SAVE_OK',message:'Saved in this browser only.'};
 }

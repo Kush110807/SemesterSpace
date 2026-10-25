@@ -20,6 +20,7 @@ const STATES = {
   MEETS_PLANNING_RULES:['Meets supplied planning rules','Conditional projection, not institutional approval.','good'],
 };
 const DRAFTS = new Map();
+const EVENT_BASES=new Map();
 const PANEL_OPEN = new Map();
 let live = null;
 let scope = null;
@@ -664,13 +665,16 @@ function reviewSection(parent,state,callbacks){
   const chooser=el('div',null,'picker');const eventPicker=field(chooser,'choose-event','id','Event to edit','select',chosenEvent,{options:eventOptions});
   eventPicker.addEventListener('change',()=>{chosenEvent=eventPicker.value;refreshLocal();});evBox.append(chooser);
   const existing=m.events.find(e=>e.id===chosenEvent),eg=`event:${chosenEvent}`;
+  const baseKey=`${scope}:${eg}`;
+  if(!EVENT_BASES.has(baseKey))EVENT_BASES.set(baseKey,{mode:state.mode,expectedModelId:m.id,expectedModelRevision:m.revision});
+  const reviewedBase=EVENT_BASES.get(baseKey);
   const ef=form(eg,()=>{
     const link=linked.value.trim();
     if(link&&!m.sessions.some(s=>s.id===link))throw Error('The linked meeting ID does not exist.');
-    const event={id:eid.value.trim(),title:title.value.trim(),cancelled:cancelled.checked,sessionId:link||null,date:link?null:evDate.value,start:link?null:evStart.value,end:link?null:evEnd.value};
+    const event={id:eid.value.trim(),title:title.value,cancelled:cancelled.checked,sessionId:link||null,date:link?null:evDate.value,start:link?null:evStart.value,end:link?null:evEnd.value};
     if(existing&&event.id!==existing.id)throw Error('Editing an event cannot change its stable ID.');
     if(!event.id||!event.title)throw Error('An event title is required.');
-    callbacks.onUpsertEvent({event});
+    callbacks.onUpsertEvent({requestVersion:1,...reviewedBase,operation:existing?'UPDATE':'CREATE',targetEventId:existing?.id??null,event});
   });
   if(!addEventId)do{addEventId=makeLocalId('event');}while(m.events.some(e=>e.id===addEventId));
   const eid={value:existing?.id??addEventId};
@@ -681,6 +685,13 @@ function reviewSection(parent,state,callbacks){
   const evEnd=field(ef,eg,'end','Independent event end','time',existing?.end??'10:00');
   const cancelled=field(ef,eg,'cancelled','Cancel this event','checkbox',existing?.cancelled??false);
   add(ef,el('p','Every active event blocks a full-day break, even when it carries no attendance units. A linked event follows its meeting; an independent event does not.','form-note'));
+  notice(ef,`Reviewed revision ${reviewedBase.expectedModelRevision}. Only events created in this controller session have local edit permission. Reload, mode changes and other accepted mutations expire that permission. Historical correction is unsupported.`);
+  if(reviewedBase.expectedModelRevision!==m.revision)notice(ef,'This draft has an older base. Review current data and explicitly refresh before submitting.','warning');
+  ef.append(button('Discard event draft and review current data',()=>{
+    capture(document.getElementById('app'));
+    for(const key of draftMap().keys())if(key.startsWith(`${eg}::`))draftMap().delete(key);
+    EVENT_BASES.delete(baseKey);pendingFocusKey=`${eg}::title`;refreshLocal();
+  },{secondary:true}));
   submit(ef,existing?'Save event changes':'Add compulsory event');evBox.append(ef);
   const history=details(parent,'snapshot-history','Earlier snapshots (read-only)',false);
   for(const snapshot of m.snapshots.slice().reverse()){
@@ -699,6 +710,7 @@ export function render(state,results,callbacks){
   if(pendingSubmission && scope===newScope && state.model?.revision!==pendingSubmission.previousRevision){
     const values=draftMap();for(const key of values.keys())if(key.startsWith(`${pendingSubmission.group}::`))values.delete(key);
     if(pendingSubmission.group==='add-session')addSessionId=null;
+    if(pendingSubmission.group.startsWith('event:'))EVENT_BASES.delete(`${scope}:${pendingSubmission.group}`);
     if(pendingSubmission.group==='event:new')addEventId=null;
   }
   scope=newScope;

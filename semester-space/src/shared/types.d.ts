@@ -121,7 +121,7 @@ export type Callbacks = {
   onSetTeachingEnd(payload: {date: DateKey; confirmed: boolean}): void;
   onAddSession(payload: {session: Session; teachingOnHolidayConfirmed: boolean}): void;
   onEditSession(payload: {sessionId: string; changes: Partial<Pick<Session, 'date'|'start'|'end'|'registerId'|'weight'|'protected'|'cancelled'>>; teachingOnHolidayConfirmed: boolean}): void;
-  onUpsertEvent(payload: {event: Event}): void;
+  onUpsertEvent(payload: ManualEventRequest): ManualEventResult;
   onUncommit(payload: {commitmentId: string}): void;
   onSelectDate(payload: {date: DateKey}): void;
   onSetMonth(payload: {month: string}): void;
@@ -131,3 +131,24 @@ export type Callbacks = {
   onRefresh(): void;
 };
 export declare function render(state: Readonly<ViewState>, results: Readonly<Results>, callbacks: Callbacks): void;
+
+// DIAMOND-001 command outcomes are distinct from engine PlanStatus.
+export type ManualEventRequest = {
+  requestVersion: 1; mode: 'personal'|'demo'; expectedModelId: string;
+  expectedModelRevision: number; operation: 'CREATE'|'UPDATE';
+  targetEventId: string|null; event: Event;
+};
+export type SaveCode = 'SAVE_OK'|'PERSISTED_CONFLICT'|'CANDIDATE_INVALID'|
+  'STORAGE_READ_FAILED'|'PERSISTED_DATA_INVALID'|'UNSUPPORTED_PERSISTED_VERSION'|
+  'PERSISTED_REWRITE_UNSUPPORTED'|'SERIALIZATION_FAILED'|'STORAGE_WRITE_FAILED';
+export type SaveResult = {status:'SAVED'|'FAILED'; code:SaveCode; message:string;
+  reason?:string; path?:string|null};
+export type ManualEventResult = {
+  ok:boolean; code:'COMMITTED'|'DEMO_APPLIED'|'NO_CHANGE'|'VALIDATION_REJECTED'|
+  'STALE_REVISION'|'CLOCK_CONFLICT'|'HISTORY_PROTECTED'|'SOURCE_CHANGE_BLOCKED'|
+  'SOURCE_REVIEW_REQUIRED'|'PERSISTENCE_FAILED';
+  effect:'NONE'|'MUTATED'; commitState:'NONE'|'DURABLE'|'MEMORY_ONLY';
+  modelRevision:number|null; reason?:string; engineStatus?:PlanStatus;
+};
+export type TransientEventPermission = 'SOURCE_BOUND'|'DATASET_SOURCE_RESTRICTION'|
+  'LOCAL_ORIGIN_UNPROVEN'|'SESSION_LOCAL_ENTRY'; // never a persisted origin
