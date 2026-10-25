@@ -189,3 +189,7 @@ test('IO engine exception before save rejects without phantom acceptance',()=>{
 test('H3 ordinary command accessors are rejected without invoking them',()=>{
  const h=harness();let calls=0;const req=command(h,event());Object.defineProperty(req.event,'title',{enumerable:true,get(){calls++;return 'fake'}});act(h,'H3 event accessor',req,'VALIDATION_REJECTED');assert.equal(calls,0);
 });
+
+test('Clock hold is scoped to personal context when entering fixed-clock demo',()=>{
+ const h=harness();h.clock={...FIXED_CLOCK,time:'07:59'};act(h,'personal clock hold',command(h,event()),'CLOCK_CONFLICT');h.app.callbacks.onEnterDemo();assert.equal(h.app.getState().clockConflict,null);h.app.callbacks.onExitDemo();assert.ok(h.app.getState().clockConflict);
+});

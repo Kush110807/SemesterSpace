@@ -384,7 +384,7 @@ export function createController({engine, render, storage, clock = currentClock,
     onEnterDemo: guarded(() => {
       if (state.mode === 'demo') return;
       witnesses.clear();personal = copy(state);stagedRevision=null;
-      state = {...state, mode:'demo',model:makeDemoModel(),release:makeEmptyRelease(makeDemoModel()),month:FIXED_CLOCK.date.slice(0,7),selectedDate:null,manualDates:[],batch:null,notice:'DEMO ONLY — clock fixed at 2 November 2026, 08:00 IST.',persistence:{status:'DEMO_MEMORY',message:'Demo changes never overwrite personal storage.'}};
+      state = {...state, clockConflict:null,mode:'demo',model:makeDemoModel(),release:makeEmptyRelease(makeDemoModel()),month:FIXED_CLOCK.date.slice(0,7),selectedDate:null,manualDates:[],batch:null,notice:'DEMO ONLY — clock fixed at 2 November 2026, 08:00 IST.',persistence:{status:'DEMO_MEMORY',message:'Demo changes never overwrite personal storage.'}};
       evaluate();
     }),
     onExitDemo: guarded(() => {
