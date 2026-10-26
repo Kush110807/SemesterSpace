@@ -1,0 +1,34 @@
+{
+  "candidate": "1c4f14d2a8d246afde392f1917d8a8e1faf297a5",
+  "tree": "b83cb213e2e13c40e32702cddf8e1ceac43bf329",
+  "artifacts": {
+    "DIAMOND001-1c4f14d-ad0-to-new.patch": {
+      "sha256": "f6d574a166a5c726d534f586b91b077c361d5ec4a181bb5e77d839d1c4080254",
+      "bytes": 41295
+    },
+    "DIAMOND001-1c4f14d-base-to-new.patch": {
+      "sha256": "28dc478e528e39376001de57aee014e1494415becb2cf1371dde38c2be007f65",
+      "bytes": 147390
+    },
+    "DIAMOND001-1c4f14d-branch.bundle": {
+      "sha256": "f00cecaad97d8bbb57c5bdf2d8d8015d77b3c0a03ce90e109021d6d145185aaf",
+      "bytes": 42860
+    },
+    "DIAMOND001-1c4f14d-build.zip": {
+      "sha256": "f0e8eab0852543f809ea3770621391bf50aa334e9eb0ebff5ce600e1a650920a",
+      "bytes": 20916115
+    },
+    "DIAMOND001-1c4f14d-evidence.zip": {
+      "sha256": "10b46d7116654ca91d1858514e3622a616edb954c4b9f269ab5f0fe0bd052319",
+      "bytes": 68682301
+    },
+    "DIAMOND001-1c4f14d-source.zip": {
+      "sha256": "b7c5327a4238edd0cb04ee663c3990f76718e2b7eda65da5d978dfc459218416",
+      "bytes": 9373957
+    },
+    "HANDOFF.md": {
+      "sha256": "505673c802a0c8f053afcca79fbc5a4c9f6c63f1696e823db709d897aca7f51b",
+      "bytes": 8176
+    }
+  }
+}
