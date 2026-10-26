@@ -1,0 +1,35 @@
+{
+  "candidate": "88d606ea940be945fa55124671c1a8deb57c7b04",
+  "tree": "1efa8ec205d125ac3fac9d934e99cfdccceff872",
+  "storageSha256": "c9e3afacef8341dbb15d8efeb56fd76be007b32d04ca42d985ad3d24abd5fce8",
+  "artifacts": {
+    "DIAMOND001-88d606e-OMR01-1c4f14d-to-new.patch": {
+      "sha256": "7cbed3c16ebe189e761232844dff7ac96989224f3bf14297f14cf5af2fb374e0",
+      "bytes": 17949
+    },
+    "DIAMOND001-88d606e-OMR01-base-to-new.patch": {
+      "sha256": "48a1737671f6067f57d679c124e1967e0f1f69e638d3c5b0ba195d6f79694c3e",
+      "bytes": 163902
+    },
+    "DIAMOND001-88d606e-OMR01-branch.bundle": {
+      "sha256": "d502aa38472ab06d9b7f193f02dc1c72a3dba9e1e6f41496989005e0bd356693",
+      "bytes": 49290
+    },
+    "DIAMOND001-88d606e-OMR01-build.zip": {
+      "sha256": "bcd80a678411258fedef58a06ab190333a1b5ccbd8a63df59082f1d273e10aac",
+      "bytes": 20916182
+    },
+    "DIAMOND001-88d606e-OMR01-evidence.zip": {
+      "sha256": "363b2fe72b0533eaf576e595457b748c115e93299c6693262f88bf3803058d5b",
+      "bytes": 69118041
+    },
+    "DIAMOND001-88d606e-OMR01-source.zip": {
+      "sha256": "5268acc208eb5710d95c399b3ed45e0dff78ca5dcc9c5e0cacef4cdcaf594641",
+      "bytes": 9380352
+    },
+    "HANDOFF.md": {
+      "sha256": "7c2a3a85ab77800dd3784172c1121dd4449c4fa34bc30c271994fd12e10a64c3",
+      "bytes": 8984
+    }
+  }
+}
