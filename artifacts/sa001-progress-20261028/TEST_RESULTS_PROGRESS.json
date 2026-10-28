@@ -1,0 +1,169 @@
+{
+  "classification": "PAUSED_PROGRESS_EXISTING_PRODUCER_RESULTS",
+  "fullSuite": {
+    "command": "npm test",
+    "report": "raw-evidence/impl04-continuation/full-tests-attempt2.stdout",
+    "recordedExit": 0,
+    "tests": 638,
+    "pass": 638,
+    "fail": 0,
+    "skipped": 0,
+    "todo": 0,
+    "limitation": "Historical dirty-worktree execution before later implementation changes; final full-suite execution on frozen candidate is pending."
+  },
+  "epochAndCodecs": {
+    "tests": 98,
+    "exit": 0,
+    "report": "raw-evidence/impl04-continuation/epoch-codecs-current.stdout"
+  },
+  "storage": {
+    "matchedPartialStorageAssertions": 131,
+    "stageDependentOrSuiteRowsNotRunByThisRunner": 21,
+    "notCompleteSACasePassCount": true
+  },
+  "populations": [
+    {
+      "label": "browser-attempt10",
+      "classification": "REAL_READER_AND_NATIVE_BROWSER_POPULATION",
+      "scope": "43 assertions covering actual PDF/OCR, P1-P9-related flows, 18 F controller cases, retained history, native same-profile process reopen, physical changed-write/ACK faults, source binding/witness and history guards. Some negative cases use explicitly labeled trusted-resolver fault wrappers.",
+      "report": "raw-evidence/impl04-continuation/browser-attempt10/report.json",
+      "reportSha256": "da39567f52fd353ed1125102a492288a2227140af2cb17203d0b636805bff868",
+      "reportedStatus": "PARTIAL_BROWSER_POPULATION_PASS_REMAINING_GATES_UNRUN",
+      "recordedExit": "0",
+      "caseCount": 43,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "effects-attempt6",
+      "classification": "REAL_READER_TYPED_EFFECTS",
+      "scope": "Eight closed effect kinds plus manual missing rows; 9 population entries.",
+      "report": "raw-evidence/impl04-continuation/effects-attempt6/report.json",
+      "reportSha256": "9639ef5d617092f7b7101cf8c9a0bae8e246840cb26a797bb13bbda857604774",
+      "reportedStatus": "PASS_TYPED_EFFECTS_AND_MANUAL_ROWS_NOT_FULL_ACCEPTANCE",
+      "recordedExit": "0",
+      "caseCount": 9,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "adversarial-attempt3",
+      "classification": "REAL_READER_AND_ADMISSION_CONTROLS",
+      "scope": "100 recorded controls, including one unavailable SharedArrayBuffer browser exposure control; not the complete AUTH register.",
+      "report": "raw-evidence/impl04-continuation/adversarial-attempt3/report.json",
+      "reportSha256": "8478460c69baff202c0b121a599ccb72383c36e22d6ba42aec912a41eed4a77e",
+      "reportedStatus": "PASS_EXECUTED_BOUNDARIES_NOT_FULL_AUTH_REGISTER",
+      "recordedExit": "0",
+      "caseCount": 0,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit.",
+      "controlCount": 100,
+      "unavailable": [
+        {
+          "id": "ADP07_shared",
+          "status": "UNAVAILABLE_SHARED_BUFFER_NOT_EXPOSED_ON_NON_ISOLATED_ORIGIN"
+        }
+      ]
+    },
+    {
+      "label": "acknowledgment-after2",
+      "classification": "TRUSTED_CONTEXT_ACK_FAULT_CONTROLS",
+      "scope": "4 source/ordinary SAVE_OK acknowledgment-shape guards; physical write preserves memory until explicit reload.",
+      "report": "raw-evidence/impl04-continuation/acknowledgment-after2/report.json",
+      "reportSha256": "c158c7fd9e91ed0439042a107024c95e49d8432cd121654928cc4ea79bbd344b",
+      "reportedStatus": "PASS_RETAINED_SAVE_OK_ACK_GUARD",
+      "recordedExit": "0",
+      "caseCount": 4,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "retained-attempt1",
+      "classification": "RETAINED_T1_BROWSER_POPULATION",
+      "scope": "19 recorded cases for manual event create/update/no-op/dirty base/source/reopen/faults/clock and history. Full 12-workflow equivalence mapping remains to reconcile.",
+      "report": "raw-evidence/impl04-continuation/retained-attempt1/report.json",
+      "reportSha256": "8d28288c34dce5648111925119fb471f48b2b4893aec9e172a2808f3eef41d1a",
+      "reportedStatus": null,
+      "recordedExit": "0",
+      "caseCount": 19,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "semantics-attempt2",
+      "classification": "REAL_READER_SEMANTIC_CHARACTERIZATION",
+      "scope": "Ambiguous dates, disjoint date sets and negation retained with reviewed meanings; SEM population reconciliation remains.",
+      "report": "raw-evidence/impl04-continuation/semantics-attempt2/report.json",
+      "reportSha256": "9c97e437a70dbffaaf8454874500580534d6b77dad9e2ce1cc216806f74fbb99",
+      "reportedStatus": "PASS_EXECUTED_SEMANTIC_POPULATION_WITH_STATED_LIMITATIONS",
+      "recordedExit": "0",
+      "caseCount": 3,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "ui-attempt16",
+      "classification": "MAIN_COMPOSITION_INITIAL_UI",
+      "scope": "Actual built main composition initial source-review form and keyboard interactions; native file delivery uses automation, not a claimed human/native-file-picker session.",
+      "report": "raw-evidence/impl04-continuation/ui-attempt16/report.json",
+      "reportSha256": "331cf5bc8370038348a1a4d8fe3093ad2d71080650bc46896645d3ba83cd770f",
+      "reportedStatus": "PASS_MAIN_INITIAL_TYPED_FORM_KEYBOARD_EXCEPT_NATIVE_FILE_DELIVERY_NOT_FULL_UX_REGISTER",
+      "recordedExit": "0",
+      "caseCount": 0,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "ui-revision-attempt5",
+      "classification": "MAIN_COMPOSITION_REVISION_UI",
+      "scope": "5 document-continuity/group/consent/uncertainty/reload controls with keyboard interactions.",
+      "report": "raw-evidence/impl04-continuation/ui-revision-attempt5/report.json",
+      "reportSha256": "cbed1de89bbe71c2b45cd204c4570ec625dce3a103fffebcc00b61208edbc38e",
+      "reportedStatus": "PASS_EXECUTED_MAIN_REVISION_GROUP_CONSENT_UNCERTAINTY_RELOAD_KEYBOARD_CONTROLS",
+      "recordedExit": "0",
+      "caseCount": 5,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "manual-ui-attempt1",
+      "classification": "MAIN_COMPOSITION_MANUAL_UI",
+      "scope": "One complete manual fallback population; separate from documentary source positives.",
+      "report": "raw-evidence/impl04-continuation/manual-ui-attempt1/report.json",
+      "reportSha256": "8373a7fc6e13de29ff11b9c0419f114dbbe52d0697265ef5d2ca8b2d9039eea9",
+      "reportedStatus": "PASS_MANUAL_UI_NOT_DOCUMENT_POSITIVE",
+      "recordedExit": "0",
+      "caseCount": 1,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "zoom-attempt3",
+      "classification": "MAIN_COMPOSITION_NATIVE_ZOOM",
+      "scope": "6 200-percent browser-zoom/reflow observations at required mobile widths and forms.",
+      "report": "raw-evidence/impl04-continuation/zoom-attempt3/report.json",
+      "reportSha256": "b8713702a54617c56f8f31cb49e31c48a13ed62ed992f07e00973d01298095dc",
+      "reportedStatus": "PASS_NATIVE_200_PERCENT_ZOOM_REFLOW_EXECUTED_FORMS",
+      "recordedExit": "0",
+      "caseCount": 6,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "lifetime-attempt2",
+      "classification": "REAL_STAGE_LIFETIME_CLOCK_DRIFT",
+      "scope": "7 typed-intent/review-clock/external-byte/dataset drift controls. Earlier failed expectation preserved; updated ad hoc test follows existing source-consent tuple, no oracle changed.",
+      "report": "raw-evidence/impl04-continuation/lifetime-attempt2/report.json",
+      "reportSha256": "dbafb4cb70c28f57aa000dd1c2affa4e88224bdda0dcdc13930c69edeaef2989",
+      "reportedStatus": "PASS_EXECUTED_LIFETIME_CLOCK_DRIFT_CONTROLS_NOT_MULTI_TAB_CAS",
+      "recordedExit": "0",
+      "caseCount": 7,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    },
+    {
+      "label": "capacity-resume-20261028-a",
+      "classification": "NATIVE_CAPACITY_AND_REFUSAL",
+      "scope": "24 genuine successive revisions with growing actual ledger, 20-page PDF, memory/time samples, real origin quota, cap boundaries including escaped/multibyte strings, safe near-cap day-close/correction refusal, readonly guards and native process reopen.",
+      "report": "raw-evidence/impl04-continuation/capacity-resume-20261028-a/report.json",
+      "reportSha256": "89d9cf252050888743ccaa855d290a300aeb82064ba251997d3c9f4de0e1804e",
+      "reportedStatus": "MEASURED_CAPACITY_AND_REFUSAL_POPULATION_PASS_NO_HEADROOM_APPROVAL",
+      "recordedExit": "0",
+      "caseCount": 19,
+      "binding": "Existing producer execution; not a final all-gates execution on a new candidate commit."
+    }
+  ],
+  "independentReviews": "E/F/D UNRUN_PENDING",
+  "UX03UX04": "UNRUN_NO_TESTER_AVAILABLE",
+  "allFinalProducerGates": "NOT_YET_RECONCILED_OR_RERUN_ON_FROZEN_FINAL_CANDIDATE",
+  "evidenceLimitation": "One resume capacity-attempt1 log-label collision overwrote earlier top-level stream files; the prior report directory remains preserved. Exact event in raw evidence resume-evidence-label-collision.json. No claim that overwritten prior stream bytes were recovered."
+}
