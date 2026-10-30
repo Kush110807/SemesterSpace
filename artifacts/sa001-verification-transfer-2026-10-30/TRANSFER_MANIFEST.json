@@ -1,0 +1,37 @@
+{
+  "classification": "LOCAL_VERIFICATION_TRANSFER_PACKET_ONLY_NOT_EXECUTION_AUTHORIZATION",
+  "candidate": "acfb6799f699b7868612db346958c9e3d710680f",
+  "parent": "aec0abb117939b2819ebcd7b0b426e8243705e65",
+  "tree": "6b2e0336582a6f205c48374c058b1ac2798fff15",
+  "sourceFilesVerified": 269,
+  "bundle": {
+    "path": "candidate-and-ancestry.bundle",
+    "sha256": "e3bf50cb6d89b7030186ee2caaa6a620f999d48d0d8c8ffb65067f09fa8274f5",
+    "bytes": 9527006,
+    "advertisedRefs": [
+      "acfb6799f699b7868612db346958c9e3d710680f refs/heads/engineering/diamond-sa-001"
+    ],
+    "header": [
+      "# v2 git bundle",
+      "acfb6799f699b7868612db346958c9e3d710680f refs/heads/engineering/diamond-sa-001"
+    ],
+    "prerequisites": [],
+    "candidate": "acfb6799f699b7868612db346958c9e3d710680f",
+    "parent": "aec0abb117939b2819ebcd7b0b426e8243705e65",
+    "tree": "6b2e0336582a6f205c48374c058b1ac2798fff15",
+    "ancestryCommitCount": 25,
+    "selfContainedObjectClosureVerifiedInIsolatedObjectDatabase": true,
+    "repositoryRefsCreatedOrModified": false
+  },
+  "prerequisiteFiles": {
+    "registered": 115,
+    "availableExactExportSources": 115,
+    "missingExactInputs": 0,
+    "configuredProducerTargetsMissingOrMismatched": 5,
+    "executorPathsVerified": false,
+    "executorProvisioned": false
+  },
+  "approvalTemplates": "UNCHANGED_UNAPPROVED",
+  "SA001": "OPEN P1",
+  "T2LINK": "OPEN P2 SEPARATE"
+}

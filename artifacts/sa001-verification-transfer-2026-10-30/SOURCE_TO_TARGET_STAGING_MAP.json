@@ -1,0 +1,1962 @@
+{
+  "classification": "TRANSFER_MAP_ONLY_NOT_EXECUTOR_PROVISIONING",
+  "requiredPathCount": 115,
+  "configuredPathsPreservedVerbatim": true,
+  "rows": [
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/ADP07_shared.isolated.v4.mjs",
+      "expectedSHA256": "bc32cf0e5f020bfa313a57fca7380fd48f80a63df9f13b3abd0fd6d050c4cb62",
+      "manifestOrigin": "receipt/externalSupportFiles",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "bc32cf0e5f020bfa313a57fca7380fd48f80a63df9f13b3abd0fd6d050c4cb62",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-support-staged-artifacts-2026-10-29/ADP07_shared.isolated.v4.mjs",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/ADP07_shared.isolated.v4.mjs",
+      "exportedSHA256": "bc32cf0e5f020bfa313a57fca7380fd48f80a63df9f13b3abd0fd6d050c4cb62",
+      "bytes": 10159
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/provision_verified_inputs.py",
+      "expectedSHA256": "abb757ae3647ad89fd09e7e33292ceddc3092031b162bcc95cfc9f01763d028e",
+      "manifestOrigin": "receipt/externalSupportFiles",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "abb757ae3647ad89fd09e7e33292ceddc3092031b162bcc95cfc9f01763d028e",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-support-staged-artifacts-2026-10-29/provision_verified_inputs.py",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/provision_verified_inputs.py",
+      "exportedSHA256": "abb757ae3647ad89fd09e7e33292ceddc3092031b162bcc95cfc9f01763d028e",
+      "bytes": 2626
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/00_E_R3_RECONCILIATION_CLOSURE.md",
+      "expectedSHA256": "4b308568b0b37fa04691da1f01e8302e419064a3ab74bb91579ae11a0f0deb84",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/00_E_R3_RECONCILIATION_CLOSURE.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "4b308568b0b37fa04691da1f01e8302e419064a3ab74bb91579ae11a0f0deb84",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/00_E_R3_RECONCILIATION_CLOSURE.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/00_E_R3_RECONCILIATION_CLOSURE.md",
+      "exportedSHA256": "4b308568b0b37fa04691da1f01e8302e419064a3ab74bb91579ae11a0f0deb84",
+      "bytes": 7943
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/01_AUTHORITY_EVIDENCE_0_1_1_PROPOSED.md",
+      "expectedSHA256": "33fdbb89e59f9e7480272bad7f8096c65221417108eb90e0bff30e972db877c0",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/01_AUTHORITY_EVIDENCE_0_1_1_PROPOSED.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "33fdbb89e59f9e7480272bad7f8096c65221417108eb90e0bff30e972db877c0",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/01_AUTHORITY_EVIDENCE_0_1_1_PROPOSED.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/01_AUTHORITY_EVIDENCE_0_1_1_PROPOSED.md",
+      "exportedSHA256": "33fdbb89e59f9e7480272bad7f8096c65221417108eb90e0bff30e972db877c0",
+      "bytes": 23606
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/02_BINDING_GRAPH_AND_CANONICAL_0_1_1.md",
+      "expectedSHA256": "8be06c5ee6589503d4143eca426d5759ff0b3800a6be89e59e88af8d2630bdbf",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/02_BINDING_GRAPH_AND_CANONICAL_0_1_1.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "8be06c5ee6589503d4143eca426d5759ff0b3800a6be89e59e88af8d2630bdbf",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/02_BINDING_GRAPH_AND_CANONICAL_0_1_1.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/02_BINDING_GRAPH_AND_CANONICAL_0_1_1.md",
+      "exportedSHA256": "8be06c5ee6589503d4143eca426d5759ff0b3800a6be89e59e88af8d2630bdbf",
+      "bytes": 8764
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/03_EFFECT_DEPENDENCIES_0_1_1.md",
+      "expectedSHA256": "4b9b9587aa1f1e12294d89ab147942afaf3e3c118e2aa0a368683e42c0f91108",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/03_EFFECT_DEPENDENCIES_0_1_1.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "4b9b9587aa1f1e12294d89ab147942afaf3e3c118e2aa0a368683e42c0f91108",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/03_EFFECT_DEPENDENCIES_0_1_1.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/03_EFFECT_DEPENDENCIES_0_1_1.md",
+      "exportedSHA256": "4b9b9587aa1f1e12294d89ab147942afaf3e3c118e2aa0a368683e42c0f91108",
+      "bytes": 7458
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/04_NINE_POSITIVE_FIXTURE_RECIPES.md",
+      "expectedSHA256": "9480da1ff58ee1647ec9724568c1964eee364025f90e7ff899444807a47f2129",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/04_NINE_POSITIVE_FIXTURE_RECIPES.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "9480da1ff58ee1647ec9724568c1964eee364025f90e7ff899444807a47f2129",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/04_NINE_POSITIVE_FIXTURE_RECIPES.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/04_NINE_POSITIVE_FIXTURE_RECIPES.md",
+      "exportedSHA256": "9480da1ff58ee1647ec9724568c1964eee364025f90e7ff899444807a47f2129",
+      "bytes": 11384
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/05_SEMANTICS_RETENTION_CAPACITY.md",
+      "expectedSHA256": "49887500f709475faf45f269a3260d852a2d6ea161f85db8b3d10a85ad399aa9",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/05_SEMANTICS_RETENTION_CAPACITY.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "49887500f709475faf45f269a3260d852a2d6ea161f85db8b3d10a85ad399aa9",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/05_SEMANTICS_RETENTION_CAPACITY.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/05_SEMANTICS_RETENTION_CAPACITY.md",
+      "exportedSHA256": "49887500f709475faf45f269a3260d852a2d6ea161f85db8b3d10a85ad399aa9",
+      "bytes": 5579
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/AUTHORITY_EVIDENCE_0_1_1.schema.json",
+      "expectedSHA256": "fec92158cec08f676b90d140ab1ba47f39b42b84175605e9f4c8bfdd511704a2",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/AUTHORITY_EVIDENCE_0_1_1.schema.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "fec92158cec08f676b90d140ab1ba47f39b42b84175605e9f4c8bfdd511704a2",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/AUTHORITY_EVIDENCE_0_1_1.schema.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/AUTHORITY_EVIDENCE_0_1_1.schema.json",
+      "exportedSHA256": "fec92158cec08f676b90d140ab1ba47f39b42b84175605e9f4c8bfdd511704a2",
+      "bytes": 110960
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/EXPECTED_DIGESTS.md",
+      "expectedSHA256": "9d57d51797e8812eeceeea6f4e6c009e78a28fbc46c6e197ec4e44d642d772a5",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/EXPECTED_DIGESTS.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "9d57d51797e8812eeceeea6f4e6c009e78a28fbc46c6e197ec4e44d642d772a5",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/EXPECTED_DIGESTS.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/EXPECTED_DIGESTS.md",
+      "exportedSHA256": "9d57d51797e8812eeceeea6f4e6c009e78a28fbc46c6e197ec4e44d642d772a5",
+      "bytes": 6135
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/INPUT_AND_SIZE_OBSERVATIONS.json",
+      "expectedSHA256": "ffc3ce7c3cf1123f8e2d37c8acc56e02fffa09f3aba8088a2599aa3d4b1faa31",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/INPUT_AND_SIZE_OBSERVATIONS.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "ffc3ce7c3cf1123f8e2d37c8acc56e02fffa09f3aba8088a2599aa3d4b1faa31",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/INPUT_AND_SIZE_OBSERVATIONS.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/INPUT_AND_SIZE_OBSERVATIONS.json",
+      "exportedSHA256": "ffc3ce7c3cf1123f8e2d37c8acc56e02fffa09f3aba8088a2599aa3d4b1faa31",
+      "bytes": 1835
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/REJECTION_CASES_0_1_1.json",
+      "expectedSHA256": "6bcf340fe8706676671eb9c7eb5dab480c83ba06d3a875603e542fd9e1cf1004",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/REJECTION_CASES_0_1_1.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "6bcf340fe8706676671eb9c7eb5dab480c83ba06d3a875603e542fd9e1cf1004",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/REJECTION_CASES_0_1_1.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/REJECTION_CASES_0_1_1.json",
+      "exportedSHA256": "6bcf340fe8706676671eb9c7eb5dab480c83ba06d3a875603e542fd9e1cf1004",
+      "bytes": 113314
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/SHA256SUMS.txt",
+      "expectedSHA256": "c32638829abff03c80b7dfd6448c0d9230bf5cf34be72edb80b68f26468a3cd2",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/SHA256SUMS.txt",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "c32638829abff03c80b7dfd6448c0d9230bf5cf34be72edb80b68f26468a3cd2",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/SHA256SUMS.txt",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/SHA256SUMS.txt",
+      "exportedSHA256": "c32638829abff03c80b7dfd6448c0d9230bf5cf34be72edb80b68f26468a3cd2",
+      "bytes": 2276
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VECTORS_0_1_1.json",
+      "expectedSHA256": "481d10a32548454b79ce8cb9c7bb964dfbc3f3169180d825155c6b2519ab0ab7",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/VECTORS_0_1_1.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "481d10a32548454b79ce8cb9c7bb964dfbc3f3169180d825155c6b2519ab0ab7",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VECTORS_0_1_1.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VECTORS_0_1_1.json",
+      "exportedSHA256": "481d10a32548454b79ce8cb9c7bb964dfbc3f3169180d825155c6b2519ab0ab7",
+      "bytes": 544836
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VERIFICATION_RESULT.json",
+      "expectedSHA256": "05a919cc15ec274b3532f49aca60a665f858ac82d17b22d8177519de8ff72a6f",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/VERIFICATION_RESULT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "05a919cc15ec274b3532f49aca60a665f858ac82d17b22d8177519de8ff72a6f",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VERIFICATION_RESULT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VERIFICATION_RESULT.json",
+      "exportedSHA256": "05a919cc15ec274b3532f49aca60a665f858ac82d17b22d8177519de8ff72a6f",
+      "bytes": 403
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VERIFY_CONTRACT.py",
+      "expectedSHA256": "04c772e44387fbd9b63bf1b37da80d767c1122142c7a4c69b3ee16b21238cd8f",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/VERIFY_CONTRACT.py",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "04c772e44387fbd9b63bf1b37da80d767c1122142c7a4c69b3ee16b21238cd8f",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VERIFY_CONTRACT.py",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/VERIFY_CONTRACT.py",
+      "exportedSHA256": "04c772e44387fbd9b63bf1b37da80d767c1122142c7a4c69b3ee16b21238cd8f",
+      "bytes": 12524
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/build_contract_schema.py",
+      "expectedSHA256": "f062b9ce06f352ae855777160f4e4d3b9a5c4e940dc33565e39107a0553b80f5",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/build_contract_schema.py",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "f062b9ce06f352ae855777160f4e4d3b9a5c4e940dc33565e39107a0553b80f5",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/build_contract_schema.py",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/build_contract_schema.py",
+      "exportedSHA256": "f062b9ce06f352ae855777160f4e4d3b9a5c4e940dc33565e39107a0553b80f5",
+      "bytes": 19314
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/BYTE_FIXTURE_DESCRIPTORS.json",
+      "expectedSHA256": "de54f47840d722d7b8b3e216420a1c96d5dfbd974d6de7ec64d7fe55feb18a12",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/examples/BYTE_FIXTURE_DESCRIPTORS.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "de54f47840d722d7b8b3e216420a1c96d5dfbd974d6de7ec64d7fe55feb18a12",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/BYTE_FIXTURE_DESCRIPTORS.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/BYTE_FIXTURE_DESCRIPTORS.json",
+      "exportedSHA256": "de54f47840d722d7b8b3e216420a1c96d5dfbd974d6de7ec64d7fe55feb18a12",
+      "bytes": 4031
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/INITIAL_COMPLETE_E_CONTEXT.json",
+      "expectedSHA256": "ecbc01c82f406af085d911eba26fb3e94d2510313244ba973c9439b8eb94434b",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/examples/INITIAL_COMPLETE_E_CONTEXT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "ecbc01c82f406af085d911eba26fb3e94d2510313244ba973c9439b8eb94434b",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/INITIAL_COMPLETE_E_CONTEXT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/INITIAL_COMPLETE_E_CONTEXT.json",
+      "exportedSHA256": "ecbc01c82f406af085d911eba26fb3e94d2510313244ba973c9439b8eb94434b",
+      "bytes": 28580
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/INITIAL_SUPPORT.json",
+      "expectedSHA256": "502123a0642f81cf6f45220fac182454b0b98c64eec024e00d25d7aa151b8aaf",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/examples/INITIAL_SUPPORT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "502123a0642f81cf6f45220fac182454b0b98c64eec024e00d25d7aa151b8aaf",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/INITIAL_SUPPORT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/INITIAL_SUPPORT.json",
+      "exportedSHA256": "502123a0642f81cf6f45220fac182454b0b98c64eec024e00d25d7aa151b8aaf",
+      "bytes": 27256
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/REVISION_COMPLETE_E_CONTEXT.json",
+      "expectedSHA256": "cae7f04ad042bd30ba1a25506ebe2517b2926314abc1ea05d8bceb9d4e8fca62",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/examples/REVISION_COMPLETE_E_CONTEXT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "cae7f04ad042bd30ba1a25506ebe2517b2926314abc1ea05d8bceb9d4e8fca62",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/REVISION_COMPLETE_E_CONTEXT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/REVISION_COMPLETE_E_CONTEXT.json",
+      "exportedSHA256": "cae7f04ad042bd30ba1a25506ebe2517b2926314abc1ea05d8bceb9d4e8fca62",
+      "bytes": 28347
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/REVISION_SUPPORT.json",
+      "expectedSHA256": "7ce7f2397a1ef1ae614003d7eb96c0b2a30722f7a25b7ad7666913999bf0e720",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/examples/REVISION_SUPPORT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "7ce7f2397a1ef1ae614003d7eb96c0b2a30722f7a25b7ad7666913999bf0e720",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/REVISION_SUPPORT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/examples/REVISION_SUPPORT.json",
+      "exportedSHA256": "7ce7f2397a1ef1ae614003d7eb96c0b2a30722f7a25b7ad7666913999bf0e720",
+      "bytes": 26017
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/generate_examples_and_vectors.mjs",
+      "expectedSHA256": "bf8bfdfa781691c79681e44ef3d76512fcc17a01552985ccb6e9bb3ec1983fa6",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/generate_examples_and_vectors.mjs",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "bf8bfdfa781691c79681e44ef3d76512fcc17a01552985ccb6e9bb3ec1983fa6",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/generate_examples_and_vectors.mjs",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/generate_examples_and_vectors.mjs",
+      "exportedSHA256": "bf8bfdfa781691c79681e44ef3d76512fcc17a01552985ccb6e9bb3ec1983fa6",
+      "bytes": 29981
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/AVAILABLE_ASSETS_OBSERVATION.json",
+      "expectedSHA256": "091972d04885b269127e5bb56841e36144d83bce73cacbb1a094481b8b122fa2",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/reference/AVAILABLE_ASSETS_OBSERVATION.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "091972d04885b269127e5bb56841e36144d83bce73cacbb1a094481b8b122fa2",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/AVAILABLE_ASSETS_OBSERVATION.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/AVAILABLE_ASSETS_OBSERVATION.json",
+      "exportedSHA256": "091972d04885b269127e5bb56841e36144d83bce73cacbb1a094481b8b122fa2",
+      "bytes": 4270
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/PRIOR_SOURCE_INTERFACE_AUDIT.md",
+      "expectedSHA256": "2bc9dfcbc09163f492e863cc9a94390dbeab33190c75179e87c6798ed3f035e8",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/reference/PRIOR_SOURCE_INTERFACE_AUDIT.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "2bc9dfcbc09163f492e863cc9a94390dbeab33190c75179e87c6798ed3f035e8",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/PRIOR_SOURCE_INTERFACE_AUDIT.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/PRIOR_SOURCE_INTERFACE_AUDIT.md",
+      "exportedSHA256": "2bc9dfcbc09163f492e863cc9a94390dbeab33190c75179e87c6798ed3f035e8",
+      "bytes": 12235
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/SOURCE_IDENTITIES.json",
+      "expectedSHA256": "7739aeae9a0ba5e2d987cd6043f887abec5cd2832c75d4209d29e3fc9355fb82",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/E_AUTHORITY_0_1_1/reference/SOURCE_IDENTITIES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "7739aeae9a0ba5e2d987cd6043f887abec5cd2832c75d4209d29e3fc9355fb82",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/SOURCE_IDENTITIES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/E_AUTHORITY_0_1_1/reference/SOURCE_IDENTITIES.json",
+      "exportedSHA256": "7739aeae9a0ba5e2d987cd6043f887abec5cd2832c75d4209d29e3fc9355fb82",
+      "bytes": 3064
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_A_HANDOFF_C1_C2.md",
+      "expectedSHA256": "6ae10184b5b70f34fdd82ff6891884f4f3e97989191390f02c16753d8c7cf100",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/00_A_HANDOFF_C1_C2.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "6ae10184b5b70f34fdd82ff6891884f4f3e97989191390f02c16753d8c7cf100",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_A_HANDOFF_C1_C2.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_A_HANDOFF_C1_C2.md",
+      "exportedSHA256": "6ae10184b5b70f34fdd82ff6891884f4f3e97989191390f02c16753d8c7cf100",
+      "bytes": 7493
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_A_HANDOFF_C3_0.1.4.md",
+      "expectedSHA256": "6b7efcbc4b6d2f286c52a368c135c66ac275d8b58ed96dd0f8510b1a3d44e36d",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/00_A_HANDOFF_C3_0.1.4.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "6b7efcbc4b6d2f286c52a368c135c66ac275d8b58ed96dd0f8510b1a3d44e36d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_A_HANDOFF_C3_0.1.4.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_A_HANDOFF_C3_0.1.4.md",
+      "exportedSHA256": "6b7efcbc4b6d2f286c52a368c135c66ac275d8b58ed96dd0f8510b1a3d44e36d",
+      "bytes": 7285
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "expectedSHA256": "7d72dbc9154053ee866b16e2a49869bf7c55d93940cb39f821365ccce16485bd",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "7d72dbc9154053ee866b16e2a49869bf7c55d93940cb39f821365ccce16485bd",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "exportedSHA256": "7d72dbc9154053ee866b16e2a49869bf7c55d93940cb39f821365ccce16485bd",
+      "bytes": 6516
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/01_C1_PRECEDENCE_AND_AVAILABILITY.md",
+      "expectedSHA256": "6a0a1c977b097700fe2635f38b6e041414264b1919fb64080b2322634787ee67",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/01_C1_PRECEDENCE_AND_AVAILABILITY.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "6a0a1c977b097700fe2635f38b6e041414264b1919fb64080b2322634787ee67",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/01_C1_PRECEDENCE_AND_AVAILABILITY.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/01_C1_PRECEDENCE_AND_AVAILABILITY.md",
+      "exportedSHA256": "6a0a1c977b097700fe2635f38b6e041414264b1919fb64080b2322634787ee67",
+      "bytes": 4654
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "expectedSHA256": "d5d6275d91861bac2a3cbce077c0ab49e87cafd60ed9e97682300ad564cd1135",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "d5d6275d91861bac2a3cbce077c0ab49e87cafd60ed9e97682300ad564cd1135",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "exportedSHA256": "d5d6275d91861bac2a3cbce077c0ab49e87cafd60ed9e97682300ad564cd1135",
+      "bytes": 15144
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "expectedSHA256": "23fe66e09829a1d351e3f2453b3c6eda7ce792bc984ea27f5c5c0385a7979b6a",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "23fe66e09829a1d351e3f2453b3c6eda7ce792bc984ea27f5c5c0385a7979b6a",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "exportedSHA256": "23fe66e09829a1d351e3f2453b3c6eda7ce792bc984ea27f5c5c0385a7979b6a",
+      "bytes": 9268
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "expectedSHA256": "667f157286ef0e120b16c8c0f4c7840dbb9c9f69719067f875e3093b5ddec30d",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "667f157286ef0e120b16c8c0f4c7840dbb9c9f69719067f875e3093b5ddec30d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "exportedSHA256": "667f157286ef0e120b16c8c0f4c7840dbb9c9f69719067f875e3093b5ddec30d",
+      "bytes": 5169
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/F011_EXACT_TEST_VARIANTS_0_1_3_PROPOSED.json",
+      "expectedSHA256": "c24e891220aaac91a602526628f8c8392db63ae5b9755d1e4349a8576392c4c6",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/F011_EXACT_TEST_VARIANTS_0_1_3_PROPOSED.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "c24e891220aaac91a602526628f8c8392db63ae5b9755d1e4349a8576392c4c6",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/F011_EXACT_TEST_VARIANTS_0_1_3_PROPOSED.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/F011_EXACT_TEST_VARIANTS_0_1_3_PROPOSED.json",
+      "exportedSHA256": "c24e891220aaac91a602526628f8c8392db63ae5b9755d1e4349a8576392c4c6",
+      "bytes": 181333
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/F011_TYPED_LOAD_RESULT_0_1_2_PROPOSED.schema.json",
+      "expectedSHA256": "23d6b631bf83be46778206369441e92c132436dc39ecd7d74ef52647add1727b",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/F011_TYPED_LOAD_RESULT_0_1_2_PROPOSED.schema.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "23d6b631bf83be46778206369441e92c132436dc39ecd7d74ef52647add1727b",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/F011_TYPED_LOAD_RESULT_0_1_2_PROPOSED.schema.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/F011_TYPED_LOAD_RESULT_0_1_2_PROPOSED.schema.json",
+      "exportedSHA256": "23d6b631bf83be46778206369441e92c132436dc39ecd7d74ef52647add1727b",
+      "bytes": 146178
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/README_START_HERE.md",
+      "expectedSHA256": "3f3e6dbca3f7a209aab0517e125213ef9d196acdd9b506effaa09fac2ef0a9a9",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/README_START_HERE.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "3f3e6dbca3f7a209aab0517e125213ef9d196acdd9b506effaa09fac2ef0a9a9",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/README_START_HERE.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/README_START_HERE.md",
+      "exportedSHA256": "3f3e6dbca3f7a209aab0517e125213ef9d196acdd9b506effaa09fac2ef0a9a9",
+      "bytes": 2115
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/SHA256SUMS.txt",
+      "expectedSHA256": "eb38078c4ca4247414937b87cd9dfb222df46996821cf53f28755f9b811dbfc6",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/SHA256SUMS.txt",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "eb38078c4ca4247414937b87cd9dfb222df46996821cf53f28755f9b811dbfc6",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/SHA256SUMS.txt",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/SHA256SUMS.txt",
+      "exportedSHA256": "eb38078c4ca4247414937b87cd9dfb222df46996821cf53f28755f9b811dbfc6",
+      "bytes": 8308
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_EXISTING_INTERFACES.json",
+      "expectedSHA256": "89a353c995951d49a62f606c3da951b87da3553dd71fa949116ae7af2ab59f88",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/A_EXISTING_INTERFACES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "89a353c995951d49a62f606c3da951b87da3553dd71fa949116ae7af2ab59f88",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_EXISTING_INTERFACES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_EXISTING_INTERFACES.json",
+      "exportedSHA256": "89a353c995951d49a62f606c3da951b87da3553dd71fa949116ae7af2ab59f88",
+      "bytes": 8968
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_ORIGINAL_BUILDER_PROBE.json",
+      "expectedSHA256": "bed781abbbf0cd11726ab0ecb0dcbd3a63dfd4ac874146166b1dda90d48f3e40",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/A_ORIGINAL_BUILDER_PROBE.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "bed781abbbf0cd11726ab0ecb0dcbd3a63dfd4ac874146166b1dda90d48f3e40",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_ORIGINAL_BUILDER_PROBE.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_ORIGINAL_BUILDER_PROBE.json",
+      "exportedSHA256": "bed781abbbf0cd11726ab0ecb0dcbd3a63dfd4ac874146166b1dda90d48f3e40",
+      "bytes": 3354
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_ORIGINAL_COUNTEREXAMPLES.json",
+      "expectedSHA256": "a8f76b7c61d3f223f8bf63db3d86b996ef46c26d7d46285a126cccb387422c83",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/A_ORIGINAL_COUNTEREXAMPLES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "a8f76b7c61d3f223f8bf63db3d86b996ef46c26d7d46285a126cccb387422c83",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_ORIGINAL_COUNTEREXAMPLES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/A_ORIGINAL_COUNTEREXAMPLES.json",
+      "exportedSHA256": "a8f76b7c61d3f223f8bf63db3d86b996ef46c26d7d46285a126cccb387422c83",
+      "bytes": 3772
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C1_DIGEST_VALID_CONTROLS.json",
+      "expectedSHA256": "4065ec82742df24a00d559082d416b09ec521b949dc35321c12c90f82b4aeb63",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C1_DIGEST_VALID_CONTROLS.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "4065ec82742df24a00d559082d416b09ec521b949dc35321c12c90f82b4aeb63",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C1_DIGEST_VALID_CONTROLS.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C1_DIGEST_VALID_CONTROLS.json",
+      "exportedSHA256": "4065ec82742df24a00d559082d416b09ec521b949dc35321c12c90f82b4aeb63",
+      "bytes": 1807
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C2_CORRECTED_HASHES.json",
+      "expectedSHA256": "7be01fcf3cb3f9951b55519bf27350ec2b54b417e6486c6ac3146b2cd4473f65",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C2_CORRECTED_HASHES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "7be01fcf3cb3f9951b55519bf27350ec2b54b417e6486c6ac3146b2cd4473f65",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C2_CORRECTED_HASHES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C2_CORRECTED_HASHES.json",
+      "exportedSHA256": "7be01fcf3cb3f9951b55519bf27350ec2b54b417e6486c6ac3146b2cd4473f65",
+      "bytes": 434
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_CORRECTED_COMMITMENTS.json",
+      "expectedSHA256": "1e7b26b68e1d87f6246ac9fed4a01b73de2357d5ab9aee305767b139e99ea4b7",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_CORRECTED_COMMITMENTS.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "1e7b26b68e1d87f6246ac9fed4a01b73de2357d5ab9aee305767b139e99ea4b7",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_CORRECTED_COMMITMENTS.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_CORRECTED_COMMITMENTS.json",
+      "exportedSHA256": "1e7b26b68e1d87f6246ac9fed4a01b73de2357d5ab9aee305767b139e99ea4b7",
+      "bytes": 2182
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_EXACT_CHANGED_PATHS.json",
+      "expectedSHA256": "16b9fda281ee52ec2f1d627066543b8c2e27ebc9f74ea08ae6282a1784cc7b53",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_EXACT_CHANGED_PATHS.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "16b9fda281ee52ec2f1d627066543b8c2e27ebc9f74ea08ae6282a1784cc7b53",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_EXACT_CHANGED_PATHS.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_EXACT_CHANGED_PATHS.json",
+      "exportedSHA256": "16b9fda281ee52ec2f1d627066543b8c2e27ebc9f74ea08ae6282a1784cc7b53",
+      "bytes": 5158
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_EXIT_CODES.json",
+      "expectedSHA256": "6b46f128cdfb142e1a2a43d4cf641d77cff7f223591eefa69fb314333dd49798",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_EXIT_CODES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "6b46f128cdfb142e1a2a43d4cf641d77cff7f223591eefa69fb314333dd49798",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_EXIT_CODES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_EXIT_CODES.json",
+      "exportedSHA256": "6b46f128cdfb142e1a2a43d4cf641d77cff7f223591eefa69fb314333dd49798",
+      "bytes": 1690
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_INPUT_AND_OUTPUT_IDENTITIES.json",
+      "expectedSHA256": "e4e2a6fa50c9fc59f5f9637b53da7a087266011aa84cbf8a321ad0def6b6cb37",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_INPUT_AND_OUTPUT_IDENTITIES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "e4e2a6fa50c9fc59f5f9637b53da7a087266011aa84cbf8a321ad0def6b6cb37",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_INPUT_AND_OUTPUT_IDENTITIES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_INPUT_AND_OUTPUT_IDENTITIES.json",
+      "exportedSHA256": "e4e2a6fa50c9fc59f5f9637b53da7a087266011aa84cbf8a321ad0def6b6cb37",
+      "bytes": 685
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_REGENERATION_RAW.log",
+      "expectedSHA256": "974d08a675e12ea456fc4a934759fcf0fc30af0817d4b134f798c79480288df9",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_REGENERATION_RAW.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "974d08a675e12ea456fc4a934759fcf0fc30af0817d4b134f798c79480288df9",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_REGENERATION_RAW.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_REGENERATION_RAW.log",
+      "exportedSHA256": "974d08a675e12ea456fc4a934759fcf0fc30af0817d4b134f798c79480288df9",
+      "bytes": 2211
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/C1C2_RECHECK.log",
+      "expectedSHA256": "4931717587db64cd5ab3b91d69f66f654c9f3d3f2d49c3cf8a6adfc92072d5ca",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/C1C2_RECHECK.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "4931717587db64cd5ab3b91d69f66f654c9f3d3f2d49c3cf8a6adfc92072d5ca",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/C1C2_RECHECK.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/C1C2_RECHECK.log",
+      "exportedSHA256": "4931717587db64cd5ab3b91d69f66f654c9f3d3f2d49c3cf8a6adfc92072d5ca",
+      "bytes": 2108
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/C3_BOUNDED_VERIFIER.log",
+      "expectedSHA256": "681bd8cc04a63894552a949dc23e8d39197dd3ca8599e8dc63f732b020c92eaf",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/C3_BOUNDED_VERIFIER.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "681bd8cc04a63894552a949dc23e8d39197dd3ca8599e8dc63f732b020c92eaf",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/C3_BOUNDED_VERIFIER.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/C3_BOUNDED_VERIFIER.log",
+      "exportedSHA256": "681bd8cc04a63894552a949dc23e8d39197dd3ca8599e8dc63f732b020c92eaf",
+      "bytes": 3052
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_C3_CONCURRENCE_RECHECK.log",
+      "expectedSHA256": "33de8ba0692d1569907b3e9e51fc7ba35fbf5f78d6edbf5fa5cba91d8e373acb",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/E_C3_CONCURRENCE_RECHECK.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "33de8ba0692d1569907b3e9e51fc7ba35fbf5f78d6edbf5fa5cba91d8e373acb",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_C3_CONCURRENCE_RECHECK.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_C3_CONCURRENCE_RECHECK.log",
+      "exportedSHA256": "33de8ba0692d1569907b3e9e51fc7ba35fbf5f78d6edbf5fa5cba91d8e373acb",
+      "bytes": 80
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_PREIMAGES.log",
+      "expectedSHA256": "08f566572ab5df1162d6767daa986536ef6ee61d8bbc2665d4354e3b2f310a19",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/E_PREIMAGES.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "08f566572ab5df1162d6767daa986536ef6ee61d8bbc2665d4354e3b2f310a19",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_PREIMAGES.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_PREIMAGES.log",
+      "exportedSHA256": "08f566572ab5df1162d6767daa986536ef6ee61d8bbc2665d4354e3b2f310a19",
+      "bytes": 123
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/C3_CHECK_RESULTS.json",
+      "expectedSHA256": "cd27c656f244b17c238ae220dc2b91393c5086becca1e3c32f910cdc9dda5849",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/C3_CHECK_RESULTS.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "cd27c656f244b17c238ae220dc2b91393c5086becca1e3c32f910cdc9dda5849",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/C3_CHECK_RESULTS.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/C3_CHECK_RESULTS.json",
+      "exportedSHA256": "cd27c656f244b17c238ae220dc2b91393c5086becca1e3c32f910cdc9dda5849",
+      "bytes": 11712
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/CANONICAL_PREIMAGES.json",
+      "expectedSHA256": "ecd23d700c19e78cba8770638e3a7c1dfbb388dc623ce7298f446fed07e9f808",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/CANONICAL_PREIMAGES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "ecd23d700c19e78cba8770638e3a7c1dfbb388dc623ce7298f446fed07e9f808",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/CANONICAL_PREIMAGES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/CANONICAL_PREIMAGES.json",
+      "exportedSHA256": "ecd23d700c19e78cba8770638e3a7c1dfbb388dc623ce7298f446fed07e9f808",
+      "bytes": 1009807
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/PYTHON_PREIMAGE_VERIFICATION.json",
+      "expectedSHA256": "f5e5ad9d7fab5890e7d500e9e3eb0b3b4f161878b1fddf15dfb417f035e3a28d",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/PYTHON_PREIMAGE_VERIFICATION.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "f5e5ad9d7fab5890e7d500e9e3eb0b3b4f161878b1fddf15dfb417f035e3a28d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/PYTHON_PREIMAGE_VERIFICATION.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/PYTHON_PREIMAGE_VERIFICATION.json",
+      "exportedSHA256": "f5e5ad9d7fab5890e7d500e9e3eb0b3b4f161878b1fddf15dfb417f035e3a28d",
+      "bytes": 9467
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/RECONSTRUCTED_AUTHORED_CANDIDATE_PREIMAGES.json",
+      "expectedSHA256": "6769758f663a1f1a7104d846212ed1fdecd0f96ec717a80df30fbd9f620603d5",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/RECONSTRUCTED_AUTHORED_CANDIDATE_PREIMAGES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "6769758f663a1f1a7104d846212ed1fdecd0f96ec717a80df30fbd9f620603d5",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/RECONSTRUCTED_AUTHORED_CANDIDATE_PREIMAGES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_RECHECK/RECONSTRUCTED_AUTHORED_CANDIDATE_PREIMAGES.json",
+      "exportedSHA256": "6769758f663a1f1a7104d846212ed1fdecd0f96ec717a80df30fbd9f620603d5",
+      "bytes": 286
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_SELF_CONTAINED_REPLAY.log",
+      "expectedSHA256": "adb39d14313eda333fc501374860dc31a1891fb7364ab6203202b2e624910791",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/E_SELF_CONTAINED_REPLAY.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "adb39d14313eda333fc501374860dc31a1891fb7364ab6203202b2e624910791",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_SELF_CONTAINED_REPLAY.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/E_SELF_CONTAINED_REPLAY.log",
+      "exportedSHA256": "adb39d14313eda333fc501374860dc31a1891fb7364ab6203202b2e624910791",
+      "bytes": 330
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/F011_46_RECHECK.log",
+      "expectedSHA256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/F011_46_RECHECK.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/F011_46_RECHECK.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/F011_46_RECHECK.log",
+      "exportedSHA256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+      "bytes": 1544
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/PURE_REPLAY.log",
+      "expectedSHA256": "452653329d4eb61f5509f9de6eac97586e72183fedd5199284f60d69a4073ea4",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/C3_RUNS/PURE_REPLAY.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "452653329d4eb61f5509f9de6eac97586e72183fedd5199284f60d69a4073ea4",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/PURE_REPLAY.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/C3_RUNS/PURE_REPLAY.log",
+      "exportedSHA256": "452653329d4eb61f5509f9de6eac97586e72183fedd5199284f60d69a4073ea4",
+      "bytes": 173
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/EXIT_CODES.json",
+      "expectedSHA256": "538a8f57d8dfbce785fb5e3b11c0d21ccf7aec20f767d2b47bbf1cbcbc6cf7e4",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/EXIT_CODES.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "538a8f57d8dfbce785fb5e3b11c0d21ccf7aec20f767d2b47bbf1cbcbc6cf7e4",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/EXIT_CODES.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/EXIT_CODES.json",
+      "exportedSHA256": "538a8f57d8dfbce785fb5e3b11c0d21ccf7aec20f767d2b47bbf1cbcbc6cf7e4",
+      "bytes": 598
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/PURE_BINDINGS.json",
+      "expectedSHA256": "d5b3bbd8d1e3712537eeab2af2535886ae018b2d2d4e6ebc617a560c3ffa871f",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/PURE_BINDINGS.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "d5b3bbd8d1e3712537eeab2af2535886ae018b2d2d4e6ebc617a560c3ffa871f",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/PURE_BINDINGS.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/PURE_BINDINGS.json",
+      "exportedSHA256": "d5b3bbd8d1e3712537eeab2af2535886ae018b2d2d4e6ebc617a560c3ffa871f",
+      "bytes": 422
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/PURE_INTERFACES.log",
+      "expectedSHA256": "452653329d4eb61f5509f9de6eac97586e72183fedd5199284f60d69a4073ea4",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/PURE_INTERFACES.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "452653329d4eb61f5509f9de6eac97586e72183fedd5199284f60d69a4073ea4",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/PURE_INTERFACES.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/PURE_INTERFACES.log",
+      "exportedSHA256": "452653329d4eb61f5509f9de6eac97586e72183fedd5199284f60d69a4073ea4",
+      "bytes": 173
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/READ_ONLY_VERIFY_LOG.txt",
+      "expectedSHA256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/READ_ONLY_VERIFY_LOG.txt",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/READ_ONLY_VERIFY_LOG.txt",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/READ_ONLY_VERIFY_LOG.txt",
+      "exportedSHA256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+      "bytes": 1544
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFICATION_SUMMARY.json",
+      "expectedSHA256": "4c6a3e1efd83e4ad6548a9f554c2708c72039b0e5ea69ae2af54443ac3bb6be4",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/VERIFICATION_SUMMARY.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "4c6a3e1efd83e4ad6548a9f554c2708c72039b0e5ea69ae2af54443ac3bb6be4",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFICATION_SUMMARY.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFICATION_SUMMARY.json",
+      "exportedSHA256": "4c6a3e1efd83e4ad6548a9f554c2708c72039b0e5ea69ae2af54443ac3bb6be4",
+      "bytes": 619
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFIER_C1C2.log",
+      "expectedSHA256": "4931717587db64cd5ab3b91d69f66f654c9f3d3f2d49c3cf8a6adfc92072d5ca",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/VERIFIER_C1C2.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "4931717587db64cd5ab3b91d69f66f654c9f3d3f2d49c3cf8a6adfc92072d5ca",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFIER_C1C2.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFIER_C1C2.log",
+      "exportedSHA256": "4931717587db64cd5ab3b91d69f66f654c9f3d3f2d49c3cf8a6adfc92072d5ca",
+      "bytes": 2108
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFIER_F011_INHERITED.log",
+      "expectedSHA256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/evidence/VERIFIER_F011_INHERITED.log",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFIER_F011_INHERITED.log",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/evidence/VERIFIER_F011_INHERITED.log",
+      "exportedSHA256": "9a686fbf1025d0926b3b0a0bd6cb0bca1bd43808bcc337ede0de39b4844b6a42",
+      "bytes": 1544
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/BOTH_CAPS_EXCEEDED.json",
+      "expectedSHA256": "8c3e88a038279d7d1e048a9afd4bf1f88e1b17e8c10943104c3df77ecd7fae3d",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/BOTH_CAPS_EXCEEDED.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "8c3e88a038279d7d1e048a9afd4bf1f88e1b17e8c10943104c3df77ecd7fae3d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/BOTH_CAPS_EXCEEDED.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/BOTH_CAPS_EXCEEDED.json",
+      "exportedSHA256": "8c3e88a038279d7d1e048a9afd4bf1f88e1b17e8c10943104c3df77ecd7fae3d",
+      "bytes": 2097153
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/CAPACITY_FIXTURES_INDEX.json",
+      "expectedSHA256": "f380e7d12293943953b413864c8a945f2a16017d80cdb3a7a9919176b2956a3c",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/CAPACITY_FIXTURES_INDEX.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "f380e7d12293943953b413864c8a945f2a16017d80cdb3a7a9919176b2956a3c",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/CAPACITY_FIXTURES_INDEX.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/CAPACITY_FIXTURES_INDEX.json",
+      "exportedSHA256": "f380e7d12293943953b413864c8a945f2a16017d80cdb3a7a9919176b2956a3c",
+      "bytes": 814
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E1_LEGACY.json",
+      "expectedSHA256": "d26600aa0d770ef68734f803aed8955dbb1ae7ce25273e7d1efcd1c708b77679",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/E1_LEGACY.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "d26600aa0d770ef68734f803aed8955dbb1ae7ce25273e7d1efcd1c708b77679",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E1_LEGACY.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E1_LEGACY.json",
+      "exportedSHA256": "d26600aa0d770ef68734f803aed8955dbb1ae7ce25273e7d1efcd1c708b77679",
+      "bytes": 7080
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_B2_OPAQUE_HISTORY.json",
+      "expectedSHA256": "af0413e53a3ea5f4b2145d0948f9cedcd13898ddb00da7d2ba00aa34b444ccf7",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/E2_B2_OPAQUE_HISTORY.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "af0413e53a3ea5f4b2145d0948f9cedcd13898ddb00da7d2ba00aa34b444ccf7",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_B2_OPAQUE_HISTORY.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_B2_OPAQUE_HISTORY.json",
+      "exportedSHA256": "af0413e53a3ea5f4b2145d0948f9cedcd13898ddb00da7d2ba00aa34b444ccf7",
+      "bytes": 12262
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_REVISION_BASE.json",
+      "expectedSHA256": "709093c4fc860a1c708346539ec0c77b37b78ad2304ac979db46115198e16681",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/E2_REVISION_BASE.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "709093c4fc860a1c708346539ec0c77b37b78ad2304ac979db46115198e16681",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_REVISION_BASE.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_REVISION_BASE.json",
+      "exportedSHA256": "709093c4fc860a1c708346539ec0c77b37b78ad2304ac979db46115198e16681",
+      "bytes": 4558
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_WITH_REAL_LEDGER_HISTORY.json",
+      "expectedSHA256": "73982a69e518796bda1e39ad5739761f60862f6b2b3119b2e90fcaba8080721d",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/E2_WITH_REAL_LEDGER_HISTORY.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "73982a69e518796bda1e39ad5739761f60862f6b2b3119b2e90fcaba8080721d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_WITH_REAL_LEDGER_HISTORY.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/E2_WITH_REAL_LEDGER_HISTORY.json",
+      "exportedSHA256": "73982a69e518796bda1e39ad5739761f60862f6b2b3119b2e90fcaba8080721d",
+      "bytes": 11556
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097151.json",
+      "expectedSHA256": "26876068372618028656422414c3fe7c3b208f34addc8bb70dd13a90936886e4",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097151.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "26876068372618028656422414c3fe7c3b208f34addc8bb70dd13a90936886e4",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097151.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097151.json",
+      "exportedSHA256": "26876068372618028656422414c3fe7c3b208f34addc8bb70dd13a90936886e4",
+      "bytes": 2097151
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097152.json",
+      "expectedSHA256": "5473f66ca35be70695582fbbb42cafacf7c04ffceafbd74a57842c5ab9852372",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097152.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "5473f66ca35be70695582fbbb42cafacf7c04ffceafbd74a57842c5ab9852372",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097152.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097152.json",
+      "exportedSHA256": "5473f66ca35be70695582fbbb42cafacf7c04ffceafbd74a57842c5ab9852372",
+      "bytes": 2097152
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097153.json",
+      "expectedSHA256": "0a6df6a2922e540bfd3c5e1b3fa90f6e6bd2c25a05b6f0975624259aa36e2c68",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097153.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "0a6df6a2922e540bfd3c5e1b3fa90f6e6bd2c25a05b6f0975624259aa36e2c68",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097153.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/ENVELOPE_UTF8_2097153.json",
+      "exportedSHA256": "0a6df6a2922e540bfd3c5e1b3fa90f6e6bd2c25a05b6f0975624259aa36e2c68",
+      "bytes": 2097153
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/FRESH_DOCUMENT.json",
+      "expectedSHA256": "20b5682719c4ca41b8c6f82107d41b84df4e1f4999c22bd6d74bcaf2337f2e7b",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/FRESH_DOCUMENT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "20b5682719c4ca41b8c6f82107d41b84df4e1f4999c22bd6d74bcaf2337f2e7b",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/FRESH_DOCUMENT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/FRESH_DOCUMENT.json",
+      "exportedSHA256": "20b5682719c4ca41b8c6f82107d41b84df4e1f4999c22bd6d74bcaf2337f2e7b",
+      "bytes": 45776
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/LEDGER_CORRECTION_ACTUAL_OUTPUT.json",
+      "expectedSHA256": "ccb550a9f06c39dfd5881035e7a288f8706cfcb6db42d8dcbf3adbf1bae8e55c",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/LEDGER_CORRECTION_ACTUAL_OUTPUT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "ccb550a9f06c39dfd5881035e7a288f8706cfcb6db42d8dcbf3adbf1bae8e55c",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/LEDGER_CORRECTION_ACTUAL_OUTPUT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/LEDGER_CORRECTION_ACTUAL_OUTPUT.json",
+      "exportedSHA256": "ccb550a9f06c39dfd5881035e7a288f8706cfcb6db42d8dcbf3adbf1bae8e55c",
+      "bytes": 93392
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/LEGACY_UNATTESTED_UPGRADE.json",
+      "expectedSHA256": "a2dd6ae2da600d44d17fd8a9101ca1b8e28e505ca612537f772c5149517cc058",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/LEGACY_UNATTESTED_UPGRADE.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "a2dd6ae2da600d44d17fd8a9101ca1b8e28e505ca612537f772c5149517cc058",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/LEGACY_UNATTESTED_UPGRADE.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/LEGACY_UNATTESTED_UPGRADE.json",
+      "exportedSHA256": "a2dd6ae2da600d44d17fd8a9101ca1b8e28e505ca612537f772c5149517cc058",
+      "bytes": 47413
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/MANUAL.json",
+      "expectedSHA256": "f4f1808c64a64e9d7799ca7ab9d53522a54f45d168e3315005fef4850706da6c",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/MANUAL.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "f4f1808c64a64e9d7799ca7ab9d53522a54f45d168e3315005fef4850706da6c",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/MANUAL.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/MANUAL.json",
+      "exportedSHA256": "f4f1808c64a64e9d7799ca7ab9d53522a54f45d168e3315005fef4850706da6c",
+      "bytes": 7540
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/MULTI_RECEIPT_SEMANTIC_AUTHORED_NOT_TRUSTED_STAGE.json",
+      "expectedSHA256": "54cee518c729363c51c6b94a205c3d3b4918e57d80123e42bc82d1a6aada128d",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/MULTI_RECEIPT_SEMANTIC_AUTHORED_NOT_TRUSTED_STAGE.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "54cee518c729363c51c6b94a205c3d3b4918e57d80123e42bc82d1a6aada128d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/MULTI_RECEIPT_SEMANTIC_AUTHORED_NOT_TRUSTED_STAGE.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/MULTI_RECEIPT_SEMANTIC_AUTHORED_NOT_TRUSTED_STAGE.json",
+      "exportedSHA256": "54cee518c729363c51c6b94a205c3d3b4918e57d80123e42bc82d1a6aada128d",
+      "bytes": 89886
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524287.json",
+      "expectedSHA256": "55cf54a718a1f1c65bef4b26ea65cdeaadf9eb44ca836993c140b08f61f909f3",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524287.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "55cf54a718a1f1c65bef4b26ea65cdeaadf9eb44ca836993c140b08f61f909f3",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524287.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524287.json",
+      "exportedSHA256": "55cf54a718a1f1c65bef4b26ea65cdeaadf9eb44ca836993c140b08f61f909f3",
+      "bytes": 530250
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524288.json",
+      "expectedSHA256": "ca91d27b8460f8c894ba9296874f6a7cc13f041365b1671402a61ed25bc6deac",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524288.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "ca91d27b8460f8c894ba9296874f6a7cc13f041365b1671402a61ed25bc6deac",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524288.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524288.json",
+      "exportedSHA256": "ca91d27b8460f8c894ba9296874f6a7cc13f041365b1671402a61ed25bc6deac",
+      "bytes": 530251
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524289.json",
+      "expectedSHA256": "6dbd9aeb1c3287063232c1827071c4ac2d9da84f87640625d06c25feb30029d8",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524289.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "6dbd9aeb1c3287063232c1827071c4ac2d9da84f87640625d06c25feb30029d8",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524289.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/RECEIPT_UTF8_524289.json",
+      "exportedSHA256": "6dbd9aeb1c3287063232c1827071c4ac2d9da84f87640625d06c25feb30029d8",
+      "bytes": 530252
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/REV2-authored-preview.jpg",
+      "expectedSHA256": "c321c3c00270681561b65d205d375a03757a8f5e312424c8c9034d106dfc2fa7",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/REV2-authored-preview.jpg",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "c321c3c00270681561b65d205d375a03757a8f5e312424c8c9034d106dfc2fa7",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/REV2-authored-preview.jpg",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/REV2-authored-preview.jpg",
+      "exportedSHA256": "c321c3c00270681561b65d205d375a03757a8f5e312424c8c9034d106dfc2fa7",
+      "bytes": 18022
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/REV2-authored.pdf",
+      "expectedSHA256": "84247958d18d83d8cf95c2e346c7230f024dd78bcdaacc35d2dc3bcfb1a8fa53",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/REV2-authored.pdf",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "84247958d18d83d8cf95c2e346c7230f024dd78bcdaacc35d2dc3bcfb1a8fa53",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/REV2-authored.pdf",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/REV2-authored.pdf",
+      "exportedSHA256": "84247958d18d83d8cf95c2e346c7230f024dd78bcdaacc35d2dc3bcfb1a8fa53",
+      "bytes": 739
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_ASSEMBLED_RETAINED_CROSSWALK.json",
+      "expectedSHA256": "1242f5b17c4985aaaf8e958b9cbdd1ee085f69f88c3e29f5adda6073be3439ea",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/SECOND_ASSEMBLED_RETAINED_CROSSWALK.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "1242f5b17c4985aaaf8e958b9cbdd1ee085f69f88c3e29f5adda6073be3439ea",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_ASSEMBLED_RETAINED_CROSSWALK.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_ASSEMBLED_RETAINED_CROSSWALK.json",
+      "exportedSHA256": "1242f5b17c4985aaaf8e958b9cbdd1ee085f69f88c3e29f5adda6073be3439ea",
+      "bytes": 2015
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_RAW_BUILDER_PATCH.json",
+      "expectedSHA256": "b395d44fb7a5cbf34ab399b4331a637cd4d9b85504d678c134cbe03b2ba9bd4f",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/SECOND_RAW_BUILDER_PATCH.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "b395d44fb7a5cbf34ab399b4331a637cd4d9b85504d678c134cbe03b2ba9bd4f",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_RAW_BUILDER_PATCH.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_RAW_BUILDER_PATCH.json",
+      "exportedSHA256": "b395d44fb7a5cbf34ab399b4331a637cd4d9b85504d678c134cbe03b2ba9bd4f",
+      "bytes": 932
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_SOURCE_SUPPORT.json",
+      "expectedSHA256": "2f6bdb3b8a201340012d0db930fd4a165f2e81769bdf3ec9e2c8777a2d4f734a",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/SECOND_SOURCE_SUPPORT.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "2f6bdb3b8a201340012d0db930fd4a165f2e81769bdf3ec9e2c8777a2d4f734a",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_SOURCE_SUPPORT.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/SECOND_SOURCE_SUPPORT.json",
+      "exportedSHA256": "2f6bdb3b8a201340012d0db930fd4a165f2e81769bdf3ec9e2c8777a2d4f734a",
+      "bytes": 69036
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F011_X_18_unknown_e_field.json",
+      "expectedSHA256": "82cab9ca81a801620f1fe944147e1bb0deb2e9eac900068b184e7dd7ee00b9b4",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F011_X_18_unknown_e_field.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "82cab9ca81a801620f1fe944147e1bb0deb2e9eac900068b184e7dd7ee00b9b4",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F011_X_18_unknown_e_field.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F011_X_18_unknown_e_field.json",
+      "exportedSHA256": "82cab9ca81a801620f1fe944147e1bb0deb2e9eac900068b184e7dd7ee00b9b4",
+      "bytes": 45816
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_anchor.json",
+      "expectedSHA256": "5f0df1266d0a344c07c39230dd26b41d0b7d35aa102adb38d62f43cc0f66b902",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_anchor.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "5f0df1266d0a344c07c39230dd26b41d0b7d35aa102adb38d62f43cc0f66b902",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_anchor.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_anchor.json",
+      "exportedSHA256": "5f0df1266d0a344c07c39230dd26b41d0b7d35aa102adb38d62f43cc0f66b902",
+      "bytes": 45810
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_clock.json",
+      "expectedSHA256": "1af76f0ae1c55a4e65f52278c7259254b88118f9e77c66a280455a13007e5154",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_clock.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "1af76f0ae1c55a4e65f52278c7259254b88118f9e77c66a280455a13007e5154",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_clock.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_clock.json",
+      "exportedSHA256": "1af76f0ae1c55a4e65f52278c7259254b88118f9e77c66a280455a13007e5154",
+      "bytes": 45808
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_review.json",
+      "expectedSHA256": "d4c7789e295ed2383ece7f21c86413037026bd02da03543d07e625ab2cf2d0a4",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_review.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "d4c7789e295ed2383ece7f21c86413037026bd02da03543d07e625ab2cf2d0a4",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_review.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/fixtures/UNKNOWN_VALID_F_SA_09_review.json",
+      "exportedSHA256": "d4c7789e295ed2383ece7f21c86413037026bd02da03543d07e625ab2cf2d0a4",
+      "bytes": 45806
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/E_AUTHORITY_EVIDENCE_0_1_1_UNCHANGED.schema.json",
+      "expectedSHA256": "fec92158cec08f676b90d140ab1ba47f39b42b84175605e9f4c8bfdd511704a2",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/E_AUTHORITY_EVIDENCE_0_1_1_UNCHANGED.schema.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "fec92158cec08f676b90d140ab1ba47f39b42b84175605e9f4c8bfdd511704a2",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/E_AUTHORITY_EVIDENCE_0_1_1_UNCHANGED.schema.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/E_AUTHORITY_EVIDENCE_0_1_1_UNCHANGED.schema.json",
+      "exportedSHA256": "fec92158cec08f676b90d140ab1ba47f39b42b84175605e9f4c8bfdd511704a2",
+      "bytes": 110960
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/E_C3_REVIEW_ORIGINAL.zip",
+      "expectedSHA256": "89d3dbc3106a34be610f417fe54f2448b34491452853cb28a4de755e7fc8d760",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/E_C3_REVIEW_ORIGINAL.zip",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "89d3dbc3106a34be610f417fe54f2448b34491452853cb28a4de755e7fc8d760",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/E_C3_REVIEW_ORIGINAL.zip",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/E_C3_REVIEW_ORIGINAL.zip",
+      "exportedSHA256": "89d3dbc3106a34be610f417fe54f2448b34491452853cb28a4de755e7fc8d760",
+      "bytes": 366349
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/F_C1C2_0.1.3_ORIGINAL.zip",
+      "expectedSHA256": "8fd19bcf4fca2ef3f0163b39a249eb0e0dbf9f70b67e7ec3c0f8914ff8ad27c9",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/F_C1C2_0.1.3_ORIGINAL.zip",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "8fd19bcf4fca2ef3f0163b39a249eb0e0dbf9f70b67e7ec3c0f8914ff8ad27c9",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/F_C1C2_0.1.3_ORIGINAL.zip",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/F_C1C2_0.1.3_ORIGINAL.zip",
+      "exportedSHA256": "8fd19bcf4fca2ef3f0163b39a249eb0e0dbf9f70b67e7ec3c0f8914ff8ad27c9",
+      "bytes": 265472
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/SA001_PROFILE3_EMBEDDED_0.1.1_PROPOSED.schema.json",
+      "expectedSHA256": "bf34087ccd398aa14d36e1575c6ffa8e64f82b3bcd6f0ad290544b9be4b89238",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/SA001_PROFILE3_EMBEDDED_0.1.1_PROPOSED.schema.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "bf34087ccd398aa14d36e1575c6ffa8e64f82b3bcd6f0ad290544b9be4b89238",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/SA001_PROFILE3_EMBEDDED_0.1.1_PROPOSED.schema.json",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/SA001_PROFILE3_EMBEDDED_0.1.1_PROPOSED.schema.json",
+      "exportedSHA256": "bf34087ccd398aa14d36e1575c6ffa8e64f82b3bcd6f0ad290544b9be4b89238",
+      "bytes": 137418
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "expectedSHA256": "7d72dbc9154053ee866b16e2a49869bf7c55d93940cb39f821365ccce16485bd",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/previous_F011_docs/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "7d72dbc9154053ee866b16e2a49869bf7c55d93940cb39f821365ccce16485bd",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/00_F_TO_A_F011_CLOSURE_AND_LIMITATIONS.md",
+      "exportedSHA256": "7d72dbc9154053ee866b16e2a49869bf7c55d93940cb39f821365ccce16485bd",
+      "bytes": 6516
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "expectedSHA256": "d5d6275d91861bac2a3cbce077c0ab49e87cafd60ed9e97682300ad564cd1135",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/previous_F011_docs/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "d5d6275d91861bac2a3cbce077c0ab49e87cafd60ed9e97682300ad564cd1135",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/01_F011_TYPED_READ_AND_PRECEDENCE_0_1_2_PROPOSED.md",
+      "exportedSHA256": "d5d6275d91861bac2a3cbce077c0ab49e87cafd60ed9e97682300ad564cd1135",
+      "bytes": 15144
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "expectedSHA256": "23fe66e09829a1d351e3f2453b3c6eda7ce792bc984ea27f5c5c0385a7979b6a",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/previous_F011_docs/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "23fe66e09829a1d351e3f2453b3c6eda7ce792bc984ea27f5c5c0385a7979b6a",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/02_F011_MACHINE_ORACLE_AND_LIMITS_0_1_2_PROPOSED.md",
+      "exportedSHA256": "23fe66e09829a1d351e3f2453b3c6eda7ce792bc984ea27f5c5c0385a7979b6a",
+      "bytes": 9268
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "expectedSHA256": "667f157286ef0e120b16c8c0f4c7840dbb9c9f69719067f875e3093b5ddec30d",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/reference/previous_F011_docs/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "667f157286ef0e120b16c8c0f4c7840dbb9c9f69719067f875e3093b5ddec30d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/reference/previous_F011_docs/03_F011_SECOND_OPERATION_SEMANTIC_FIXTURE_0_1_2_PROPOSED.md",
+      "exportedSHA256": "667f157286ef0e120b16c8c0f4c7840dbb9c9f69719067f875e3093b5ddec30d",
+      "bytes": 5169
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/apply_c3_finite.mjs",
+      "expectedSHA256": "2f59f27600edbf1a0a87dc95f47bbc19aa3c50994aface6c94ccf6919cdcc611",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/research/apply_c3_finite.mjs",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "2f59f27600edbf1a0a87dc95f47bbc19aa3c50994aface6c94ccf6919cdcc611",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/apply_c3_finite.mjs",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/apply_c3_finite.mjs",
+      "exportedSHA256": "2f59f27600edbf1a0a87dc95f47bbc19aa3c50994aface6c94ccf6919cdcc611",
+      "bytes": 8039
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/replay_e_c3.py",
+      "expectedSHA256": "00811f825c63fa247bfbf5e5685f26c5ed1aff8484d17edd6b3ee9482202401e",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/research/replay_e_c3.py",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "00811f825c63fa247bfbf5e5685f26c5ed1aff8484d17edd6b3ee9482202401e",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/replay_e_c3.py",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/replay_e_c3.py",
+      "exportedSHA256": "00811f825c63fa247bfbf5e5685f26c5ed1aff8484d17edd6b3ee9482202401e",
+      "bytes": 1992
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/replay_pure_interfaces.mjs",
+      "expectedSHA256": "a54781b18c0356f3ee81d078b2edb4b322cc7c2257cd4fcdc5ffc4c4e8242c0a",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/research/replay_pure_interfaces.mjs",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "a54781b18c0356f3ee81d078b2edb4b322cc7c2257cd4fcdc5ffc4c4e8242c0a",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/replay_pure_interfaces.mjs",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/replay_pure_interfaces.mjs",
+      "exportedSHA256": "a54781b18c0356f3ee81d078b2edb4b322cc7c2257cd4fcdc5ffc4c4e8242c0a",
+      "bytes": 4954
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/verify_c1_c2.py",
+      "expectedSHA256": "9f06f7aa3e97e3fde4901418218b0e9a78462eaf7a8f3e6b65bf551fe446a230",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/research/verify_c1_c2.py",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "9f06f7aa3e97e3fde4901418218b0e9a78462eaf7a8f3e6b65bf551fe446a230",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/verify_c1_c2.py",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/verify_c1_c2.py",
+      "exportedSHA256": "9f06f7aa3e97e3fde4901418218b0e9a78462eaf7a8f3e6b65bf551fe446a230",
+      "bytes": 7500
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/verify_c3_finite.py",
+      "expectedSHA256": "0af4fdc38ada36b7a95a87e8cf440038a2e5b048d74636efc8875058ae291c82",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/research/verify_c3_finite.py",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "0af4fdc38ada36b7a95a87e8cf440038a2e5b048d74636efc8875058ae291c82",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/verify_c3_finite.py",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/research/verify_c3_finite.py",
+      "exportedSHA256": "0af4fdc38ada36b7a95a87e8cf440038a2e5b048d74636efc8875058ae291c82",
+      "bytes": 7774
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/verify_f011_contract.py",
+      "expectedSHA256": "a7863c41406f9ae3620dd6a9708899a218ba693667e5787dcc764b8ac2245e83",
+      "manifestOrigin": "review-inputs/accepted-specialist-contracts/F_AMENDED_0_1_4/verify_f011_contract.py",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "a7863c41406f9ae3620dd6a9708899a218ba693667e5787dcc764b8ac2245e83",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-contract/contract/F_AMENDED_0_1_4/verify_f011_contract.py",
+      "packetPath": "payload/required-paths/workspace/sa001-contract/contract/F_AMENDED_0_1_4/verify_f011_contract.py",
+      "exportedSHA256": "a7863c41406f9ae3620dd6a9708899a218ba693667e5787dcc764b8ac2245e83",
+      "bytes": 8680
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-impl04-amendment/active/ACCEPTANCE_REGISTER_A_IMPL04_CORRECTED.json",
+      "expectedSHA256": "7fcc171afec1763325d5899f2604915019e698a89b2d7a71faa920b337042f6d",
+      "manifestOrigin": "review-inputs/frozen-inputs/IMPL04/active/ACCEPTANCE_REGISTER_A_IMPL04_CORRECTED.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "7fcc171afec1763325d5899f2604915019e698a89b2d7a71faa920b337042f6d",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-impl04-amendment/active/ACCEPTANCE_REGISTER_A_IMPL04_CORRECTED.json",
+      "packetPath": "payload/required-paths/workspace/sa001-impl04-amendment/active/ACCEPTANCE_REGISTER_A_IMPL04_CORRECTED.json",
+      "exportedSHA256": "7fcc171afec1763325d5899f2604915019e698a89b2d7a71faa920b337042f6d",
+      "bytes": 206945
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-impl04-amendment/active/fixtures/E2_B2_RELEASE1_OPAQUE_HISTORY_A_IMPL03.json",
+      "expectedSHA256": "2ed73f6fd92bf5eb34f98dffc7ca6280c46d9ac3201e1e2404132a6ecf4cd4c9",
+      "manifestOrigin": "review-inputs/frozen-inputs/IMPL04/active/fixtures/E2_B2_RELEASE1_OPAQUE_HISTORY_A_IMPL03.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "2ed73f6fd92bf5eb34f98dffc7ca6280c46d9ac3201e1e2404132a6ecf4cd4c9",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-impl04-amendment/active/fixtures/E2_B2_RELEASE1_OPAQUE_HISTORY_A_IMPL03.json",
+      "packetPath": "payload/required-paths/workspace/sa001-impl04-amendment/active/fixtures/E2_B2_RELEASE1_OPAQUE_HISTORY_A_IMPL03.json",
+      "exportedSHA256": "2ed73f6fd92bf5eb34f98dffc7ca6280c46d9ac3201e1e2404132a6ecf4cd4c9",
+      "bytes": 12262
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-impl04-amendment/active/fixtures/E2_RELEASE1_REAL_LEDGER_HISTORY_A_IMPL04.json",
+      "expectedSHA256": "17619139693e3b44e3b4292c47919862a7110bf52d0668ed8576840c502c02fd",
+      "manifestOrigin": "review-inputs/frozen-inputs/IMPL04/active/fixtures/E2_RELEASE1_REAL_LEDGER_HISTORY_A_IMPL04.json",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "17619139693e3b44e3b4292c47919862a7110bf52d0668ed8576840c502c02fd",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-impl04-amendment/active/fixtures/E2_RELEASE1_REAL_LEDGER_HISTORY_A_IMPL04.json",
+      "packetPath": "payload/required-paths/workspace/sa001-impl04-amendment/active/fixtures/E2_RELEASE1_REAL_LEDGER_HISTORY_A_IMPL04.json",
+      "exportedSHA256": "17619139693e3b44e3b4292c47919862a7110bf52d0668ed8576840c502c02fd",
+      "bytes": 11556
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/operator_runner_exec05_er3_v6.py",
+      "expectedSHA256": "1ebefaf19a2bd949144a45f4af75e5f73610139ee68c16918020be72f3185dd7",
+      "manifestOrigin": "operator-exec05-e-r3",
+      "configuredPathObservationOnProducer": {
+        "exists": false,
+        "sha256": null,
+        "matchesExpected": false
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-exec05-er3-staged-external-2026-10-30/supporting/operator_runner_exec05_er3_v6.py",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/operator_runner_exec05_er3_v6.py",
+      "exportedSHA256": "1ebefaf19a2bd949144a45f4af75e5f73610139ee68c16918020be72f3185dd7",
+      "bytes": 30106
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/same_run_comparator_wrapper_exec04_v2.py",
+      "expectedSHA256": "095fe0bfdd971bddf2292b8dd1aae544aa17d35a6b8821e327282e7331ad7c50",
+      "manifestOrigin": "wrapper-exec04",
+      "configuredPathObservationOnProducer": {
+        "exists": false,
+        "sha256": null,
+        "matchesExpected": false
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-exec05-er3-staged-external-2026-10-30/supporting/same_run_comparator_wrapper_exec04_v2.py",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/same_run_comparator_wrapper_exec04_v2.py",
+      "exportedSHA256": "095fe0bfdd971bddf2292b8dd1aae544aa17d35a6b8821e327282e7331ad7c50",
+      "bytes": 13037
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/F152_FINAL_SAME_RUN_BINDINGS_PROPOSED.json",
+      "expectedSHA256": "2d07a96fce9a6c5f4c1b61580af32562fbdbdc825be3bd9d1801cf4295f8cecb",
+      "manifestOrigin": "f152",
+      "configuredPathObservationOnProducer": {
+        "exists": false,
+        "sha256": null,
+        "matchesExpected": false
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-exec05-er3-staged-external-2026-10-30/frozen-unchanged/F152_FINAL_SAME_RUN_BINDINGS_PROPOSED.json",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/F152_FINAL_SAME_RUN_BINDINGS_PROPOSED.json",
+      "exportedSHA256": "2d07a96fce9a6c5f4c1b61580af32562fbdbdc825be3bd9d1801cf4295f8cecb",
+      "bytes": 163856
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/loaded_asset_evidence.py",
+      "expectedSHA256": "ef8b9501443df71e55e83443c02124488863be9a4f7d675436ab8f31a6c137b8",
+      "manifestOrigin": "e-r3-asset-verifier",
+      "configuredPathObservationOnProducer": {
+        "exists": false,
+        "sha256": null,
+        "matchesExpected": false
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-exec05-er3-staged-external-2026-10-30/supporting/loaded_asset_evidence.py",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/loaded_asset_evidence.py",
+      "exportedSHA256": "ef8b9501443df71e55e83443c02124488863be9a4f7d675436ab8f31a6c137b8",
+      "bytes": 38121
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/CANDIDATE_IDENTITY_FOR_REVIEW.json",
+      "expectedSHA256": "d84f8041623b9c882c2c0a80aee459964dd770547d1e191a975c3bf7dd1cba5c",
+      "manifestOrigin": "base-identity",
+      "configuredPathObservationOnProducer": {
+        "exists": false,
+        "sha256": null,
+        "matchesExpected": false
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-exec05-er3-staged-external-2026-10-30/frozen-unchanged/CANDIDATE_IDENTITY_FOR_REVIEW.json",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/CANDIDATE_IDENTITY_FOR_REVIEW.json",
+      "exportedSHA256": "d84f8041623b9c882c2c0a80aee459964dd770547d1e191a975c3bf7dd1cba5c",
+      "bytes": 33707
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-impl04-amendment/active/F011_EXACT_TEST_VARIANTS_A_IMPL04_CORRECTED.json",
+      "expectedSHA256": "5628adc49a277b4b283fb9cdfbc082924048dc24e018db415b2e9c768f3497a1",
+      "manifestOrigin": "gold",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "5628adc49a277b4b283fb9cdfbc082924048dc24e018db415b2e9c768f3497a1",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-impl04-amendment/active/F011_EXACT_TEST_VARIANTS_A_IMPL04_CORRECTED.json",
+      "packetPath": "payload/required-paths/workspace/sa001-impl04-amendment/active/F011_EXACT_TEST_VARIANTS_A_IMPL04_CORRECTED.json",
+      "exportedSHA256": "5628adc49a277b4b283fb9cdfbc082924048dc24e018db415b2e9c768f3497a1",
+      "bytes": 181547
+    },
+    {
+      "configuredTargetPath": "/workspace/sa001-support-staged-artifacts-2026-10-29/reconcile_assertions_v2.py",
+      "expectedSHA256": "73e0f2456523aa62734d6b7a1beb5bf90d9681e6338d1296f00a435e8e71f963",
+      "manifestOrigin": "comparator",
+      "configuredPathObservationOnProducer": {
+        "exists": true,
+        "sha256": "73e0f2456523aa62734d6b7a1beb5bf90d9681e6338d1296f00a435e8e71f963",
+        "matchesExpected": true
+      },
+      "executorLocationVerified": false,
+      "executorProvisioned": false,
+      "availability": "EXACT_EXPORT_SOURCE_AVAILABLE",
+      "exportSourcePath": "/workspace/sa001-support-staged-artifacts-2026-10-29/reconcile_assertions_v2.py",
+      "packetPath": "payload/required-paths/workspace/sa001-support-staged-artifacts-2026-10-29/reconcile_assertions_v2.py",
+      "exportedSHA256": "73e0f2456523aa62734d6b7a1beb5bf90d9681e6338d1296f00a435e8e71f963",
+      "bytes": 12386
+    }
+  ]
+}
